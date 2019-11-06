@@ -1,5 +1,10 @@
 package main;
 
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 public class ASPGenerator {
@@ -21,28 +26,22 @@ public class ASPGenerator {
     }
 
     public String getASPProgram() {
-        StringBuilder sb = new StringBuilder();
+        // Create and initialize the template engine
+        VelocityEngine ve = new VelocityEngine();
+        ve.init();
 
-        for(Fact fact: facts){
-            sb.append(fact.getName()).append("(").append(fact.getConstant()).append(").\n");
-        }
+        // Load the template
+        Template t = ve.getTemplate("./src/main/resources/ASP.vm");
 
-        for(Rule rule: rules){
-            Predicate firstHeadPredicate = rule.getHead().getPredicates().get(0);
-            sb.append(firstHeadPredicate.getName()).append("(")
-                    .append(firstHeadPredicate.getVariable()).append(")");
-            sb.append(" :- ");
+        // Add all rules and facts
+        VelocityContext c = new VelocityContext();
+        c.put("facts", facts);
+        c.put("rules", rules);
 
-            for(int i = 0; i < rule.getBody().getPredicates().size() - 1; ++i){
-                Predicate currentPredicate = rule.getBody().getPredicates().get(i);
-                sb.append(currentPredicate.getName()).append("(")
-                        .append(currentPredicate.getVariable()).append("), ");
-            }
-            int lastIndexOfPredicates = rule.getBody().getPredicates().size() - 1;
-            Predicate lastPredicate = rule.getBody().getPredicates().get(lastIndexOfPredicates);
-            sb.append(lastPredicate.getName()).append("(")
-                    .append(lastPredicate.getVariable()).append(").\n");
-        }
-        return sb.toString();
+        // Create the ASP-program
+        StringWriter w = new StringWriter();
+        t.merge(c, w);
+
+        return w.toString().trim();
     }
 }

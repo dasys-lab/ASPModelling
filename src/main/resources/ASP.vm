@@ -1,0 +1,32 @@
+## Iterate over all facts
+#foreach($fact in $facts)
+#fact($fact)
+
+#end
+
+## Iterate over all rules
+#foreach($rule in $rules)
+#set($firstHeadPredicate = $rule.getHead().getPredicates().get(0))
+#set($predicates = $rule.getBody().getPredicates())
+#set($maxIndex = $rule.getBody().getPredicates().size() - 1)
+$firstHeadPredicate.getName()($firstHeadPredicate.getVariable()) ##
+:- ##
+## Iterate over all predicates of the rule
+#foreach($n in [0..$maxIndex])
+#if($n != 0)
+, ## Comma separates the predicates
+#end
+#predicate($predicates.get($n))
+#end
+.
+#end
+
+## Macro for a single fact
+#macro(fact $f)
+$f.getName()($f.getConstant())##
+#end
+
+## Macro for a single predicate
+#macro(predicate $p)
+$p.getName()($p.getVariable())##
+#end
