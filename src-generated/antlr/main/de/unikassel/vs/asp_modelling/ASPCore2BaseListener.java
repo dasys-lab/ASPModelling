@@ -1,5 +1,5 @@
-// Generated from /mnt/data/WorkingDirectory/Git/dasys-lab/ASPModelling/src/main/resources/antlr/ASPCore2.g4 by ANTLR 4.7.2
-package antlr;
+// Generated from ASPCore2.g4 by ANTLR 4.7.2
+package de.unikassel.vs.asp_modelling;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;

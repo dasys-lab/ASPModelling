@@ -1,5 +1,5 @@
-// Generated from /mnt/data/WorkingDirectory/Git/dasys-lab/ASPModelling/src/main/resources/antlr/ASPLexer.g4 by ANTLR 4.7.2
-package antlr;
+// Generated from ASPLexer.g4 by ANTLR 4.7.2
+package de.unikassel.vs.asp_modelling;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

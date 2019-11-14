@@ -1,5 +1,5 @@
-// Generated from /mnt/data/WorkingDirectory/Git/dasys-lab/ASPModelling/src/main/resources/antlr/ASPCore2.g4 by ANTLR 4.7.2
-package antlr;
+// Generated from ASPCore2.g4 by ANTLR 4.7.2
+package de.unikassel.vs.asp_modelling;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -141,11 +141,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitProgram(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitProgram(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -209,11 +204,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitStatements(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitStatements(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final StatementsContext statements() throws RecognitionException {
@@ -273,11 +263,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitQuery(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitQuery(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final QueryContext query() throws RecognitionException {
@@ -328,11 +313,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitStatement_fact(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitStatement_fact(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Statement_ruleContext extends StatementContext {
 		public HeadContext head() {
@@ -351,11 +331,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitStatement_rule(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitStatement_rule(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Statement_weightConstraintContext extends StatementContext {
@@ -378,11 +353,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitStatement_weightConstraint(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitStatement_weightConstraint(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Statement_constraintContext extends StatementContext {
 		public TerminalNode CONS() { return getToken(ASPCore2Parser.CONS, 0); }
@@ -399,11 +369,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitStatement_constraint(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitStatement_constraint(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Statement_directiveContext extends StatementContext {
 		public DirectiveContext directive() {
@@ -417,11 +382,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitStatement_directive(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitStatement_directive(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -535,11 +495,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitHead(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitHead(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final HeadContext head() throws RecognitionException {
@@ -598,11 +553,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitBody(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitBody(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -674,11 +624,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitDisjunction(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitDisjunction(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final DisjunctionContext disjunction() throws RecognitionException {
@@ -748,11 +693,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitChoice(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitChoice(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -834,11 +774,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitChoice_elements(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitChoice_elements(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Choice_elementsContext choice_elements() throws RecognitionException {
@@ -894,11 +829,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitChoice_element(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitChoice_element(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -981,11 +911,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitAggregate(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitAggregate(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1071,11 +996,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitAggregate_elements(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitAggregate_elements(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Aggregate_elementsContext aggregate_elements() throws RecognitionException {
@@ -1131,11 +1051,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitAggregate_element(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitAggregate_element(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1206,11 +1121,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitAggregate_function(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitAggregate_function(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Aggregate_functionContext aggregate_function() throws RecognitionException {
@@ -1266,11 +1176,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitWeight_at_level(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitWeight_at_level(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1340,11 +1245,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitNaf_literals(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitNaf_literals(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Naf_literalsContext naf_literals() throws RecognitionException {
@@ -1403,11 +1303,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitNaf_literal(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitNaf_literal(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1483,11 +1378,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitClassical_literal(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitClassical_literal(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Classical_literalContext classical_literal() throws RecognitionException {
@@ -1558,11 +1448,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitBuiltin_atom(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitBuiltin_atom(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Builtin_atomContext builtin_atom() throws RecognitionException {
@@ -1608,11 +1493,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitBinop(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitBinop(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1665,11 +1545,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerms(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerms(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1729,11 +1604,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_number(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_number(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Term_anonymousVariableContext extends TermContext {
 		public TerminalNode ANONYMOUS_VARIABLE() { return getToken(ASPCore2Parser.ANONYMOUS_VARIABLE, 0); }
@@ -1746,11 +1616,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_anonymousVariable(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_anonymousVariable(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Term_constContext extends TermContext {
 		public TerminalNode ID() { return getToken(ASPCore2Parser.ID, 0); }
@@ -1762,11 +1627,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_const(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_const(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Term_minusArithTermContext extends TermContext {
@@ -1782,11 +1642,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_minusArithTerm(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_minusArithTerm(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Term_bitxorArithTermContext extends TermContext {
@@ -1806,11 +1661,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_bitxorArithTerm(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_bitxorArithTerm(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Term_intervalContext extends TermContext {
 		public IntervalContext interval() {
@@ -1825,11 +1675,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_interval(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_interval(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Term_variableContext extends TermContext {
 		public TerminalNode VARIABLE() { return getToken(ASPCore2Parser.VARIABLE, 0); }
@@ -1841,11 +1686,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_variable(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_variable(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Term_timesdivmodArithTermContext extends TermContext {
@@ -1867,11 +1707,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_timesdivmodArithTerm(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_timesdivmodArithTerm(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Term_plusminusArithTermContext extends TermContext {
 		public List<TermContext> term() {
@@ -1891,11 +1726,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_plusminusArithTerm(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_plusminusArithTerm(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Term_powerArithTermContext extends TermContext {
 		public List<TermContext> term() {
@@ -1914,11 +1744,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_powerArithTerm(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_powerArithTerm(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Term_funcContext extends TermContext {
 		public TerminalNode ID() { return getToken(ASPCore2Parser.ID, 0); }
@@ -1936,11 +1761,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_func(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_func(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class Term_stringContext extends TermContext {
 		public TerminalNode QUOTED_STRING() { return getToken(ASPCore2Parser.QUOTED_STRING, 0); }
@@ -1952,11 +1772,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_string(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_string(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Term_parenthesisedTermContext extends TermContext {
@@ -1973,11 +1788,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitTerm_parenthesisedTerm(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitTerm_parenthesisedTerm(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2228,11 +2038,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitInterval(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitInterval(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final IntervalContext interval() throws RecognitionException {
@@ -2308,11 +2113,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitExternal_atom(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitExternal_atom(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2394,11 +2194,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitDirective(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitDirective(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final DirectiveContext directive() throws RecognitionException {
@@ -2437,11 +2232,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitDirective_enumeration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitDirective_enumeration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2491,11 +2281,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitBasic_terms(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitBasic_terms(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2551,11 +2336,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitBasic_term(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitBasic_term(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2615,11 +2395,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitGround_term(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitGround_term(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2693,11 +2468,6 @@ public class ASPCore2Parser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitVariable_term(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitVariable_term(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final Variable_termContext variable_term() throws RecognitionException {
@@ -2754,11 +2524,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitAnswer_set(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitAnswer_set(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2831,11 +2596,6 @@ public class ASPCore2Parser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitAnswer_sets(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitAnswer_sets(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
