@@ -23,7 +23,7 @@ $firstHeadPredicate.getName()($firstHeadPredicate.getVariable()) ##
 
 ## Macro for a single fact
 #macro(fact $f)
-$f.getName()($f.getConstant())##
+$f.getName()($f.getConstant()).##
 #end
 
 ## Macro for a single predicate
