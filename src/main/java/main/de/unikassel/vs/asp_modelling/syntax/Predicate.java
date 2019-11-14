@@ -1,4 +1,4 @@
-package main;
+package main.de.unikassel.vs.asp_modelling.syntax;
 
 public class Predicate {
     private String name;
@@ -7,12 +7,12 @@ public class Predicate {
     private Head myHead;
     private Body myBody;
 
-    public Rule withVariable(String variable){
+    public Rule withVariableAsRule(String variable){
         this.variable = variable;
         return getMyHead().getMyRule();
     }
 
-    public Body withVariables(String variable){
+    public Body withVariableAsBody(String variable){
         this.variable = variable;
         return getMyBody();
     }

@@ -1,5 +1,7 @@
-package main;
+package main.de.unikassel.vs.asp_modelling;
 
+import main.de.unikassel.vs.asp_modelling.syntax.Fact;
+import main.de.unikassel.vs.asp_modelling.syntax.Rule;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -9,8 +11,8 @@ import java.util.ArrayList;
 
 public class ASPGenerator {
 
-    ArrayList<Fact> facts = new ArrayList<>();
-    ArrayList<Rule> rules = new ArrayList<>();
+    private ArrayList<Fact> facts = new ArrayList<>();
+    private ArrayList<Rule> rules = new ArrayList<>();
 
     public Fact createFact(String factName) {
         Fact fact = new Fact();

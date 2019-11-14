@@ -1,4 +1,4 @@
-package main;
+package main.de.unikassel.vs.asp_modelling;
 
 public class Main {
 
@@ -9,8 +9,8 @@ public class Main {
         gen.createFact("eagle").withConstant("eddy");
         gen.createFact("penguin").withConstant("tux");
 
-        gen.createRule().addHead().withPredicate("fly").withVariable("X")
-                .addBody().withPredicate("bird").withVariables("X").withPredicate("not -fly").withVariables("X");
+        gen.createRule().addHead().withPredicate("fly").withVariableAsRule("X")
+                .addBody().withPredicate("bird").withVariableAsBody("X").withPredicate("not -fly").withVariableAsBody("X");
 
         System.out.println(gen.getASPProgram());
 
