@@ -1,7 +1,7 @@
-package main.de.unikassel.vs.asp_modelling;
+package de.unikassel.vs.asp_modelling;
 
-import main.de.unikassel.vs.asp_modelling.syntax.Fact;
-import main.de.unikassel.vs.asp_modelling.syntax.Rule;
+import de.unikassel.vs.asp_modelling.syntax.Fact;
+import de.unikassel.vs.asp_modelling.syntax.Rule;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;

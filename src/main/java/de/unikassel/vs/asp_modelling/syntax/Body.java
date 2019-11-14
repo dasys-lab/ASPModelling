@@ -1,4 +1,4 @@
-package main.de.unikassel.vs.asp_modelling.syntax;
+package de.unikassel.vs.asp_modelling.syntax;
 
 import java.util.ArrayList;
 
