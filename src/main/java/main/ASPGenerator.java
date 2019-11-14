@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class ASPGenerator {
 
-    ArrayList<Fact> facts = new ArrayList<>();
-    ArrayList<Rule> rules = new ArrayList<>();
+    private ArrayList<Fact> facts = new ArrayList<>();
+    private ArrayList<Rule> rules = new ArrayList<>();
 
     public Fact createFact(String factName) {
         Fact fact = new Fact();
