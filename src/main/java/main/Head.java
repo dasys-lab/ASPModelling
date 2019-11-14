@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Head {
 
     private Rule myRule;
-    private ArrayList<Predicate> predicates = new ArrayList();
+    private ArrayList<Predicate> predicates = new ArrayList<>();
 
     public Predicate withPredicate(String predicateName) {
         Predicate predicate = new Predicate();
