@@ -33,7 +33,7 @@ public class ASPGenerator {
         ve.init();
 
         // Load the template
-        Template t = ve.getTemplate("./src/main/resources/ASP.vm");
+        Template t = ve.getTemplate("./src/main/resources/templates/ASP.vm");
 
         // Add all rules and facts
         VelocityContext c = new VelocityContext();
