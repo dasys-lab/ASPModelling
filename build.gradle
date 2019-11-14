@@ -13,7 +13,7 @@ repositories {
 
 
 task execute(type:JavaExec) {
-    main = "main.Main"
+    main = "main.de.unikassel.vs.asp_modelling.Main"
     classpath = sourceSets.main.runtimeClasspath
 }
 

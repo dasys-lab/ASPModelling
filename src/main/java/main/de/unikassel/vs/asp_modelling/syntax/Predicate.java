@@ -1,4 +1,4 @@
-package main;
+package main.de.unikassel.vs.asp_modelling.syntax;
 
 public class Predicate {
     private String name;
