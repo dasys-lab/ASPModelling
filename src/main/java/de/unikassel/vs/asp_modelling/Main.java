@@ -1,4 +1,4 @@
-package main.de.unikassel.vs.asp_modelling;
+package de.unikassel.vs.asp_modelling;
 
 public class Main {
 
