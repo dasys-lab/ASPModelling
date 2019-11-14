@@ -7,12 +7,12 @@ public class Predicate {
     private Head myHead;
     private Body myBody;
 
-    public Rule withVariable(String variable){
+    public Rule withVariableAsRule(String variable){
         this.variable = variable;
         return getMyHead().getMyRule();
     }
 
-    public Body withVariables(String variable){
+    public Body withVariableAsBody(String variable){
         this.variable = variable;
         return getMyBody();
     }
