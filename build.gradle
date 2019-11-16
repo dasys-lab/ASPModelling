@@ -1,4 +1,5 @@
 plugins {
+    id 'checkstyle'
     id 'java'
 }
 
@@ -11,13 +12,23 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    checkstyleOverride
+}
 
 task execute(type:JavaExec) {
     main = "main.Main"
     classpath = sourceSets.main.runtimeClasspath
 }
 
+tasks.withType(Checkstyle) {
+    checkstyleClasspath = project.configurations.checkstyleOverride
+    maxWarnings = 0
+}
+
 dependencies {
+    checkstyleOverride group: 'com.puppycrawl.tools', name: 'checkstyle', version: '8.21'
+
     compile group: 'org.apache.velocity', name: 'velocity', version: '1.7'
     compile group: 'org.apache.velocity', name: 'velocity-tools', version: '2.0'
 

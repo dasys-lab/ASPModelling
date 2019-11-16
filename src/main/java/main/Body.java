@@ -6,7 +6,7 @@ public class Body {
 
     private Rule myRule;
 
-    private ArrayList<Predicate> predicates= new ArrayList<>();
+    private ArrayList<Predicate> predicates = new ArrayList<>();
 
     public Predicate withPredicate(String predicateName) {
         Predicate predicate = new Predicate();
@@ -16,7 +16,7 @@ public class Body {
         return predicate;
     }
 
-    public ArrayList<Predicate> getPredicates(){
+    public ArrayList<Predicate> getPredicates() {
         return this.predicates;
     }
 }

@@ -1,13 +1,13 @@
 package main;
 
+import java.io.StringWriter;
+import java.util.ArrayList;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
-import java.io.StringWriter;
-import java.util.ArrayList;
 
-public class ASPGenerator {
+public class AspGenerator {
 
     private ArrayList<Fact> facts = new ArrayList<>();
     private ArrayList<Rule> rules = new ArrayList<>();
@@ -25,7 +25,7 @@ public class ASPGenerator {
         return rule;
     }
 
-    public String getASPProgram() {
+    public String getAspProgram() {
         // Create and initialize the template engine
         VelocityEngine ve = new VelocityEngine();
         ve.init();

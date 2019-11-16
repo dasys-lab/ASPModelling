@@ -2,17 +2,18 @@ package main;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        ASPGenerator gen = new ASPGenerator();
+        AspGenerator gen = new AspGenerator();
 
         gen.createFact("eagle").withConstant("eddy");
         gen.createFact("penguin").withConstant("tux");
 
         gen.createRule().addHead().withPredicate("fly").withVariableAsRule("X")
-                .addBody().withPredicate("bird").withVariableAsBody("X").withPredicate("not -fly").withVariableAsBody("X");
+                .addBody().withPredicate("bird").withVariableAsBody("X")
+                .withPredicate("not -fly").withVariableAsBody("X");
 
-        System.out.println(gen.getASPProgram());
+        System.out.println(gen.getAspProgram());
 
     }
 }

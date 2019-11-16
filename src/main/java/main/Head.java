@@ -15,15 +15,15 @@ public class Head {
         return predicate;
     }
 
-    public void setRule(Rule rule){
+    public void setRule(Rule rule) {
         this.myRule = rule;
     }
 
-    public Rule getMyRule(){
+    public Rule getMyRule() {
         return this.myRule;
     }
 
-    public ArrayList<Predicate> getPredicates(){
+    public ArrayList<Predicate> getPredicates() {
         return this.predicates;
     }
 }

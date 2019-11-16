@@ -7,12 +7,12 @@ public class Predicate {
     private Head myHead;
     private Body myBody;
 
-    public Rule withVariableAsRule(String variable){
+    public Rule withVariableAsRule(String variable) {
         this.variable = variable;
         return getMyHead().getMyRule();
     }
 
-    public Body withVariableAsBody(String variable){
+    public Body withVariableAsBody(String variable) {
         this.variable = variable;
         return getMyBody();
     }
@@ -25,11 +25,11 @@ public class Predicate {
         this.name = name;
     }
 
-    public void setHead(Head head){
+    public void setHead(Head head) {
         this.myHead = head;
     }
 
-    public Head getMyHead(){
+    public Head getMyHead() {
         return this.myHead;
     }
 
@@ -38,11 +38,11 @@ public class Predicate {
         this.myBody = body;
     }
 
-    public Body getMyBody(){
+    public Body getMyBody() {
         return this.myBody;
     }
 
-    public String getVariable(){
+    public String getVariable() {
         return this.variable;
     }
 }

@@ -10,16 +10,16 @@ public class Rule {
         return this.head;
     }
 
-    public Body addBody(){
+    public Body addBody() {
         this.body = new Body();
         return this.body;
     }
 
-    public Head getHead(){
+    public Head getHead() {
         return this.head;
     }
 
-    public Body getBody(){
+    public Body getBody() {
         return this.body;
     }
 }
