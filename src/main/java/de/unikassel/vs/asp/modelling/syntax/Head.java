@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Head {
 
-    private Rule myRule;
+    private Rule rule;
     private ArrayList<Predicate> predicates = new ArrayList<>();
 
     public Predicate withPredicate(String predicateName) {
@@ -16,11 +16,11 @@ public class Head {
     }
 
     public void setRule(Rule rule) {
-        this.myRule = rule;
+        this.rule = rule;
     }
 
-    public Rule getMyRule() {
-        return this.myRule;
+    public Rule getRule() {
+        return this.rule;
     }
 
     public ArrayList<Predicate> getPredicates() {

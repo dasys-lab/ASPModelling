@@ -4,17 +4,17 @@ public class Predicate {
     private String name;
     private String variable;
 
-    private Head myHead;
-    private Body myBody;
+    private Head head;
+    private Body body;
 
     public Rule withVariableAsRule(String variable) {
         this.variable = variable;
-        return getMyHead().getMyRule();
+        return getHead().getRule();
     }
 
     public Body withVariableAsBody(String variable) {
         this.variable = variable;
-        return getMyBody();
+        return getBody();
     }
 
     public String getName() {
@@ -26,20 +26,20 @@ public class Predicate {
     }
 
     public void setHead(Head head) {
-        this.myHead = head;
+        this.head = head;
     }
 
-    public Head getMyHead() {
-        return this.myHead;
+    public Head getHead() {
+        return this.head;
     }
 
 
     public void setBody(Body body) {
-        this.myBody = body;
+        this.body = body;
     }
 
-    public Body getMyBody() {
-        return this.myBody;
+    public Body getBody() {
+        return this.body;
     }
 
     public String getVariable() {
