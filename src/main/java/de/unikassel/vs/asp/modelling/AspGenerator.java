@@ -10,7 +10,6 @@ import org.apache.velocity.app.VelocityEngine;
 
 
 public class AspGenerator {
-
     private ArrayList<Fact> facts = new ArrayList<>();
     private ArrayList<Rule> rules = new ArrayList<>();
 

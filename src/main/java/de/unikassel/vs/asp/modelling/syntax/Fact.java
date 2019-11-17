@@ -1,9 +1,12 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 public class Fact {
+    private String constant;
+    private String name;
 
-    String name;
-    String constant;
+    public String getConstant() {
+        return this.constant;
+    }
 
     public Fact withConstant(String constant) {
         this.constant = constant;
@@ -12,10 +15,6 @@ public class Fact {
 
     public String getName() {
         return name;
-    }
-
-    public String getConstant() {
-        return this.constant;
     }
 
     public void setName(String name) {

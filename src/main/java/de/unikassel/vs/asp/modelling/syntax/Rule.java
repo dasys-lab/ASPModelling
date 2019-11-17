@@ -1,13 +1,11 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 public class Rule {
-    private Head head;
     private Body body;
+    private Head head;
 
-    public Head addHead() {
-        this.head = new Head();
-        this.head.setRule(this);
-        return this.head;
+    public Body getBody() {
+        return this.body;
     }
 
     public Body addBody() {
@@ -19,7 +17,9 @@ public class Rule {
         return this.head;
     }
 
-    public Body getBody() {
-        return this.body;
+    public Head addHead() {
+        this.head = new Head();
+        this.head.setRule(this);
+        return this.head;
     }
 }

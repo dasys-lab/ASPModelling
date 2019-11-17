@@ -3,10 +3,12 @@ package de.unikassel.vs.asp.modelling.syntax;
 import java.util.ArrayList;
 
 public class Body {
-
+    private ArrayList<Predicate> predicates = new ArrayList<>();
     private Rule rule;
 
-    private ArrayList<Predicate> predicates = new ArrayList<>();
+    public ArrayList<Predicate> getPredicates() {
+        return this.predicates;
+    }
 
     public Predicate withPredicate(String predicateName) {
         Predicate predicate = new Predicate();
@@ -14,9 +16,5 @@ public class Body {
         predicate.setBody(this);
         predicates.add(predicate);
         return predicate;
-    }
-
-    public ArrayList<Predicate> getPredicates() {
-        return this.predicates;
     }
 }

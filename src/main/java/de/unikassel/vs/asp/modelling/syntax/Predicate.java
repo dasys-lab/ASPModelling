@@ -1,20 +1,25 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 public class Predicate {
+    private Body body;
+    private Head head;
     private String name;
     private String variable;
 
-    private Head head;
-    private Body body;
-
-    public Rule withVariableAsRule(String variable) {
-        this.variable = variable;
-        return getHead().getRule();
+    public Body getBody() {
+        return this.body;
     }
 
-    public Body withVariableAsBody(String variable) {
-        this.variable = variable;
-        return getBody();
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public Head getHead() {
+        return this.head;
+    }
+
+    public void setHead(Head head) {
+        this.head = head;
     }
 
     public String getName() {
@@ -25,24 +30,17 @@ public class Predicate {
         this.name = name;
     }
 
-    public void setHead(Head head) {
-        this.head = head;
-    }
-
-    public Head getHead() {
-        return this.head;
-    }
-
-
-    public void setBody(Body body) {
-        this.body = body;
-    }
-
-    public Body getBody() {
-        return this.body;
-    }
-
     public String getVariable() {
         return this.variable;
+    }
+
+    public Body withVariableAsBody(String variable) {
+        this.variable = variable;
+        return getBody();
+    }
+
+    public Rule withVariableAsRule(String variable) {
+        this.variable = variable;
+        return getHead().getRule();
     }
 }
