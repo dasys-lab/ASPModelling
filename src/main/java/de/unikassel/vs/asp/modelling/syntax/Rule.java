@@ -1,4 +1,4 @@
-package main;
+package de.unikassel.vs.asp.modelling.syntax;
 
 public class Rule {
     private Head head;

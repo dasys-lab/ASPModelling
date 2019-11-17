@@ -1,5 +1,7 @@
-package main;
+package de.unikassel.vs.asp.modelling;
 
+import de.unikassel.vs.asp.modelling.syntax.Fact;
+import de.unikassel.vs.asp.modelling.syntax.Rule;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import org.apache.velocity.Template;

@@ -17,7 +17,7 @@ configurations {
 }
 
 task execute(type:JavaExec) {
-    main = "main.Main"
+    main = "de.unikassel.vs.asp.modelling.Main"
     classpath = sourceSets.main.runtimeClasspath
 }
 
