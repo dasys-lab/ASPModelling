@@ -1,5 +1,5 @@
+package de.unikassel.vs.asp.modelling;
 
-import de.unikassel.vs.asp.modelling.AspGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,8 @@ public class AspStringGenerationTest {
         AspGenerator gen = new AspGenerator();
 
         gen.createRule().addHead().withPredicate("fly").withVariableAsRule("X")
-                .addBody().withPredicate("bird").withVariableAsBody("X").withPredicate("not -fly").withVariableAsBody("X");
+                .addBody().withPredicate("bird").withVariableAsBody("X")
+                .withPredicate("not -fly").withVariableAsBody("X");
 
         Assertions.assertEquals(testString, gen.getAspProgram());
     }
