@@ -1,15 +1,15 @@
-package de.unikassel.vs.asp_modelling;
+package de.unikassel.vs.asp.modelling;
 
-import de.unikassel.vs.asp_modelling.syntax.Fact;
-import de.unikassel.vs.asp_modelling.syntax.Rule;
+import de.unikassel.vs.asp.modelling.syntax.Fact;
+import de.unikassel.vs.asp.modelling.syntax.Rule;
+import java.io.StringWriter;
+import java.util.ArrayList;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
-import java.io.StringWriter;
-import java.util.ArrayList;
 
-public class ASPGenerator {
+public class AspGenerator {
 
     private ArrayList<Fact> facts = new ArrayList<>();
     private ArrayList<Rule> rules = new ArrayList<>();
@@ -27,7 +27,7 @@ public class ASPGenerator {
         return rule;
     }
 
-    public String getASPProgram() {
+    public String getAspProgram() {
         // Create and initialize the template engine
         VelocityEngine ve = new VelocityEngine();
         ve.init();
