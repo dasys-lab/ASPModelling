@@ -16,4 +16,17 @@ public class APSStringGenerationTest {
         Assertions.assertEquals(testString, gen.getASPProgram());
     }
 
+    @Test
+    public void factStringTest(){
+
+        String testString = "eagle(eddy).\npenguin(tux).";
+
+        ASPGenerator gen = new ASPGenerator();
+
+        gen.createFact("eagle").withConstant("eddy");
+        gen.createFact("penguin").withConstant("tux");
+
+        Assertions.assertEquals(testString, gen.getASPProgram());
+    }
+
 }
