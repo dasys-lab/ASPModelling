@@ -1,4 +1,5 @@
 plugins {
+    id 'checkstyle'
     id 'java'
 }
 
@@ -11,13 +12,23 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    checkstyleOverride
+}
 
 task execute(type:JavaExec) {
-    main = "de.unikassel.vs.asp_modelling.Main"
+    main = "de.unikassel.vs.asp.modelling.Main"
     classpath = sourceSets.main.runtimeClasspath
 }
 
+tasks.withType(Checkstyle) {
+    checkstyleClasspath = project.configurations.checkstyleOverride
+    maxWarnings = 0
+}
+
 dependencies {
+    checkstyleOverride group: 'com.puppycrawl.tools', name: 'checkstyle', version: '8.21'
+
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
