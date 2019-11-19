@@ -1,6 +1,7 @@
 package de.unikassel.vs.asp.modelling;
 
 import de.unikassel.vs.asp.modelling.syntax.Constant;
+import de.unikassel.vs.asp.modelling.syntax.Range;
 import de.unikassel.vs.asp.modelling.syntax.Variable;
 
 public class Main {
@@ -20,8 +21,11 @@ public class Main {
         Constant tux = new Constant();
         eddy.setName("tux");
 
+        Range tuf = new Range(0, 3);
+
         gen.createFact("eagle").withConstant(eddy);
         gen.createFact("penguin").withConstant(tux);
+        gen.createFact("penguin").withConstant(tuf);
 
         Variable v1 = new Variable();
         v1.setName("X");

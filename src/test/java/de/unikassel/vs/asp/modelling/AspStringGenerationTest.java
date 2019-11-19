@@ -1,5 +1,7 @@
 package de.unikassel.vs.asp.modelling;
 
+import de.unikassel.vs.asp.modelling.syntax.Constant;
+import de.unikassel.vs.asp.modelling.syntax.Range;
 import de.unikassel.vs.asp.modelling.syntax.Variable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,8 +30,17 @@ public class AspStringGenerationTest {
 
         AspGenerator gen = new AspGenerator();
 
-        gen.createFact("eagle").withConstant("eddy");
-        gen.createFact("penguin").withConstant("tux");
+        Constant eddy = new Constant();
+        eddy.setName("eddy");
+
+        Constant tux = new Constant();
+        eddy.setName("tux");
+
+        Range tuf = new Range(0, 3);
+
+        gen.createFact("eagle").withConstant(eddy);
+        gen.createFact("penguin").withConstant(tux);
+        gen.createFact("penguin").withConstant(tuf);
 
         Assertions.assertEquals(testString, gen.toString());
     }
