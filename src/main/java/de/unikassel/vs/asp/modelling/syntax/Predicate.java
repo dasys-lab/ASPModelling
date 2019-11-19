@@ -7,6 +7,7 @@ public class Predicate {
 
     private Body body;
     private Head head;
+    private boolean isTrue;
     private String name;
     private String variable;
 
@@ -51,6 +52,11 @@ public class Predicate {
      *
      * @return The predicate's name.
      */
+
+    public boolean isTrue() { return isTrue; }
+
+    public void setTrue(boolean value) { isTrue = value; }
+
     public String getName() {
         return name;
     }
