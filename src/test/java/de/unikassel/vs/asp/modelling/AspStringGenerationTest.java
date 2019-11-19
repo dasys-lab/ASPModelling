@@ -15,7 +15,7 @@ public class AspStringGenerationTest {
                 .addBody().withPredicate("bird").withVariableAsBody("X")
                 .withPredicate("not -fly").withVariableAsBody("X");
 
-        Assertions.assertEquals(testString, gen.getAspProgram());
+        Assertions.assertEquals(testString, gen.toString());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class AspStringGenerationTest {
         gen.createFact("eagle").withConstant("eddy");
         gen.createFact("penguin").withConstant("tux");
 
-        Assertions.assertEquals(testString, gen.getAspProgram());
+        Assertions.assertEquals(testString, gen.toString());
     }
 
 }
