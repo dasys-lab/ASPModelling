@@ -5,7 +5,7 @@ package de.unikassel.vs.asp.modelling.syntax;
  */
 public class Fact {
 
-    String constant;
+    Constant constant;
     String name;
 
     /**
@@ -13,7 +13,7 @@ public class Fact {
      *
      * @return The fact's constant.
      */
-    public String getConstant() {
+    public Constant getConstant() {
         return this.constant;
     }
 
@@ -23,7 +23,7 @@ public class Fact {
      * @param constant The constant that is to be set.
      * @return The fact on which this method was invoked.
      */
-    public Fact withConstant(String constant) {
+    public Fact withConstant(Constant constant) {
         this.constant = constant;
         return this;
     }

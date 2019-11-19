@@ -1,5 +1,6 @@
 package de.unikassel.vs.asp.modelling;
 
+import de.unikassel.vs.asp.modelling.syntax.Constant;
 import de.unikassel.vs.asp.modelling.syntax.Variable;
 
 public class Main {
@@ -13,8 +14,14 @@ public class Main {
 
         AspGenerator gen = new AspGenerator();
 
-        gen.createFact("eagle").withConstant("eddy");
-        gen.createFact("penguin").withConstant("tux");
+        Constant eddy = new Constant();
+        eddy.setName("eddy");
+
+        Constant tux = new Constant();
+        eddy.setName("tux");
+
+        gen.createFact("eagle").withConstant(eddy);
+        gen.createFact("penguin").withConstant(tux);
 
         Variable v1 = new Variable();
         v1.setName("X");
