@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Body {
 
-    private Rule myRule;
+    private Rule rule;
 
     private ArrayList<Predicate> predicates = new ArrayList<>();
 

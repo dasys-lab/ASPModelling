@@ -7,8 +7,8 @@ public class Predicate {
     private String name;
     private String variable;
 
-    private Head myHead;
-    private Body myBody;
+    private Head head;
+    private Body body;
 
     /**
      * Sets the predicate's variable.
@@ -18,7 +18,7 @@ public class Predicate {
      */
     public Rule withVariableAsRule(String variable) {
         this.variable = variable;
-        return getMyHead().getMyRule();
+        return getHead().getRule();
     }
 
     /**
@@ -29,7 +29,7 @@ public class Predicate {
      */
     public Body withVariableAsBody(String variable) {
         this.variable = variable;
-        return getMyBody();
+        return getBody();
     }
 
     /**
@@ -56,7 +56,7 @@ public class Predicate {
      * @param head The predicate's head that is to be set.
      */
     public void setHead(Head head) {
-        this.myHead = head;
+        this.head = head;
     }
 
     /**
@@ -64,8 +64,8 @@ public class Predicate {
      *
      * @return The predicate's head.
      */
-    public Head getMyHead() {
-        return this.myHead;
+    public Head getHead() {
+        return this.head;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Predicate {
      * @param body The predicate's body that is to be set.
      */
     public void setBody(Body body) {
-        this.myBody = body;
+        this.body = body;
     }
 
     /**
@@ -82,8 +82,8 @@ public class Predicate {
      *
      * @return The predicate's body.
      */
-    public Body getMyBody() {
-        return this.myBody;
+    public Body getBody() {
+        return this.body;
     }
 
     /**

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Head {
 
-    private Rule myRule;
+    private Rule rule;
     private ArrayList<Predicate> predicates = new ArrayList<>();
 
     /**
@@ -30,7 +30,7 @@ public class Head {
      * @param rule The head's rule that is to be set.
      */
     public void setRule(Rule rule) {
-        this.myRule = rule;
+        this.rule = rule;
     }
 
     /**
@@ -38,8 +38,8 @@ public class Head {
      *
      * @return The head's rule.
      */
-    public Rule getMyRule() {
-        return this.myRule;
+    public Rule getRule() {
+        return this.rule;
     }
 
     /**
