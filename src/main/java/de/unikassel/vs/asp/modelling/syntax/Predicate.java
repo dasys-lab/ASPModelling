@@ -9,7 +9,7 @@ public class Predicate {
     private Head head;
     private boolean isTrue;
     private String name;
-    private String variable;
+    private Variable variable;
 
     /**
      * Standard getter.
@@ -75,7 +75,7 @@ public class Predicate {
      *
      * @return The predicate's variable.
      */
-    public String getVariable() {
+    public Variable getVariable() {
         return this.variable;
     }
 
@@ -85,7 +85,7 @@ public class Predicate {
      * @param variable The predicate's variable that is to be set.
      * @return The predicate's body.
      */
-    public Body withVariableAsBody(String variable) {
+    public Body withVariableAsBody(Variable variable) {
         this.variable = variable;
         return getBody();
     }
@@ -96,7 +96,7 @@ public class Predicate {
      * @param variable The predicate's variable that is to be set.
      * @return The predicate head's rule.
      */
-    public Rule withVariableAsRule(String variable) {
+    public Rule withVariableAsRule(Variable variable) {
         this.variable = variable;
         return getHead().getRule();
     }
