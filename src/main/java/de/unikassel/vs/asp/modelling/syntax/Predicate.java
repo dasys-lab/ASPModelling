@@ -4,32 +4,46 @@ package de.unikassel.vs.asp.modelling.syntax;
  * Defines a predicate, i,e, a condition that is or should be given for a constant or a variable.
  */
 public class Predicate {
+
+    private Body body;
+    private Head head;
     private String name;
     private String variable;
 
-    private Head head;
-    private Body body;
-
     /**
-     * Sets the predicate's variable.
+     * Standard getter.
      *
-     * @param variable The predicate's variable that is to be set.
-     * @return The predicate head's rule.
+     * @return The predicate's body.
      */
-    public Rule withVariableAsRule(String variable) {
-        this.variable = variable;
-        return getHead().getRule();
+    public Body getBody() {
+        return this.body;
     }
 
     /**
-     * Sets the predicate's variable.
+     * Standard setter.
      *
-     * @param variable The predicate's variable that is to be set.
-     * @return The predicate's body.
+     * @param body The predicate's body that is to be set.
      */
-    public Body withVariableAsBody(String variable) {
-        this.variable = variable;
-        return getBody();
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    /**
+     * Standard getter.
+     *
+     * @return The predicate's head.
+     */
+    public Head getHead() {
+        return this.head;
+    }
+
+    /**
+     * Standard setter.
+     *
+     * @param head The predicate's head that is to be set.
+     */
+    public void setHead(Head head) {
+        this.head = head;
     }
 
     /**
@@ -51,47 +65,33 @@ public class Predicate {
     }
 
     /**
-     * Standard setter.
-     *
-     * @param head The predicate's head that is to be set.
-     */
-    public void setHead(Head head) {
-        this.head = head;
-    }
-
-    /**
-     * Standard getter.
-     *
-     * @return The predicate's head.
-     */
-    public Head getHead() {
-        return this.head;
-    }
-
-    /**
-     * Standard setter.
-     *
-     * @param body The predicate's body that is to be set.
-     */
-    public void setBody(Body body) {
-        this.body = body;
-    }
-
-    /**
-     * Standard getter.
-     *
-     * @return The predicate's body.
-     */
-    public Body getBody() {
-        return this.body;
-    }
-
-    /**
      * Standard getter.
      *
      * @return The predicate's variable.
      */
     public String getVariable() {
         return this.variable;
+    }
+
+    /**
+     * Sets the predicate's variable.
+     *
+     * @param variable The predicate's variable that is to be set.
+     * @return The predicate's body.
+     */
+    public Body withVariableAsBody(String variable) {
+        this.variable = variable;
+        return getBody();
+    }
+
+    /**
+     * Sets the predicate's variable.
+     *
+     * @param variable The predicate's variable that is to be set.
+     * @return The predicate head's rule.
+     */
+    public Rule withVariableAsRule(String variable) {
+        this.variable = variable;
+        return getHead().getRule();
     }
 }

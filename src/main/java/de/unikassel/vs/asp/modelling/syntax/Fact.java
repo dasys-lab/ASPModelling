@@ -5,8 +5,17 @@ package de.unikassel.vs.asp.modelling.syntax;
  */
 public class Fact {
 
-    String name;
     String constant;
+    String name;
+
+    /**
+     * Standard getter.
+     *
+     * @return The fact's constant.
+     */
+    public String getConstant() {
+        return this.constant;
+    }
 
     /**
      * Sets the fact's constant.
@@ -26,15 +35,6 @@ public class Fact {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * Standard getter.
-     *
-     * @return The fact's constant.
-     */
-    public String getConstant() {
-        return this.constant;
     }
 
     /**

@@ -7,8 +7,17 @@ import java.util.ArrayList;
  */
 public class Head {
 
-    private Rule rule;
     private ArrayList<Predicate> predicates = new ArrayList<>();
+    private Rule rule;
+
+    /**
+     * Standard getter.
+     *
+     * @return The head's predicates.
+     */
+    public ArrayList<Predicate> getPredicates() {
+        return this.predicates;
+    }
 
     /**
      * Adds a predicate to the head's list of predicates.
@@ -25,15 +34,6 @@ public class Head {
     }
 
     /**
-     * Standard setter.
-     *
-     * @param rule The head's rule that is to be set.
-     */
-    public void setRule(Rule rule) {
-        this.rule = rule;
-    }
-
-    /**
      * Standard getter.
      *
      * @return The head's rule.
@@ -43,11 +43,11 @@ public class Head {
     }
 
     /**
-     * Standard getter.
+     * Standard setter.
      *
-     * @return The head's predicates.
+     * @param rule The head's rule that is to be set.
      */
-    public ArrayList<Predicate> getPredicates() {
-        return this.predicates;
+    public void setRule(Rule rule) {
+        this.rule = rule;
     }
 }

@@ -7,9 +7,17 @@ import java.util.ArrayList;
  */
 public class Body {
 
+    private ArrayList<Predicate> predicates = new ArrayList<>();
     private Rule rule;
 
-    private ArrayList<Predicate> predicates = new ArrayList<>();
+    /**
+     * Standard getter.
+     *
+     * @return The body's predicates.
+     */
+    public ArrayList<Predicate> getPredicates() {
+        return this.predicates;
+    }
 
     /**
      * Adds a predicate to the body's list of predicates.
@@ -23,14 +31,5 @@ public class Body {
         predicate.setBody(this);
         predicates.add(predicate);
         return predicate;
-    }
-
-    /**
-     * Standard getter.
-     *
-     * @return The body's predicates.
-     */
-    public ArrayList<Predicate> getPredicates() {
-        return this.predicates;
     }
 }
