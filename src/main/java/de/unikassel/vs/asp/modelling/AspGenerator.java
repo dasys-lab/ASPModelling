@@ -9,11 +9,20 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
 
+/**
+ * A builder for an ASP program, including file output functionality.
+ */
 public class AspGenerator {
 
     private ArrayList<Fact> facts = new ArrayList<>();
     private ArrayList<Rule> rules = new ArrayList<>();
 
+    /**
+     * Creates a fact for the program.
+     *
+     * @param factName The name of the fact that is to be created.
+     * @return The fact that was created in this method.
+     */
     public Fact createFact(String factName) {
         Fact fact = new Fact();
         fact.setName(factName);
@@ -21,13 +30,24 @@ public class AspGenerator {
         return fact;
     }
 
+    /**
+     * Creates a rule for the program.
+     *
+     * @return The rule that was created in this method.
+     */
     public Rule createRule() {
         Rule rule = new Rule();
         rules.add(rule);
         return rule;
     }
 
-    public String getAspProgram() {
+    /**
+     * Converts the program to a string.
+     *
+     * @return The ASP program as a string.
+     */
+    @Override
+    public String toString() {
         // Create and initialize the template engine
         VelocityEngine ve = new VelocityEngine();
         ve.init();
