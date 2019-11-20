@@ -19,7 +19,7 @@ public class Main {
         eddy.setName("eddy");
 
         Constant tux = new Constant();
-        eddy.setName("tux");
+        tux.setName("tux");
 
         Range tuf = new Range(0, 3);
 

@@ -14,7 +14,7 @@
 
 ## Macro for a single fact
 #macro(fact $f)
-$f.getName()($f.getConstant()).##
+$f.getName()($f.getConstant().getName()).##
 #end
 
 ## Macro for multiple predicates, separated by ','
