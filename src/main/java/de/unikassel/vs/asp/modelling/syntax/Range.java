@@ -1,8 +1,8 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 public class Range extends Constant {
-    private int min;
-    private int max;
+    private final int min;
+    private final int max;
 
     public Range(int min, int max){
         if(min <= max){
@@ -18,26 +18,8 @@ public class Range extends Constant {
         return max;
     }
 
-    public void setMax(int max){
-        if(this.min > this.max){
-            throw new IllegalStateException("max < min");
-        }else{
-            this.max = max;
-            this.generateName();
-        }
-    }
-
     public int getMin() {
         return min;
-    }
-
-    public void setMin(int min){
-        if(this.min > this.max){
-            System.out.println("min > max -> ");
-        }else{
-            this.min = min;
-            this.generateName();
-        }
     }
 
     public void generateName() {
