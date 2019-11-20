@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Choices extends Term {
-    private List<Term> terms;
+    private List<Predicate> terms;
 
     public Choices() {
-        terms = new ArrayList<Term>();
+        terms = new ArrayList<Predicate>();
     }
 
-    public List<Term> getTerms() {
+    public List<Predicate> getTerms() {
         return terms;
     }
 

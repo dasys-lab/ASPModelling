@@ -3,7 +3,7 @@ package de.unikassel.vs.asp.modelling.syntax;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChoicesWithBoundary extends Term{
+public class ChoicesWithBoundary extends Choices{
     private List<Predicate> predicates;
     private int lowerBoundary=-1;
     private int higherBoundary=-1;
@@ -14,10 +14,6 @@ public class ChoicesWithBoundary extends Term{
 
     public List<Predicate> getPredicates() {
         return predicates;
-    }
-
-    public void addPredicates(Predicate term) {
-        this.predicates.add(term);
     }
 
     public int getHigherBoundary() {

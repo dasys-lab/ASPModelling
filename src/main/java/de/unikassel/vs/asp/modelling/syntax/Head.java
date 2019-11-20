@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Head {
 
-    private ArrayList<Predicate> predicates = new ArrayList<>();
+    private ArrayList<Term> terms = new ArrayList<>();
     private Rule rule;
 
     /**
@@ -15,8 +15,8 @@ public class Head {
      *
      * @return The head's predicates.
      */
-    public ArrayList<Predicate> getPredicates() {
-        return this.predicates;
+    public ArrayList<Term> getPredicates() {
+        return this.terms;
     }
 
     /**
@@ -29,7 +29,7 @@ public class Head {
         Predicate predicate = new Predicate();
         predicate.setHead(this);
         predicate.setName(predicateName);
-        predicates.add(predicate);
+        terms.add(predicate);
         return predicate;
     }
 
