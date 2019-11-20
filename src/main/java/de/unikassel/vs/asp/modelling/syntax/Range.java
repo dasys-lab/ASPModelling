@@ -41,7 +41,7 @@ public class Range extends Constant {
     }
 
     public void generateName() {
-        this.setName("" + this.min + ".." + this.max);
+        super.setName("" + this.min + ".." + this.max);
     }
 
     @Override
