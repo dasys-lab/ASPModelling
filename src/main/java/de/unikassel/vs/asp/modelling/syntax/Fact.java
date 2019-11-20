@@ -5,8 +5,8 @@ package de.unikassel.vs.asp.modelling.syntax;
  */
 public class Fact {
 
-    Constant constant;
-    String name;
+    private Constant constant;
+    private String name;
 
     /**
      * Standard getter.

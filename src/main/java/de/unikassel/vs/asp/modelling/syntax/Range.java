@@ -1,8 +1,8 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 public class Range extends Constant {
-    private int min, max;
-    private String name;
+    private int min;
+    private int max;
 
     public Range(int min, int max){
         if(min <= max){
@@ -10,7 +10,7 @@ public class Range extends Constant {
             this.max = max;
             this.generateName();
         }else {
-            System.out.println("min ist größer als max");
+            throw new IllegalStateException("min > max");
         }
     }
 
@@ -20,7 +20,7 @@ public class Range extends Constant {
 
     public void setMax(int max){
         if(this.min > this.max){
-            System.out.println("min ist größer als max");
+            throw new IllegalStateException("max < min");
         }else{
             this.max = max;
             this.generateName();
@@ -33,7 +33,7 @@ public class Range extends Constant {
 
     public void setMin(int min){
         if(this.min > this.max){
-            System.out.println("min ist größer als max");
+            System.out.println("min > max -> ");
         }else{
             this.min = min;
             this.generateName();
@@ -41,11 +41,11 @@ public class Range extends Constant {
     }
 
     public void generateName() {
-        this.name = this.min +".."+this.max;
+        this.setName("" + this.min + ".." + this.max);
     }
 
     @Override
     public void setName(String name) {
-        System.out.println("Wie verbiete ich die Funktion für ein Objekt, was einem anderen erbt, wo sie drin ist?");
+        System.err.println("The name of a Range can not be set manually");
     }
 }

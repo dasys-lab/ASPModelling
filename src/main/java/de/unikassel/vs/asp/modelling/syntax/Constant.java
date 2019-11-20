@@ -2,6 +2,7 @@ package de.unikassel.vs.asp.modelling.syntax;
 
 public class Constant {
     private String name;
+
     public String getName() {
         return name;
     }
