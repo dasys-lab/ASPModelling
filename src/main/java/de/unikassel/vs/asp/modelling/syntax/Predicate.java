@@ -57,6 +57,7 @@ public class Predicate extends Term {
 
     public void setTrue(boolean value) { isTrue = value; }
 
+    @Override
     public String getName() {
         return name;
     }
