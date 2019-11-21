@@ -5,12 +5,8 @@ public class Range extends Constant {
     private final int max;
 
     public Range(int min, int max){
-        if(min <= max){
-            this.min = min;
-            this.max = max;
-        }else {
-            throw new IllegalStateException("min > max");
-        }
+        this.min = min;
+        this.max = max;
     }
 
     public int getMax() {
@@ -28,6 +24,6 @@ public class Range extends Constant {
 
     @Override
     public void setName(String name) {
-        System.err.println("The name of a Range can not be set manually");
+        throw new UnsupportedOperationException("The name of a Range can not be set manually");
     }
 }
