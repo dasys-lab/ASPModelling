@@ -30,5 +30,8 @@ $f.getName()($f.getConstant().getName()).##
 
 ## Macro for a single term
 #macro(term $t)
+#if(!$t.isTrue())
+not ##
+#end
 $t.getName()($t.getVariable().getName())##
 #end
