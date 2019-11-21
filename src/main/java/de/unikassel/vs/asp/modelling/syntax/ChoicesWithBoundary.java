@@ -10,11 +10,7 @@ public class ChoicesWithBoundary extends Choices {
     }
 
     public void setHigherBoundary(int higherBoundary) {
-        if (higherBoundary <= getPredicates().size()) {
-            this.higherBoundary = higherBoundary;
-        } else {
-            System.out.println("Boundary out of Range");
-        }
+        this.higherBoundary = higherBoundary;
     }
 
     public int getLowerBoundary() {
@@ -22,11 +18,7 @@ public class ChoicesWithBoundary extends Choices {
     }
 
     public void setLowerBoundary(int lowerBoundary) {
-        if (lowerBoundary >= 0) {
-            this.lowerBoundary = lowerBoundary;
-        } else {
-            System.out.println("Boundary out of Range");
-        }
+        this.lowerBoundary = lowerBoundary;
     }
 
     @Override
