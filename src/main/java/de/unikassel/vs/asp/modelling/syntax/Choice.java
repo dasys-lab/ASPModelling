@@ -3,10 +3,10 @@ package de.unikassel.vs.asp.modelling.syntax;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Choices extends Term {
+public class Choice extends PredicateTerm {
     private List<Predicate> predicates;
 
-    public Choices() {
+    public Choice() {
         predicates = new ArrayList<Predicate>();
     }
 
