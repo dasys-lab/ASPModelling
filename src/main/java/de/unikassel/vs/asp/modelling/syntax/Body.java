@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Body {
 
-    private ArrayList<Term> terms = new ArrayList<>();
+    private ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
     private Rule rule;
 
     /**
@@ -15,8 +15,8 @@ public class Body {
      *
      * @return The body's terms.
      */
-    public ArrayList<Term> getTerms() {
-        return this.terms;
+    public ArrayList<PredicateTerm> getPredicateTerms() {
+        return this.predicateTerms;
     }
 
     /**
@@ -30,7 +30,7 @@ public class Body {
         predicate.setName(predicateName);
         predicate.setTrue(true);
         predicate.setBody(this);
-        terms.add(predicate);
+        predicateTerms.add(predicate);
         return predicate;
     }
 
@@ -45,7 +45,7 @@ public class Body {
         predicate.setName(predicateName);
         predicate.setTrue(false);
         predicate.setBody(this);
-        terms.add(predicate);
+        predicateTerms.add(predicate);
         return predicate;
     }
 }

@@ -31,18 +31,15 @@ public class Main {
                 .addBody().withPredicate("bird").withVariableAsBody(v1)
                 .withPredicateNot("-fly").withVariableAsBody(v1);
 
-        /* This doesn't work yet with the template
-        Choices c = new Choices();
+        Choice c = new Choice().withUpperBound(1);
         Predicate p1 = new Predicate();
         p1.setName("test1");
         Predicate p2 = new Predicate();
         p2.setName("test2");
-        c.addPredicate(new Predicate());
         c.addPredicate(p1);
         c.addPredicate(p2);
 
-        gen.createRule().addBody().getTerms().add(c);
-         */
+        gen.createRule().addBody().getPredicateTerms().add(c);
 
 
         System.out.println(gen);

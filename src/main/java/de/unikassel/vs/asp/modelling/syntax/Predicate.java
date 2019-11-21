@@ -5,14 +5,14 @@ import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalPredicateNameExcep
 /**
  * Defines a predicate, i.e. a condition that is or should be given for a constant or a variable.
  */
-public class Predicate extends Term {
+public class Predicate extends PredicateTerm {
 
     private static final String LEGAL_PREDICATE_NAMES
             = "-?[a-z]\\w*"; // Maybe start with -, than lowercase letter, than any letter, number or _
 
     private Body body;
     private Head head;
-    private boolean isTrue;
+    private boolean isTrue = true;
     private String name;
     private Variable variable;
 
@@ -62,7 +62,6 @@ public class Predicate extends Term {
 
     public void setTrue(boolean value) { isTrue = value; }
 
-    @Override
     public String getName() {
         return name;
     }
