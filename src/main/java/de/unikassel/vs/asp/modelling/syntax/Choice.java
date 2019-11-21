@@ -25,6 +25,17 @@ public class Choice extends PredicateTerm {
     }
 
     /**
+     * Get the {@link String} to display in the template as lower bound
+     *
+     * @return String-representation of lower bound
+     */
+    public String getLowerBoundString() {
+        return lowerBound == null
+                || (upperBound != null && lowerBound.value == upperBound.value) // In case both are equal use = at end
+                ? "" : "" + lowerBound.value;
+    }
+
+    /**
      * Set a lower bound for this Choice.
      *
      * @param bound the bound to set
@@ -55,6 +66,17 @@ public class Choice extends PredicateTerm {
     }
 
     /**
+     * Get the {@link String} to display in the template as upper bound
+     *
+     * @return String-representation of upper bound
+     */
+    public String getUpperBoundString() {
+        return upperBound == null ? ""
+                :(lowerBound != null && lowerBound.value == upperBound.value) ?  " = " + upperBound.value
+                : "" + upperBound.value;
+    }
+
+    /**
      * Set a upper bound for this Choice.
      *
      * @param bound the bound to set
@@ -77,8 +99,8 @@ public class Choice extends PredicateTerm {
 
     /**
      * Choice with an exact value.
-     *
-     * Sets both bounds.
+     * <p>
+     * Sets both bounds
      *
      * @param exact the exact value to be matched
      * @return this
@@ -91,15 +113,8 @@ public class Choice extends PredicateTerm {
         return predicates;
     }
 
-    public void addPredicate(Predicate term) {
-        this.predicates.add(term);
-    }
-
-    @Override
-    public String getName() {
-        return "{"
-                + String.join("; ", predicates.stream().map(Predicate::getName).toArray(String[]::new))
-                + "}";
+    public void addPredicate(Predicate predicate) {
+        this.predicates.add(predicate);
     }
 
     private static class Bound {

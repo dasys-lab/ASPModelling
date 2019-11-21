@@ -12,7 +12,7 @@ public class Predicate extends PredicateTerm {
 
     private Body body;
     private Head head;
-    private boolean isTrue;
+    private boolean isTrue = true;
     private String name;
     private Variable variable;
 
@@ -62,7 +62,6 @@ public class Predicate extends PredicateTerm {
 
     public void setTrue(boolean value) { isTrue = value; }
 
-    @Override
     public String getName() {
         return name;
     }

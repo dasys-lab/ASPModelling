@@ -17,21 +17,36 @@
 $f.getName()($f.getConstant().getName()).##
 #end
 
-## Macro for multiple terms, separated by ','
+## Macro for multiple predicate terms, separated by ','
 #macro(terms $ts)
-#set($maxIndex = $ts.size() - 1)
-#foreach($n in [0..$maxIndex])
-#if($n != 0)
-, ## Comma separates the predicates
+#set($separator = "")## No comma before first element
+#foreach($t in $ts)
+$separator##
+#if(!$t.getName())## Choices don't have names
+#choice($t)
+#else
+#predicate($t)
 #end
-#term($ts.get($n))
+#set($separator = ", ")## Comma before all following elements
 #end
 #end
 
-## Macro for a single term
-#macro(term $t)
-#if(!$t.isTrue())
+## Macro for a single predicate
+#macro(predicate $p)
+#if(!$p.isTrue())
 not ##
 #end
-$t.getName()($t.getVariable().getName())##
+$p.getName()($p.getVariable().getName())##
+#end
+
+## Macro fo a choice
+#macro(choice $c)
+$c.getLowerBoundString(){##
+#set($separator = "")## No semicolon before first element
+#foreach($p in $c.getPredicates())
+$separator##
+#predicate($p)
+#set($separator = "; ")## Semicolon before all following elements
+#end
+}$c.getUpperBoundString()##
 #end
