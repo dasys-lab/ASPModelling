@@ -14,7 +14,7 @@ public class Choices extends Term {
         return predicates;
     }
 
-    public void addTerms(Predicate term) {
+    public void addPredicate(Predicate term) {
         this.predicates.add(term);
     }
 
