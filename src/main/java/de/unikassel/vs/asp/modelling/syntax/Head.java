@@ -29,6 +29,7 @@ public class Head {
         Predicate predicate = new Predicate();
         predicate.setHead(this);
         predicate.setName(predicateName);
+        predicate.setTrue(true);
         terms.add(predicate);
         return predicate;
     }

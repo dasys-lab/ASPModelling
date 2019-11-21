@@ -8,7 +8,6 @@ public class Range extends Constant {
         if(min <= max){
             this.min = min;
             this.max = max;
-            this.generateName();
         }else {
             throw new IllegalStateException("min > max");
         }
@@ -22,8 +21,9 @@ public class Range extends Constant {
         return min;
     }
 
-    public void generateName() {
-        super.setName("" + this.min + ".." + this.max);
+    @Override
+    public String getName() {
+        return "" + this.min + ".." + this.max;
     }
 
     @Override

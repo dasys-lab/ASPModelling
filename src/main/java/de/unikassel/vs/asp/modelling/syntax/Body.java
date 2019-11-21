@@ -28,6 +28,22 @@ public class Body {
     public Predicate withPredicate(String predicateName) {
         Predicate predicate = new Predicate();
         predicate.setName(predicateName);
+        predicate.setTrue(true);
+        predicate.setBody(this);
+        terms.add(predicate);
+        return predicate;
+    }
+
+    /**
+     * Adds a predicate with 'not' to the body's list of predicates.
+     *
+     * @param predicateName  The name of the predicate that is to be added.
+     * @return  The predicate that was created in this method.
+     */
+    public Predicate withPredicateNot(String predicateName) {
+        Predicate predicate = new Predicate();
+        predicate.setName(predicateName);
+        predicate.setTrue(false);
         predicate.setBody(this);
         terms.add(predicate);
         return predicate;

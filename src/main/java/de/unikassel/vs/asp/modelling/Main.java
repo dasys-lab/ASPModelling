@@ -1,8 +1,6 @@
 package de.unikassel.vs.asp.modelling;
 
-import de.unikassel.vs.asp.modelling.syntax.Constant;
-import de.unikassel.vs.asp.modelling.syntax.Range;
-import de.unikassel.vs.asp.modelling.syntax.Variable;
+import de.unikassel.vs.asp.modelling.syntax.*;
 
 public class Main {
 
@@ -31,7 +29,21 @@ public class Main {
         v1.setName("X");
         gen.createRule().addHead().withPredicate("fly").withVariableAsRule(v1)
                 .addBody().withPredicate("bird").withVariableAsBody(v1)
-                .withPredicate("not -fly").withVariableAsBody(v1);
+                .withPredicateNot("-fly").withVariableAsBody(v1);
+
+        /* This doesn't work yet with the template
+        Choices c = new Choices();
+        Predicate p1 = new Predicate();
+        p1.setName("test1");
+        Predicate p2 = new Predicate();
+        p2.setName("test2");
+        c.addPredicate(new Predicate());
+        c.addPredicate(p1);
+        c.addPredicate(p2);
+
+        gen.createRule().addBody().getTerms().add(c);
+         */
+
 
         System.out.println(gen);
 

@@ -18,7 +18,7 @@ public class AspStringGenerationTest {
         v1.setName("X");
         gen.createRule().addHead().withPredicate("fly").withVariableAsRule(v1)
                 .addBody().withPredicate("bird").withVariableAsBody(v1)
-                .withPredicate("not -fly").withVariableAsBody(v1);
+                .withPredicateNot("-fly").withVariableAsBody(v1);
 
         Assertions.assertEquals(testString, gen.toString());
     }
