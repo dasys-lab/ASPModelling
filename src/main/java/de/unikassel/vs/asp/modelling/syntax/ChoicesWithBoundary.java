@@ -1,43 +1,38 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ChoicesWithBoundary extends Choices {
+    private int lowerBoundary = -1;
+    private int higherBoundary = -1;
 
-public class ChoicesWithBoundary extends Choices{
-    private List<Predicate> predicates;
-    private int lowerBoundary=-1;
-    private int higherBoundary=-1;
-
-    public ChoicesWithBoundary() {
-        predicates = new ArrayList<Predicate>();
-    }
-
-    public List<Predicate> getPredicates() {
-        return predicates;
-    }
 
     public int getHigherBoundary() {
         return higherBoundary;
     }
 
     public void setHigherBoundary(int higherBoundary) {
-        if(higherBoundary<= predicates.size()) {
+        if (higherBoundary <= getPredicates().size()) {
             this.higherBoundary = higherBoundary;
-        }else{
+        } else {
             System.out.println("Boundary out of Range");
         }
     }
+
     public int getLowerBoundary() {
         return lowerBoundary;
     }
 
     public void setLowerBoundary(int lowerBoundary) {
-        if(lowerBoundary >= 0){
+        if (lowerBoundary >= 0) {
             this.lowerBoundary = lowerBoundary;
-        }else {
+        } else {
             System.out.println("Boundary out of Range");
         }
     }
 
-
+    @Override
+    public String getName() {
+        return (lowerBoundary >= 0 ? lowerBoundary : "")
+                + super.getName()
+                + (higherBoundary >= 0 ? higherBoundary : "");
+    }
 }

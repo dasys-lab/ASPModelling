@@ -1,7 +1,7 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 /**
- * Defines a predicate, i,e, a condition that is or should be given for a constant or a variable.
+ * Defines a predicate, i.e. a condition that is or should be given for a constant or a variable.
  */
 public class Predicate extends Term {
 

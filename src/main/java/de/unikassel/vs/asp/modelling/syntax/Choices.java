@@ -4,28 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Choices extends Term {
-    private List<Predicate> terms;
+    private List<Predicate> predicates;
 
     public Choices() {
-        terms = new ArrayList<Predicate>();
+        predicates = new ArrayList<Predicate>();
     }
 
-    public List<Predicate> getTerms() {
-        return terms;
+    public List<Predicate> getPredicates() {
+        return predicates;
     }
 
     public void addTerms(Predicate term) {
-        this.terms.add(term);
+        this.predicates.add(term);
     }
 
     @Override
     public String getName() {
-        String name = "{";
-        for(Predicate p : terms){
-            name = name + p.getName() +";";
-        }
-        name.substring(0, name.length()-2);
-        name = name + "}";
-        return name;
+        return "{"
+                + String.join("; ", predicates.stream().map(Predicate::getName).toArray(String[]::new))
+                + "}";
     }
 }
