@@ -6,9 +6,9 @@
 
 ## Iterate over all rules
 #foreach($rule in $rules)
-#predicates($rule.getHead().getPredicates()) ##
+#terms($rule.getHead().getTerms()) ##
 :- ##
-#predicates($rule.getBody().getPredicates())##
+#terms($rule.getBody().getTerms())##
 .
 #end
 
@@ -17,18 +17,18 @@
 $f.getName()($f.getConstant().getName()).##
 #end
 
-## Macro for multiple predicates, separated by ','
-#macro(predicates $ps)
-#set($maxIndex = $ps.size() - 1)
+## Macro for multiple terms, separated by ','
+#macro(terms $ts)
+#set($maxIndex = $ts.size() - 1)
 #foreach($n in [0..$maxIndex])
 #if($n != 0)
 , ## Comma separates the predicates
 #end
-#predicate($ps.get($n))
+#term($ts.get($n))
 #end
 #end
 
-## Macro for a single predicate
-#macro(predicate $p)
-$p.getName()($p.getVariable())##
+## Macro for a single term
+#macro(term $t)
+$t.getName()($t.getVariable().getName())##
 #end

@@ -13,7 +13,7 @@ public class Body {
     /**
      * Standard getter.
      *
-     * @return The body's predicates.
+     * @return The body's terms.
      */
     public ArrayList<Term> getTerms() {
         return this.terms;

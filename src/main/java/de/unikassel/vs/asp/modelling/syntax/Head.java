@@ -13,9 +13,9 @@ public class Head {
     /**
      * Standard getter.
      *
-     * @return The head's predicates.
+     * @return The head's terms.
      */
-    public ArrayList<Term> getPredicates() {
+    public ArrayList<Term> getTerms() {
         return this.terms;
     }
 
