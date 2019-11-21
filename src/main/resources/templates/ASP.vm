@@ -6,9 +6,9 @@
 
 ## Iterate over all rules
 #foreach($rule in $rules)
-#terms($rule.getHead().getTerms()) ##
+#terms($rule.getHead().getPredicateTerms()) ##
 :- ##
-#terms($rule.getBody().getTerms())##
+#terms($rule.getBody().getPredicateTerms())##
 .
 #end
 
