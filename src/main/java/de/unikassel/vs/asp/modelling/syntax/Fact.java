@@ -5,26 +5,30 @@ package de.unikassel.vs.asp.modelling.syntax;
  */
 public class Fact {
 
-    private Constant constant;
+    private Constant[] constants;
     private String name;
 
     /**
      * Standard getter.
      *
-     * @return The fact's constant.
+     * @return The fact's constants.
      */
-    public Constant getConstant() {
-        return this.constant;
+    public Constant[] getConstant() {
+        return this.constants;
     }
 
     /**
      * Sets the fact's constant.
      *
-     * @param constant The constant that is to be set.
+     * @param constants The constants that are to be set.
      * @return The fact on which this method was invoked.
      */
-    public Fact withConstant(Constant constant) {
-        this.constant = constant;
+    public Fact withConstant(Constant... constants) {
+        this.constants = new Constant[constants.length];
+        int position = 0;
+        for (Constant constant: constants){
+            this.constants[position++] = constant;
+        }
         return this;
     }
 

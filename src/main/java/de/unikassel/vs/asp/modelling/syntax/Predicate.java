@@ -81,7 +81,7 @@ public class Predicate extends PredicateTerm {
     /**
      * Standard getter.
      *
-     * @return The predicate's variable.
+     * @return The predicate's variables.
      */
     public Variable[] getVariable() {
         return this.variables;
@@ -90,7 +90,7 @@ public class Predicate extends PredicateTerm {
     /**
      * Sets the predicate's variable.
      *
-     * @param variables The predicate's variable that are to be set.
+     * @param variables The predicate's variables that are to be set.
      * @return The predicate's body.
      */
     public Body withVariableAsBody(Variable... variables) {
@@ -103,7 +103,7 @@ public class Predicate extends PredicateTerm {
     }
 
     /**
-     * Sets the predicate's variable.
+     * Sets the predicate's variables.
      *
      * @param variables The predicate's variables that are to be set.
      * @return The predicate head's rule.
