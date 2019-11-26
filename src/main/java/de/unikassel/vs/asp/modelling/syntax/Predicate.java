@@ -14,7 +14,7 @@ public class Predicate extends PredicateTerm {
     private Head head;
     private boolean isTrue = true;
     private String name;
-    private Variable variable;
+    private Variable[] variables;
 
     /**
      * Standard getter.
@@ -83,29 +83,37 @@ public class Predicate extends PredicateTerm {
      *
      * @return The predicate's variable.
      */
-    public Variable getVariable() {
-        return this.variable;
+    public Variable[] getVariable() {
+        return this.variables;
     }
 
     /**
      * Sets the predicate's variable.
      *
-     * @param variable The predicate's variable that is to be set.
+     * @param variables The predicate's variable that are to be set.
      * @return The predicate's body.
      */
-    public Body withVariableAsBody(Variable variable) {
-        this.variable = variable;
+    public Body withVariableAsBody(Variable... variables) {
+        this.variables = new Variable[variables.length];
+        int position = 0;
+        for (Variable variable: variables) {
+            this.variables[position++] = variable;
+        }
         return getBody();
     }
 
     /**
      * Sets the predicate's variable.
      *
-     * @param variable The predicate's variable that is to be set.
+     * @param variables The predicate's variables that are to be set.
      * @return The predicate head's rule.
      */
-    public Rule withVariableAsRule(Variable variable) {
-        this.variable = variable;
+    public Rule withVariableAsRule(Variable... variables) {
+        this.variables = new Variable[variables.length];
+        int position = 0;
+        for (Variable variable: variables) {
+            this.variables[position++] = variable;
+        }
         return getHead().getRule();
     }
 }
