@@ -99,8 +99,8 @@ public class Choice extends PredicateTerm {
 
     /**
      * Choice with an exact value.
-     * <p>
-     * Sets both bounds
+     *
+     * <p>Sets both bounds
      *
      * @param exact the exact value to be matched
      * @return this

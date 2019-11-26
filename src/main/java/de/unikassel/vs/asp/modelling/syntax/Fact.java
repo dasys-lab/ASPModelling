@@ -26,7 +26,7 @@ public class Fact {
     public Fact withConstant(Constant... constants) {
         this.constants = new Constant[constants.length];
         int position = 0;
-        for (Constant constant: constants){
+        for (Constant constant: constants) {
             this.constants[position++] = constant;
         }
         return this;

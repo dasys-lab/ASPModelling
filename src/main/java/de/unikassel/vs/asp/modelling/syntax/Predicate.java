@@ -58,9 +58,13 @@ public class Predicate extends PredicateTerm {
      * @return The predicate's name.
      */
 
-    public boolean isTrue() { return isTrue; }
+    public boolean isTrue() {
+        return isTrue;
+    }
 
-    public void setTrue(boolean value) { isTrue = value; }
+    public void setTrue(boolean value) {
+        isTrue = value;
+    }
 
     public String getName() {
         return name;
@@ -72,7 +76,7 @@ public class Predicate extends PredicateTerm {
      * @param name The predicate's name that is to be set.
      */
     public void setName(String name) {
-        if(!name.matches(LEGAL_PREDICATE_NAMES)) {
+        if (!name.matches(LEGAL_PREDICATE_NAMES)) {
             throw new IllegalPredicateNameException(name);
         }
         this.name = name;

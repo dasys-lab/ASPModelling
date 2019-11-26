@@ -26,7 +26,7 @@ public class Variable {
     }
 
     public void setName(String name) {
-        if(!name.matches(LEGAL_VARIABLE_NAMES)) {
+        if (!name.matches(LEGAL_VARIABLE_NAMES)) {
             throw new IllegalVariableNameException(name);
         }
         this.name = name;
