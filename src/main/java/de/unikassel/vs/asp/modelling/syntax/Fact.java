@@ -13,7 +13,7 @@ public class Fact {
      *
      * @return The fact's constants.
      */
-    public Constant[] getConstant() {
+    public Constant[] getConstants() {
         return this.constants;
     }
 
