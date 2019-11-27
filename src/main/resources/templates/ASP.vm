@@ -6,27 +6,47 @@
 
 ## Iterate over all rules
 #foreach($rule in $rules)
-#set($firstHeadPredicate = $rule.getHead().getPredicates().get(0))
-#set($predicates = $rule.getBody().getPredicates())
-#set($maxIndex = $rule.getBody().getPredicates().size() - 1)
-$firstHeadPredicate.getName()($firstHeadPredicate.getVariable()) ##
+#terms($rule.getHead().getPredicateTerms()) ##
 :- ##
-## Iterate over all predicates of the rule
-#foreach($n in [0..$maxIndex])
-#if($n != 0)
-, ## Comma separates the predicates
-#end
-#predicate($predicates.get($n))
-#end
+#terms($rule.getBody().getPredicateTerms())##
 .
 #end
 
 ## Macro for a single fact
 #macro(fact $f)
-$f.getName()($f.getConstant())##
+$f.getName()($f.getConstant().getName()).##
+#end
+
+## Macro for multiple predicate terms, separated by ','
+#macro(terms $ts)
+#set($separator = "")## No comma before first element
+#foreach($t in $ts)
+$separator##
+#if(!$t.getName())## Choices don't have names
+#choice($t)
+#else
+#predicate($t)
+#end
+#set($separator = ", ")## Comma before all following elements
+#end
 #end
 
 ## Macro for a single predicate
 #macro(predicate $p)
-$p.getName()($p.getVariable())##
+#if(!$p.isTrue())
+not ##
+#end
+$p.getName()($p.getVariable().getName())##
+#end
+
+## Macro fo a choice
+#macro(choice $c)
+$c.getLowerBoundString(){##
+#set($separator = "")## No semicolon before first element
+#foreach($p in $c.getPredicates())
+$separator##
+#predicate($p)
+#set($separator = "; ")## Semicolon before all following elements
+#end
+}$c.getUpperBoundString()##
 #end
