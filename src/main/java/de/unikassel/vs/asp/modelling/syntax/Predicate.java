@@ -2,6 +2,8 @@ package de.unikassel.vs.asp.modelling.syntax;
 
 import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalPredicateNameException;
 
+import java.util.ArrayList;
+
 /**
  * Defines a predicate, i.e. a condition that is or should be given for a constant or a variable.
  */
@@ -15,6 +17,7 @@ public class Predicate extends PredicateTerm {
     private boolean isTrue = true;
     private String name;
     private Variable[] variables;
+    private ArrayList<Element> elements = new ArrayList<>();
 
     /**
      * Standard getter.

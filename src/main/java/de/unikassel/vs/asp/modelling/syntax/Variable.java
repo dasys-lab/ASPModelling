@@ -5,7 +5,7 @@ import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalVariableNameExcept
 import java.util.ArrayList;
 import java.util.List;
 
-public class Variable {
+public class Variable extends Element{
 
     private static final String LEGAL_VARIABLE_NAMES
             = "([A-Z]\\w*)"; // start with uppercase letter than any letter, number or _
