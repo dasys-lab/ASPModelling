@@ -13,14 +13,29 @@ public class Variable {
     private String name;
     private List<Constant> constantsOutOfValueRange = new ArrayList<>();
 
+    /**
+     * Standard getter.
+     *
+     * @return The variable's constants that are out of value range.
+     */
     public List<Constant> getConstantsOutOfValueRange() {
         return constantsOutOfValueRange;
     }
 
+    /**
+     * Standard setter.
+     *
+     * @param constantsOutOfValueRange The constants that are out of value range which are to be set.
+     */
     public void setConstantsOutOfValueRange(List<Constant> constantsOutOfValueRange) {
         this.constantsOutOfValueRange = constantsOutOfValueRange;
     }
 
+    /**
+     * Standard getter.
+     *
+     * @return The variable's name.
+     */
     public String getName() {
         return name;
     }
