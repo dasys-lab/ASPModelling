@@ -25,7 +25,7 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Get the {@link String} to display in the template as lower bound
+     * Get the {@link String} to display in the template as lower bound.
      *
      * @return String-representation of lower bound
      */
@@ -66,13 +66,13 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Get the {@link String} to display in the template as upper bound
+     * Get the {@link String} to display in the template as upper bound.
      *
      * @return String-representation of upper bound
      */
     public String getUpperBoundString() {
         return upperBound == null ? ""
-                :(lowerBound != null && lowerBound.value == upperBound.value) ?  " = " + upperBound.value
+                : (lowerBound != null && lowerBound.value == upperBound.value) ?  " = " + upperBound.value
                 : "" + upperBound.value;
     }
 
@@ -99,8 +99,8 @@ public class Choice extends PredicateTerm {
 
     /**
      * Choice with an exact value.
-     * <p>
-     * Sets both bounds
+     *
+     * <p>Sets both bounds
      *
      * @param exact the exact value to be matched
      * @return this
