@@ -27,12 +27,18 @@ tasks.withType(Checkstyle) {
     maxWarnings = 0
 }
 
+sourceSets {
+    generated {
+        java.srcDir 'src-generated/antlr/main/'
+    }
+}
+
 dependencies {
     checkstyleOverride group: 'com.puppycrawl.tools', name: 'checkstyle', version: '8.21'
 
     antlr "org.antlr:antlr4:4.7.2"
 
-    compile group: 'org.antlr', name: 'antlr4-runtime', version: '4.7.2'
+    generatedCompile group: 'org.antlr', name: 'antlr4-runtime', version: '4.7.2'
     compile group: 'org.apache.velocity', name: 'velocity', version: '1.7'
     compile group: 'org.apache.velocity', name: 'velocity-tools', version: '2.0'
 
@@ -45,17 +51,15 @@ generateGrammarSource {
     arguments += ['-package', 'de.unikassel.vs.asp_modelling']
     outputDirectory = new File("src-generated/antlr/main/de/unikassel/vs/asp_modelling".toString())
 }
+
 test {
     useJUnitPlatform()
 }
+
 compileJava.dependsOn generateGrammarSource
-sourceSets {
-    generated {
-        java.srcDir 'src-generated/antlr/main/'
-    }
-}
 compileJava.source sourceSets.generated.java, sourceSets.main.java
-clean{
+
+clean {
     delete "src-generated"
 }
 
