@@ -17,6 +17,7 @@
 $f.getName()(##
 #constants($f.getConstants())##
 )##
+.
 #end
 
 ## Macro for multiple constants, seperated by ','
@@ -33,7 +34,6 @@ $separator##
 #macro (constant $c)
 $c.getName()##
 #end
-
 
 ## Macro for multiple variables, seperated by ','
 #macro(variables $vs)

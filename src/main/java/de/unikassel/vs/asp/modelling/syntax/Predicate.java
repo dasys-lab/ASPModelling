@@ -97,7 +97,7 @@ public class Predicate extends PredicateTerm {
      *
      * @return The predicate's variables.
      */
-    public Variable[] getVariable() {
+    public Variable[] getVariables() {
         return this.variables;
     }
 
