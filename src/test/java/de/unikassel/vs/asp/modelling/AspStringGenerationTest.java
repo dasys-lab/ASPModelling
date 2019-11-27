@@ -26,8 +26,6 @@ public class AspStringGenerationTest {
     @Test
     public void factStringTest() {
 
-        String testString = "eagle(eddy).\npenguin(tux).";
-
         AspGenerator gen = new AspGenerator();
 
         Constant eddy = new Constant();
@@ -42,7 +40,7 @@ public class AspStringGenerationTest {
         gen.createFact("penguin").withConstant(tux);
         gen.createFact("penguin").withConstant(tuf);
 
-        Assertions.assertEquals(testString, gen.toString());
+        Assertions.assertEquals("eagle(eddy).\npenguin(tux).", gen.toString());
     }
 
 }

@@ -25,6 +25,11 @@ public class Variable {
         return name;
     }
 
+    /**
+     * Standard setter, which validates the input.
+     *
+     * @param name The variable's name that is to be set.
+     */
     public void setName(String name) {
         if (!name.matches(LEGAL_VARIABLE_NAMES)) {
             throw new IllegalVariableNameException(name);

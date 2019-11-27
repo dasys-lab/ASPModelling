@@ -15,6 +15,11 @@ public class Constant {
         return name;
     }
 
+    /**
+     * Standard setter, which validates the input.
+     *
+     * @param name The constant's name that is to be set.
+     */
     public void setName(String name) {
         if (!name.matches(LEGAL_CONSTANT_NAMES)) {
             throw new IllegaleConstantNameException(name);
