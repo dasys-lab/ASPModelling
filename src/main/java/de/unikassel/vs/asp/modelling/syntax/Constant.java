@@ -1,6 +1,6 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
-import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegaleConstantNameException;
+import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalConstantNameException;
 
 public class Constant {
 
@@ -11,6 +11,11 @@ public class Constant {
 
     private String name;
 
+    /**
+     * Standard getter.
+     *
+     * @return The constant's name.
+     */
     public String getName() {
         return name;
     }
@@ -22,7 +27,7 @@ public class Constant {
      */
     public void setName(String name) {
         if (!name.matches(LEGAL_CONSTANT_NAMES)) {
-            throw new IllegaleConstantNameException(name);
+            throw new IllegalConstantNameException(name);
         }
         this.name = name;
     }

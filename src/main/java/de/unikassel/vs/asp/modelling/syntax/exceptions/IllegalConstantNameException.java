@@ -1,16 +1,16 @@
 package de.unikassel.vs.asp.modelling.syntax.exceptions;
 
 /**
- * Defines an exception for illegal variable names.
+ * Defines an exception for illegal constant names.
  */
-public class IllegalVariableNameException extends IllegalNameException {
+public class IllegalConstantNameException extends IllegalNameException {
 
     /**
      * Standard constructor.
      *
      * @param illegalName The illegal name.
      */
-    public IllegalVariableNameException(String illegalName) {
+    public IllegalConstantNameException(String illegalName) {
         super(illegalName);
     }
 }
