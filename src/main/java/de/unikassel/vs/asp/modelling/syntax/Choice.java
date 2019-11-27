@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
+/**
+ * Defines a set of arbitrary subsets.
+ */
 public class Choice extends PredicateTerm {
 
     private Bound lowerBound;
@@ -11,23 +14,26 @@ public class Choice extends PredicateTerm {
 
     private List<Predicate> predicates;
 
+    /**
+     * Initializes the internal predicate list.
+     */
     public Choice() {
-        predicates = new ArrayList<Predicate>();
+        predicates = new ArrayList<>();
     }
 
     /**
      * Standard getter.
      *
-     * @return lower bound as optional (empty if no bound)
+     * @return Lower bound as optional (empty if no bound).
      */
     public OptionalInt getLowerBound() {
         return lowerBound == null ? OptionalInt.empty() : OptionalInt.of(lowerBound.value);
     }
 
     /**
-     * Get the {@link String} to display in the template as lower bound.
+     * Get the lower bound as string for usage within a template.
      *
-     * @return String-representation of lower bound
+     * @return String representation of the choice's lower bound.
      */
     public String getLowerBoundString() {
         return lowerBound == null
@@ -36,10 +42,10 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Set a lower bound for this Choice.
+     * Set a lower bound.
      *
-     * @param bound the bound to set
-     * @return this
+     * @param bound The lower bound that is to be set.
+     * @return The choice on which this method was invoked.
      */
     public Choice withLowerBound(int bound) {
         this.lowerBound = new Bound(bound);
@@ -47,9 +53,9 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Remove the lower bound for this Choice.
+     * Remove the lower bound.
      *
-     * @return this
+     * @return The choice on which this method was invoked.
      */
     public Choice withoutLowerBound() {
         this.lowerBound = null;
@@ -59,16 +65,16 @@ public class Choice extends PredicateTerm {
     /**
      * Standard getter.
      *
-     * @return upper bound as optional (empty if no bound)
+     * @return Upper bound as optional (empty if no bound).
      */
     public OptionalInt getUpperBound() {
         return upperBound == null ? OptionalInt.empty() : OptionalInt.of(upperBound.value);
     }
 
     /**
-     * Get the {@link String} to display in the template as upper bound.
+     * Get the upper bound as string for usage within a template.
      *
-     * @return String-representation of upper bound
+     * @return String representation of the choice's upper bound.
      */
     public String getUpperBoundString() {
         return upperBound == null ? ""
@@ -77,10 +83,10 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Set a upper bound for this Choice.
+     * Set an upper bound.
      *
      * @param bound the bound to set
-     * @return this
+     * @return The choice on which this method was invoked.
      */
     public Choice withUpperBound(int bound) {
         this.upperBound = new Bound(bound);
@@ -88,9 +94,9 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Remove the upper bound for this Choice.
+     * Remove the upper bound.
      *
-     * @return this
+     * @return The choice on which this method was invoked.
      */
     public Choice withoutUpperBound() {
         this.upperBound = null;
@@ -98,21 +104,31 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Choice with an exact value.
+     * Set an exact value.
      *
-     * <p>Sets both bounds
+     * <p>Sets both bounds.
      *
-     * @param exact the exact value to be matched
-     * @return this
+     * @param exact The exact value that is to be set.
+     * @return The choice on which this method was invoked.
      */
     public Choice withExact(int exact) {
         return this.withLowerBound(exact).withUpperBound(exact);
     }
 
+    /**
+     * Standard getter.
+     *
+     * @return The choice's predicates.
+     */
     public List<Predicate> getPredicates() {
         return predicates;
     }
 
+    /**
+     * Standard adder.
+     *
+     * @param predicate The predicate that is to be added.
+     */
     public void addPredicate(Predicate predicate) {
         this.predicates.add(predicate);
     }

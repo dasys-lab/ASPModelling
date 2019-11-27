@@ -53,19 +53,29 @@ public class Predicate extends PredicateTerm {
     }
 
     /**
-     * Standard getter.
+     * Standard checker.
      *
-     * @return The predicate's name.
+     * @return The predicate's truthiness.
      */
-
     public boolean isTrue() {
         return isTrue;
     }
 
+    /**
+     * Standard setter.
+     *
+     * @param value The truthiness that is to be set.
+     */
     public void setTrue(boolean value) {
         isTrue = value;
     }
 
+
+    /**
+     * Standard getter.
+     *
+     * @return The predicate's name.
+     */
     public String getName() {
         return name;
     }
