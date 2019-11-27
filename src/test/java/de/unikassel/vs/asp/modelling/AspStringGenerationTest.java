@@ -26,13 +26,15 @@ public class AspStringGenerationTest {
     @Test
     public void factStringTest() {
 
+        final String testString = "eagle(eddy).penguin(tux).penguin(0..3).";
+
         AspGenerator gen = new AspGenerator();
 
         Constant eddy = new Constant();
         eddy.setName("eddy");
 
         Constant tux = new Constant();
-        eddy.setName("tux");
+        tux.setName("tux");
 
         Range tuf = new Range(0, 3);
 
@@ -40,7 +42,10 @@ public class AspStringGenerationTest {
         gen.createFact("penguin").withConstant(tux);
         gen.createFact("penguin").withConstant(tuf);
 
-        Assertions.assertEquals("eagle(eddy).\npenguin(tux).", gen.toString());
-    }
+        final String lineSeparator = System.getProperty("line.separator");
 
+        final String generatedCodeString = gen.toString().replaceAll(lineSeparator, "");
+
+        Assertions.assertEquals(testString.replaceAll(lineSeparator, ""), generatedCodeString);
+    }
 }

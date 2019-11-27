@@ -11,6 +11,11 @@ public class Constant {
 
     private String name;
 
+    /**
+     * Standard getter.
+     *
+     * @return The constant's name.
+     */
     public String getName() {
         return name;
     }
