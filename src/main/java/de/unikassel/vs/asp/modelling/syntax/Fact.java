@@ -1,11 +1,14 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Defines a fact, i.e. a {@link Rule} without a body.
  */
 public class Fact {
 
-    private Constant[] constants;
+    private ArrayList<Constant> constants = new ArrayList<>();
     private String name;
 
     /**
@@ -13,7 +16,7 @@ public class Fact {
      *
      * @return The fact's constants.
      */
-    public Constant[] getConstants() {
+    public ArrayList<Constant> getConstants() {
         return this.constants;
     }
 
@@ -24,11 +27,7 @@ public class Fact {
      * @return The fact on which this method was invoked.
      */
     public Fact withConstant(Constant... constants) {
-        this.constants = new Constant[constants.length];
-        int position = 0;
-        for (Constant constant: constants) {
-            this.constants[position++] = constant;
-        }
+        Collections.addAll(this.constants, constants);
         return this;
     }
 
