@@ -50,21 +50,6 @@ $separator##
 $c.getName()##
 #end
 
-## Macro for multiple variables, seperated by ','
-#macro(variables $vs)
-#set($separator = "")## No comma before first element
-#foreach ($v in $vs)##
-$separator##
-#variable($v)##
-#set($separator = ", ")##
-#end
-#end
-
-## Macro for single variable
-#macro (variable $v)
-$v.getName()##
-#end
-
 ## Macro for multiple predicate terms, separated by ','
 #macro(terms $ts)
 #set($separator = "")## No comma before first element
