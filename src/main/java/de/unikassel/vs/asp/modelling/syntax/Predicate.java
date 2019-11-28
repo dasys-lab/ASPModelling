@@ -2,6 +2,9 @@ package de.unikassel.vs.asp.modelling.syntax;
 
 import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalPredicateNameException;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Defines a predicate, i.e. a condition that is or should be given for a constant or a variable.
  */
@@ -14,7 +17,7 @@ public class Predicate extends PredicateTerm {
     private Head head;
     private boolean isTrue = true;
     private String name;
-    private Variable variable;
+    private ArrayList<Element> elements = new ArrayList<>();
 
     /**
      * Standard getter.
@@ -95,31 +98,31 @@ public class Predicate extends PredicateTerm {
     /**
      * Standard getter.
      *
-     * @return The predicate's variable.
+     * @return The predicate's elements.
      */
-    public Variable getVariable() {
-        return this.variable;
+    public ArrayList<Element> getElements() {
+        return this.elements;
     }
 
     /**
-     * Sets the predicate's variable.
+     * Sets the predicate's variables.
      *
-     * @param variable The predicate's variable that is to be set.
-     * @return The predicate's body.
-     */
-    public Body withVariableAsBody(Variable variable) {
-        this.variable = variable;
-        return getBody();
-    }
-
-    /**
-     * Sets the predicate's variable.
-     *
-     * @param variable The predicate's variable that is to be set.
+     * @param elements The predicate's elements that are to be set.
      * @return The predicate head's rule.
      */
-    public Rule withVariableAsRule(Variable variable) {
-        this.variable = variable;
+    public Rule withElementsAsRule(Element... elements) {
+        Collections.addAll(this.elements, elements);
         return getHead().getRule();
+    }
+
+    /**
+     * Sets the predicate's variable.
+     *
+     * @param elements The predicate's elements that are to be set.
+     * @return The predicate's body.
+     */
+    public Body withElementsAsBody(Element... elements) {
+        Collections.addAll(this.elements, elements);
+        return getBody();
     }
 }

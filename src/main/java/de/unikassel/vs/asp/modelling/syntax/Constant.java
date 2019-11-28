@@ -2,7 +2,7 @@ package de.unikassel.vs.asp.modelling.syntax;
 
 import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalConstantNameException;
 
-public class Constant {
+public class Constant extends Element {
 
     private static final String LEGAL_CONSTANT_NAMES
             = "[a-z]\\w*"    // start with lowercase letter, than any letter, number or _

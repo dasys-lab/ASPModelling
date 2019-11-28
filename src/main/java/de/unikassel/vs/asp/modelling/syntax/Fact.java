@@ -1,30 +1,33 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Defines a fact, i.e. a {@link Rule} without a body.
  */
 public class Fact {
 
-    private Constant constant;
+    private ArrayList<Constant> constants = new ArrayList<>();
     private String name;
 
     /**
      * Standard getter.
      *
-     * @return The fact's constant.
+     * @return The fact's constants.
      */
-    public Constant getConstant() {
-        return this.constant;
+    public ArrayList<Constant> getConstants() {
+        return this.constants;
     }
 
     /**
      * Sets the fact's constant.
      *
-     * @param constant The constant that is to be set.
+     * @param constants The constants that are to be set.
      * @return The fact on which this method was invoked.
      */
-    public Fact withConstant(Constant constant) {
-        this.constant = constant;
+    public Fact withConstant(Constant... constants) {
+        Collections.addAll(this.constants, constants);
         return this;
     }
 
