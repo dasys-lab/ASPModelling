@@ -3,6 +3,7 @@ package de.unikassel.vs.asp.modelling.syntax;
 import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalPredicateNameException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Defines a predicate, i.e. a condition that is or should be given for a constant or a variable.
@@ -105,6 +106,15 @@ public class Predicate extends PredicateTerm {
     }
 
     /**
+     * Standard getter.
+     *
+     * @return The predicate's elements.
+     */
+    public ArrayList<Element> getElements() {
+        return this.elements;
+    }
+
+    /**
      * Sets the predicate's variable.
      *
      * @param variables The predicate's variables that are to be set.
@@ -132,5 +142,27 @@ public class Predicate extends PredicateTerm {
             this.variables[position++] = variable;
         }
         return getHead().getRule();
+    }
+
+    /**
+     * Sets the predicate's variables.
+     *
+     * @param elements The predicate's elements that are to be set.
+     * @return The predicate head's rule.
+     */
+    public Rule withElementsAsRule(Element... elements) {
+        Collections.addAll(this.elements, variables);
+        return getHead().getRule();
+    }
+
+    /**
+     * Sets the predicate's variable.
+     *
+     * @param elements The predicate's elements that are to be set.
+     * @return The predicate's body.
+     */
+    public Body withElementsAsBody(Element... elements) {
+        Collections.addAll(this.elements, variables);
+        return getBody();
     }
 }
