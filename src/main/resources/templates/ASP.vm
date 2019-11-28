@@ -20,6 +20,21 @@ $f.getName()(##
 .
 #end
 
+## Macro for multiple elements, seperated by ','
+#macro(elements $es)
+#set($separator = "")## No comma before first element
+#foreach ($e in $es)##
+$separator##
+#element($e)##
+#set($separator = ", ")##
+#end
+#end
+
+## Macro for single Element
+#macro (element $e)
+$e.getName()##
+#end
+
 ## Macro for multiple constants, seperated by ','
 #macro(constants $cs)
 #set($separator = "")## No comma before first element
@@ -70,7 +85,7 @@ $separator##
 not ##
 #end
 $p.getName()(##
-#variables($p.getVariables())##
+#elements($p.getElements())##
 )##
 #end
 

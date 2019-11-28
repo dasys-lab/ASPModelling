@@ -151,7 +151,7 @@ public class Predicate extends PredicateTerm {
      * @return The predicate head's rule.
      */
     public Rule withElementsAsRule(Element... elements) {
-        Collections.addAll(this.elements, variables);
+        Collections.addAll(this.elements, elements);
         return getHead().getRule();
     }
 
@@ -162,7 +162,7 @@ public class Predicate extends PredicateTerm {
      * @return The predicate's body.
      */
     public Body withElementsAsBody(Element... elements) {
-        Collections.addAll(this.elements, variables);
+        Collections.addAll(this.elements, elements);
         return getBody();
     }
 }
