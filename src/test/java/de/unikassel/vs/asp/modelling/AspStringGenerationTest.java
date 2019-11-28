@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class AspStringGenerationTest {
 
-    final static String lineSeparator = System.getProperty("line.separator");
+    final String lineSeparator = System.getProperty("line.separator");
 
     @Test
     public void predicateStringTest() {
@@ -50,10 +50,9 @@ public class AspStringGenerationTest {
     }
 
     @Test
-    public void moreDigitPredicatesAndFacts(){
+    public void moreDigitPredicatesAndFacts() {
         final String testString = "edge(eddy, tux).fromEddy(X) :- edge(eddy, X).";
 
-        AspGenerator gen = new AspGenerator();
 
         Variable x = new Variable();
         x.setName("X");
@@ -63,6 +62,8 @@ public class AspStringGenerationTest {
 
         Constant tux = new Constant();
         tux.setName("tux");
+
+        AspGenerator gen = new AspGenerator();
 
         gen.createFact("edge").withConstant(eddy, tux);
 
