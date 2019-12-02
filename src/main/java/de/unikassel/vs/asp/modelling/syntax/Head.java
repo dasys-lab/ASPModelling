@@ -1,6 +1,8 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Defines the left part of the binary {@code :-} ("if") operator.
@@ -20,18 +22,24 @@ public class Head {
     }
 
     /**
-     * Adds a predicate to the head's list of predicates.
+     * Adds the given predicate terms to this head's predicate terms.
      *
-     * @param predicateName The name of the predicate that is to be added.
-     * @return The predicate that was created in this method.
+     * @param predicates The predicate terms that are to be added.
+     * @return The head the method was called on.
      */
-    public Predicate withPredicate(String predicateName) {
-        Predicate predicate = new Predicate();
-        predicate.setHead(this);
-        predicate.setName(predicateName);
-        predicate.setTrue(true);
-        predicateTerms.add(predicate);
-        return predicate;
+    public Head withPredicates(PredicateTerm... predicates) {
+        return this.withPredicates(Arrays.asList(predicates));
+    }
+
+    /**
+     * Adds the given predicate terms to this head's predicate terms.
+     *
+     * @param predicates The predicate terms that are to be added.
+     * @return The head the method was called on.
+     */
+    private Head withPredicates(Collection<PredicateTerm> predicates) {
+        this.predicateTerms.addAll(predicates);
+        return this;
     }
 
     /**

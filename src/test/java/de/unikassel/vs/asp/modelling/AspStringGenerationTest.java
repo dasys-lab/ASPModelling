@@ -1,8 +1,6 @@
 package de.unikassel.vs.asp.modelling;
 
-import de.unikassel.vs.asp.modelling.syntax.Constant;
-import de.unikassel.vs.asp.modelling.syntax.Range;
-import de.unikassel.vs.asp.modelling.syntax.Variable;
+import de.unikassel.vs.asp.modelling.syntax.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,15 +10,19 @@ public class AspStringGenerationTest {
 
     @Test
     public void predicateStringTest() {
-        String testString = "fly(X) :- bird(X), not -fly(X).";
-
         AspGenerator gen = new AspGenerator();
 
         Variable v1 = new Variable();
         v1.setName("X");
-        gen.createRule().addHead().withPredicate("fly").withElementsAsRule(v1)
-                .addBody().withPredicate("bird").withElementsAsBody(v1)
-                .withPredicateNot("-fly").withElementsAsBody(v1);
+        Predicate fly = new Predicate().withName("fly").withElements(v1);
+        Predicate bird = new Predicate().withName("bird").withElements(v1);
+        Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
+        Rule rule = gen.createRule();
+        rule.addHead().withPredicates(fly);
+        rule.addBody().withPredicates(bird, notFly);
+
+
+        String testString = "fly(X) :- bird(X), not -fly(X).";
 
         Assertions.assertEquals(testString, gen.toString());
     }
@@ -67,8 +69,11 @@ public class AspStringGenerationTest {
 
         gen.createFact("edge").withConstants(eddy, tux);
 
-        gen.createRule().addHead().withPredicate("fromEddy").withElementsAsRule(x)
-                .addBody().withPredicate("edge").withElementsAsBody(eddy, x);
+        Predicate fromEddy = new Predicate().withName("fromEddy").withElements(x);
+        Predicate edge = new Predicate().withName("edge").withElements(eddy, x);
+        Rule rule = gen.createRule();
+        rule.addHead().withPredicates(fromEddy);
+        rule.addBody().withPredicates(edge);
 
         final String generatedCodeString = gen.toString().replaceAll(lineSeparator, "");
 

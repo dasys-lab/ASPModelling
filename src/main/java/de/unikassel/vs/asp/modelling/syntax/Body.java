@@ -1,6 +1,8 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Defines the right part of the binary {@code :-} ("if") operator.
@@ -19,32 +21,38 @@ public class Body {
         return this.predicateTerms;
     }
 
+
     /**
-     * Adds a predicate to the body's list of predicates.
+     * Adds the given predicate terms to this body's predicate terms.
      *
-     * @param predicateName The name of the predicate that is to be added.
-     * @return The predicate that was created in this method.
+     * @param predicates The predicate terms that are to be added.
+     * @return The body the method was called on.
      */
-    public Predicate withPredicate(String predicateName) {
-        Predicate predicate = new Predicate();
-        predicate.setName(predicateName);
-        predicate.setTrue(true);
-        predicate.setBody(this);
-        predicateTerms.add(predicate);
-        return predicate;
+    public Body withPredicates(PredicateTerm... predicates) {
+        return this.withPredicates(Arrays.asList(predicates));
+    }
+
+    /**
+     * Adds the given predicate terms to this body's predicate terms.
+     *
+     * @param predicates The predicate terms that are to be added.
+     * @return The body the method was called on.
+     */
+    private Body withPredicates(Collection<PredicateTerm> predicates) {
+        this.predicateTerms.addAll(predicates);
+        return this;
     }
 
     /**
      * Adds a predicate with 'not' to the body's list of predicates.
      *
-     * @param predicateName  The name of the predicate that is to be added.
-     * @return  The predicate that was created in this method.
+     * @param predicateName The name of the predicate that is to be added.
+     * @return The predicate that was created in this method.
      */
     public Predicate withPredicateNot(String predicateName) {
         Predicate predicate = new Predicate();
-        predicate.setName(predicateName);
-        predicate.setTrue(false);
-        predicate.setBody(this);
+        predicate.withName(predicateName);
+        predicate.withTrue(false);
         predicateTerms.add(predicate);
         return predicate;
     }

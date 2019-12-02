@@ -27,20 +27,21 @@ public class Main {
 
         Variable v1 = new Variable();
         v1.setName("X");
-        gen.createRule().addHead().withPredicate("fly").withElementsAsRule(v1)
-                .addBody().withPredicate("bird").withElementsAsBody(v1)
-                .withPredicateNot("-fly").withElementsAsBody(v1);
+        Predicate fly = new Predicate().withName("fly").withElements(v1);
+        Predicate bird = new Predicate().withName("bird").withElements(v1);
+        Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
+        Rule rule = gen.createRule();
+        rule.addHead().withPredicates(fly);
+        rule.addBody().withPredicates(bird, notFly);
 
         Choice c = new Choice().withUpperBound(1);
         Predicate p1 = new Predicate();
-        p1.setName("test1");
+        p1.withName("test1");
         Predicate p2 = new Predicate();
-        p2.setName("test2");
+        p2.withName("test2");
         c.addPredicate(p1);
         c.addPredicate(p2);
-
         gen.createRule().addBody().getPredicateTerms().add(c);
-
 
         System.out.println(gen);
 
