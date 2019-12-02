@@ -11,23 +11,19 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        AspGenerator gen = new AspGenerator();
-
         Constant eddy = new Constant().withName("eddy");
-
         Constant tux = new Constant().withName("tux");
-
         Range tuf = new Range().withMin(0).withMax(3);
 
-        gen.createFact("eagle").withConstants(eddy);
-        gen.createFact("penguin").withConstants(tux);
-        gen.createFact("penguin").withConstants(tuf);
+        Fact eagle = new Fact().withName("eagle").withConstants(eddy);
+        Fact penguinTux = new Fact().withName("penguin").withConstants(tux);
+        Fact penguinTuf = new Fact().withName("penguin").withConstants(tuf);
 
         Variable v1 = new Variable().withName("X");
         Predicate fly = new Predicate().withName("fly").withElements(v1);
         Predicate bird = new Predicate().withName("bird").withElements(v1);
         Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
-        Rule rule = gen.createRule()
+        Rule rule1 = new Rule()
                 .withHead(new Head().withPredicates(fly))
                 .withBody(new Body().withPredicates(bird, notFly));
         Predicate p1 = new Predicate();
@@ -35,8 +31,11 @@ public class Main {
         Predicate p2 = new Predicate();
         p2.withName("test2");
         Choice c = new Choice().withPredicates(p1, p2).withUpperBound(1);
-        gen.createRule().withBody(new Body().withPredicates(c));
+        Rule rule2 = new Rule().withBody(new Body().withPredicates(c));
 
+        AspGenerator gen = new AspGenerator()
+                .withFacts(eagle, penguinTux, penguinTuf)
+                .withRules(rule1, rule2);
         System.out.println(gen);
 
     }

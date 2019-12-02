@@ -4,6 +4,10 @@ import de.unikassel.vs.asp.modelling.syntax.Fact;
 import de.unikassel.vs.asp.modelling.syntax.Rule;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -17,30 +21,46 @@ public class AspGenerator {
     private ArrayList<Fact> facts = new ArrayList<>();
     private ArrayList<Rule> rules = new ArrayList<>();
 
-
-
     /**
-     * Creates a fact for the program.
+     * Add the given facts to this ASP generator's facts.
      *
-     * @param factName The name of the fact that is to be created.
-     * @return The fact that was created in this method.
+     * @param facts The facts to be added.
+     * @return The ASP generator this method was called on.
      */
-    public Fact createFact(String factName) {
-        Fact fact = new Fact();
-        fact.withName(factName);
-        facts.add(fact);
-        return fact;
+    public AspGenerator withFacts(Fact... facts) {
+        return this.withFacts(Arrays.asList(facts));
     }
 
     /**
-     * Creates a rule for the program.
+     * Add the given facts to this ASP generator's facts.
      *
-     * @return The rule that was created in this method.
+     * @param facts The facts to be added.
+     * @return The ASP generator this method was called on.
      */
-    public Rule createRule() {
-        Rule rule = new Rule();
-        rules.add(rule);
-        return rule;
+    public AspGenerator withFacts(Collection<Fact> facts) {
+        this.facts.addAll(facts);
+        return this;
+    }
+
+    /**
+     * Add the given rules to this ASP generator's rules.
+     *
+     * @param rules The rules to be added.
+     * @return The ASP generator this method was called on.
+     */
+    public AspGenerator withRules(Rule... rules) {
+        return this.withRules(Arrays.asList(rules));
+    }
+
+    /**
+     * Add the given rules to this ASP generator's rules.
+     *
+     * @param rules The rules to be added.
+     * @return The ASP generator this method was called on.
+     */
+    public AspGenerator withRules(Collection<Rule> rules) {
+        this.rules.addAll(rules);
+        return this;
     }
 
     /**
