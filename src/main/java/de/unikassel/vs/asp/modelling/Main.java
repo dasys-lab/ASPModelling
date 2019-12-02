@@ -26,17 +26,17 @@ public class Main {
         Rule rule1 = new Rule()
                 .withHead(new Head().withPredicates(fly))
                 .withBody(new Body().withPredicates(bird, notFly));
-        Predicate p1 = new Predicate();
-        p1.withName("test1");
-        Predicate p2 = new Predicate();
-        p2.withName("test2");
+        Predicate p1 = new Predicate().withName("test1");
+        Predicate p2 = new Predicate().withName("test2");
         Choice c = new Choice().withPredicates(p1, p2).withUpperBound(1);
         Rule rule2 = new Rule().withBody(new Body().withPredicates(c));
 
         AspGenerator gen = new AspGenerator()
                 .withFacts(eagle, penguinTux, penguinTuf)
                 .withRules(rule1, rule2);
-        System.out.println(gen);
+        System.out.println("ASP: \n" + gen);
+        System.out.println();
+        System.out.println("Java: \n" + gen.toJavaString());
 
     }
 }

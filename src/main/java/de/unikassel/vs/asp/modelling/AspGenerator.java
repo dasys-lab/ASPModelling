@@ -1,12 +1,9 @@
 package de.unikassel.vs.asp.modelling;
 
-import de.unikassel.vs.asp.modelling.syntax.Fact;
-import de.unikassel.vs.asp.modelling.syntax.Rule;
+import de.unikassel.vs.asp.modelling.syntax.*;
+
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -87,5 +84,98 @@ public class AspGenerator {
         t.merge(c, w);
 
         return w.toString().trim();
+    }
+
+    /**
+     * Convert the program to a Java-sourcecode-string.
+     *
+     * @return A string that contains Java-code creating an aspGenerator equal to this one.
+     */
+    public String toJavaString() {
+        // Create and initialize the template engine
+        VelocityEngine ve = new VelocityEngine();
+        ve.init();
+
+        // Add all rules and facts
+        VelocityContext c = new VelocityContext();
+        c.put("facts", facts);
+        c.put("rules", rules);
+
+        LinkedHashSet<Constant> constants = new LinkedHashSet<>();
+        LinkedHashSet<Variable> variables = new LinkedHashSet<>();
+
+        LinkedHashSet<Predicate> predicates = new LinkedHashSet<>();
+        LinkedHashSet<Choice> choices = new LinkedHashSet<>();
+
+        for (Fact fact : this.facts) {
+            constants.addAll(fact.getConstants());
+        }
+        for (Rule rule : this.rules) {
+            ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
+            if (rule.getHead() != null) {
+                predicateTerms.addAll(rule.getHead().getPredicateTerms());
+            }
+            if (rule.getBody() != null) {
+                predicateTerms.addAll(rule.getBody().getPredicateTerms());
+            }
+
+            for (PredicateTerm predicateTerm : predicateTerms) {
+
+                LinkedHashSet<Element> elements = new LinkedHashSet<>();
+
+                if (predicateTerm instanceof Predicate) {
+                    elements.addAll(((Predicate) predicateTerm).getElements());
+                    predicates.add((Predicate) predicateTerm);
+                } else if (predicateTerm instanceof Choice) {
+                    for (Predicate predicate : ((Choice) predicateTerm).getPredicates()) {
+                        elements.addAll(predicate.getElements());
+                        choices.add((Choice) predicateTerm);
+                        predicates.addAll(((Choice) predicateTerm).getPredicates());
+                    }
+                } else {
+                    throw new RuntimeException("Unknown type of predicate: "
+                            + predicateTerm.getClass().getSimpleName());
+                }
+
+                for (Element element : elements) {
+                    if (element instanceof Constant) {
+                        constants.add((Constant) element);
+                    } else if (element instanceof Variable) {
+                        variables.add((Variable) element);
+                    } else {
+                        throw new RuntimeException("Unknown type of element: " + element.getClass().getSimpleName());
+                    }
+                }
+            }
+        }
+
+        c.put("constants", constants);
+        c.put("variables", variables);
+
+        c.put("predicates", predicates);
+        c.put("choices", choices);
+
+        c.put("ASPGenerator", AspGenerator.class);
+
+
+        // Load the template
+        Template t = ve.getTemplate("./src/main/resources/templates/Java.vm");
+
+        // Create the Java-program
+        StringWriter w = new StringWriter();
+        t.merge(c, w);
+
+        return w.toString().trim();
+    }
+
+    /**
+     * Create a name for a Java-variable to store objects created according to the given object.
+     *
+     * @param aspObject The object to be stored in a Java-variable.
+     * @return The name of the Java-variable.
+     */
+    public static String createJavaCodeName(Object aspObject) {
+        // TODO: Be a bit smarter about this
+        return "variable" + aspObject.hashCode();
     }
 }
