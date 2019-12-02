@@ -92,23 +92,21 @@ public class AspGenerator {
      * @return A string that contains Java-code creating an aspGenerator equal to this one.
      */
     public String toJavaString() {
-        // Create and initialize the template engine
-        VelocityEngine ve = new VelocityEngine();
-        ve.init();
-
-        // Add all rules and facts
-        VelocityContext c = new VelocityContext();
-        c.put("facts", facts);
-        c.put("rules", rules);
-
         LinkedHashSet<Constant> constants = new LinkedHashSet<>();
+        LinkedHashSet<Range> ranges = new LinkedHashSet<>();
         LinkedHashSet<Variable> variables = new LinkedHashSet<>();
 
         LinkedHashSet<Predicate> predicates = new LinkedHashSet<>();
         LinkedHashSet<Choice> choices = new LinkedHashSet<>();
 
         for (Fact fact : this.facts) {
-            constants.addAll(fact.getConstants());
+            for (Constant constant : fact.getConstants()) {
+                if (constant instanceof Range) {
+                    ranges.add((Range) constant);
+                } else {
+                    constants.add(constant);
+                }
+            }
         }
         for (Rule rule : this.rules) {
             ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
@@ -138,7 +136,9 @@ public class AspGenerator {
                 }
 
                 for (Element element : elements) {
-                    if (element instanceof Constant) {
+                    if (element instanceof Range) {
+                        ranges.add((Range) element);
+                    } else if (element instanceof Constant) {
                         constants.add((Constant) element);
                     } else if (element instanceof Variable) {
                         variables.add((Variable) element);
@@ -149,13 +149,23 @@ public class AspGenerator {
             }
         }
 
+        // Create and initialize the template engine
+        VelocityEngine ve = new VelocityEngine();
+        ve.init();
+
+        // Add all rules and facts
+        VelocityContext c = new VelocityContext();
+        c.put("facts", facts);
+        c.put("rules", rules);
+
         c.put("constants", constants);
+        c.put("ranges", ranges);
         c.put("variables", variables);
 
         c.put("predicates", predicates);
         c.put("choices", choices);
 
-        c.put("ASPGenerator", AspGenerator.class);
+        c.put("AspGenerator", AspGenerator.class);
 
 
         // Load the template
@@ -176,6 +186,6 @@ public class AspGenerator {
      */
     public static String createJavaCodeName(Object aspObject) {
         // TODO: Be a bit smarter about this
-        return "variable" + aspObject.hashCode();
+        return aspObject.getClass().getSimpleName().toLowerCase() + aspObject.hashCode();
     }
 }

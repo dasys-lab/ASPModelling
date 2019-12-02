@@ -1,62 +1,88 @@
 ## Iterate over all constants
-// Constants used in the ASP-program
+// Constants used in the Asp-program
 #foreach($c in $constants)
 #declareConstant($c)
 
 #end
 
+## Iterate over all ranges
+// Ranges used in the Asp-program
+#foreach($r in $ranges)
+#declareRange($r)
+
+#end
+
 ## Iterate over all variables
-// Variables used in the ASP-program
+// Variables used in the Asp-program
 #foreach($v in $variables)
 #declareVariable($v)
 
 #end
 
 ## Iterate over all predicates
-// Predicates used in the ASP-program
+// Predicates used in the Asp-program
 #foreach($p in $predicates)
 #declarePredicate($p)
 
 #end
 
 ## Iterate over all choices
-// Choices used in the ASP-program
+// Choices used in the Asp-program
 #foreach($c in $choices)
 #declareChoice($c)
 
 #end
 
 ## Iterate over all facts
-// Facts, that are part of the ASP-program
+// Facts, that are part of the Asp-program
 #foreach($f in $facts)
 #declareFact($f)
 
 #end
 
 ## Iterate over all rules
-// Rules, that are part of the ASP-program
+// Rules, that are part of the Asp-program
 #foreach($r in $rules)
+#declareRule($r)
 
 #end
 
 ## Create model
+// The final model
+AspGenerator gen = new AspGenerator()##
+#if($facts && !$facts.isEmpty())
+
+    .withFacts(#list($facts))##
+#end
+#if($rules && !$rules.isEmpty())
+
+    .withRules(#list($rules))##
+#end
+;##
 
 ## Macro for declaring one constant
 #macro(declareConstant $c)
-Constant $ASPGenerator.createJavaCodeName($c) = new Constant().withName("$c.getName()");##
+Constant $AspGenerator.createJavaCodeName($c) = new Constant().withName("$c.getName()");##
+#end
+
+## Macro for declaring one range
+#macro(declareRange $r)
+Range $AspGenerator.createJavaCodeName($r) = new Range()
+    .withMin($r.getMin())
+    .withMax($r.getMax());##
 #end
 
 ## Macro for declaring one variable
 #macro(declareVariable $v)
-Variable $ASPGenerator.createJavaCodeName($v) = new Variable().withName("$v.getName()");##
+Variable $AspGenerator.createJavaCodeName($v) = new Variable().withName("$v.getName()");##
 #end
 
 ## Macro for declaring one predicate
 #macro(declarePredicate $p)
-Predicate $ASPGenerator.createJavaCodeName($p) = new Predicate().withName("$p.getName()")##
+Predicate $AspGenerator.createJavaCodeName($p) = new Predicate().withName("$p.getName()")##
 #if(!$p.isTrue())
 
-    .withIsTrue(false)##
+    .withTrue(false)##
 #end
 #if(!$p.getElements().isEmpty()) ## Newline to make it look nicer
 
@@ -67,7 +93,7 @@ Predicate $ASPGenerator.createJavaCodeName($p) = new Predicate().withName("$p.ge
 
 ## Macro for declaring one choice
 #macro(declareChoice $c)
-Choice $ASPGenerator.createJavaCodeName($c) = new Choice()##
+Choice $AspGenerator.createJavaCodeName($c) = new Choice()##
 #if($c.getLowerBound().isPresent() && $c.getLowerBound().equals($c.getUpperBound()))
 
     .exact($c.getLowerBound().getAsInt())##
@@ -90,9 +116,23 @@ Choice $ASPGenerator.createJavaCodeName($c) = new Choice()##
 
 ## Macro for declaring one fact
 #macro(declareFact $f)
-Fact $ASPGenerator.createJavaCodeName($f) = new Fact().withName("$f.getName()")
+Fact $AspGenerator.createJavaCodeName($f) = new Fact().withName("$f.getName()")
 #if(!$f.getConstants().isEmpty())
     .withConstants(#list($f.getConstants()))##
+#end
+;##
+#end
+
+## Macro for declaring one rule
+#macro(declareRule $r)
+Rule $AspGenerator.createJavaCodeName($r) = new Rule()##
+#if($r.getHead() && !$r.getHead().getPredicateTerms().isEmpty())
+
+    .withHead(new Head().withPredicates(#list($r.getHead().getPredicateTerms())))##
+#end
+#if($r.getBody() && !$r.getBody().getPredicateTerms().isEmpty())
+
+    .withBody(new Body().withPredicates(#list($r.getBody().getPredicateTerms())))##
 #end
 ;##
 #end
@@ -102,7 +142,7 @@ Fact $ASPGenerator.createJavaCodeName($f) = new Fact().withName("$f.getName()")
 #set($separator = "")## No comma before first object
 #foreach ($o in $os)##
 $separator##
-$ASPGenerator.createJavaCodeName($o)##
+$AspGenerator.createJavaCodeName($o)##
 #set($separator = ", ")##
 #end
 #end
