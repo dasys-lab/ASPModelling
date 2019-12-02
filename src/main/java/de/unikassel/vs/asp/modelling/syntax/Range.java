@@ -50,9 +50,11 @@ public class Range extends Constant {
      * Throws an {@link UnsupportedOperationException} as a range's name cannot be set manually..
      *
      * @param name The name that is (not) to be set.
+     * @return Nothing.
+     * @throws UnsupportedOperationException Because the name cannot be set.
      */
     @Override
-    public void setName(String name) {
+    public Constant withName(String name) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("The name of a range cannot be set manually");
     }
 }

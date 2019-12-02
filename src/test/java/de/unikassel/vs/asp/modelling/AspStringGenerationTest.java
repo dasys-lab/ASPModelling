@@ -10,19 +10,17 @@ public class AspStringGenerationTest {
 
     @Test
     public void predicateStringTest() {
+        String testString = "fly(X) :- bird(X), not -fly(X).";
+
         AspGenerator gen = new AspGenerator();
 
-        Variable v1 = new Variable();
-        v1.setName("X");
+        Variable v1 = new Variable().withName("X");
         Predicate fly = new Predicate().withName("fly").withElements(v1);
         Predicate bird = new Predicate().withName("bird").withElements(v1);
         Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
         gen.createRule()
                 .withHead(new Head().withPredicates(fly))
                 .withBody(new Body().withPredicates(bird, notFly));
-
-
-        String testString = "fly(X) :- bird(X), not -fly(X).";
 
         Assertions.assertEquals(testString, gen.toString());
     }
@@ -34,11 +32,9 @@ public class AspStringGenerationTest {
 
         AspGenerator gen = new AspGenerator();
 
-        Constant eddy = new Constant();
-        eddy.setName("eddy");
+        Constant eddy = new Constant().withName("eddy");
 
-        Constant tux = new Constant();
-        tux.setName("tux");
+        Constant tux = new Constant().withName("tux");
 
         Range tuf = new Range(0, 3);
 
@@ -56,14 +52,11 @@ public class AspStringGenerationTest {
         final String testString = "edge(eddy, tux).fromEddy(X) :- edge(eddy, X).";
 
 
-        Variable x = new Variable();
-        x.setName("X");
+        Variable x = new Variable().withName("X");
 
-        Constant eddy = new Constant();
-        eddy.setName("eddy");
+        Constant eddy = new Constant().withName("eddy");
 
-        Constant tux = new Constant();
-        tux.setName("tux");
+        Constant tux = new Constant().withName("tux");
 
         AspGenerator gen = new AspGenerator();
 

@@ -13,11 +13,9 @@ public class Main {
 
         AspGenerator gen = new AspGenerator();
 
-        Constant eddy = new Constant();
-        eddy.setName("eddy");
+        Constant eddy = new Constant().withName("eddy");
 
-        Constant tux = new Constant();
-        tux.setName("tux");
+        Constant tux = new Constant().withName("tux");
 
         Range tuf = new Range(0, 3);
 
@@ -25,8 +23,7 @@ public class Main {
         gen.createFact("penguin").withConstants(tux);
         gen.createFact("penguin").withConstants(tuf);
 
-        Variable v1 = new Variable();
-        v1.setName("X");
+        Variable v1 = new Variable().withName("X");
         Predicate fly = new Predicate().withName("fly").withElements(v1);
         Predicate bird = new Predicate().withName("bird").withElements(v1);
         Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
