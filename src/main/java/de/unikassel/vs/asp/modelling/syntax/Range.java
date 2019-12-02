@@ -4,19 +4,8 @@ package de.unikassel.vs.asp.modelling.syntax;
  * Defines a range of numbers/constants.
  */
 public class Range extends Constant {
-    private final int min;
-    private final int max;
-
-    /**
-     * Standard constructor.
-     *
-     * @param min The value at which the range starts.
-     * @param max The value at which the range ends.
-     */
-    public Range(int min, int max) {
-        this.min = min;
-        this.max = max;
-    }
+    private int min;
+    private int max;
 
     /**
      * Standard getter.
@@ -28,12 +17,34 @@ public class Range extends Constant {
     }
 
     /**
+     * Sets the range's end.
+     *
+     * @param max The value at which the range should end.
+     * @return The range this method is called on.
+     */
+    public Range withMax(int max) {
+        this.max = max;
+        return this;
+    }
+
+    /**
      * Standard getter.
      *
      * @return The value at which the range starts.
      */
     public int getMin() {
         return min;
+    }
+
+    /**
+     * Sets the range's start.
+     *
+     * @param min The value at which the range should start.
+     * @return The range this method is called on.
+     */
+    public Range withMin(int min) {
+        this.min = min;
+        return this;
     }
 
     /**

@@ -17,6 +17,8 @@ public class AspGenerator {
     private ArrayList<Fact> facts = new ArrayList<>();
     private ArrayList<Rule> rules = new ArrayList<>();
 
+
+
     /**
      * Creates a fact for the program.
      *

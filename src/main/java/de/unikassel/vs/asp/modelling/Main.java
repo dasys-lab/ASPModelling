@@ -17,7 +17,7 @@ public class Main {
 
         Constant tux = new Constant().withName("tux");
 
-        Range tuf = new Range(0, 3);
+        Range tuf = new Range().withMin(0).withMax(3);
 
         gen.createFact("eagle").withConstants(eddy);
         gen.createFact("penguin").withConstants(tux);
