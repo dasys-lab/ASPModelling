@@ -1,8 +1,6 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.OptionalInt;
+import java.util.*;
 
 /**
  * Defines a set of arbitrary subsets.
@@ -125,12 +123,24 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Standard adder.
+     * Add the given predicates to this choice's predicates.
      *
-     * @param predicate The predicate that is to be added.
+     * @param predicates The predicate that are to be added.
+     * @return The choice this method was called on.
      */
-    public void addPredicate(Predicate predicate) {
-        this.predicates.add(predicate);
+    public Choice withPredicates(Predicate... predicates) {
+        return this.withPredicates(Arrays.asList(predicates));
+    }
+
+    /**
+     * Add the given predicates to this choice's predicates.
+     *
+     * @param predicates The predicate that are to be added.
+     * @return The choice this method was called on.
+     */
+    public Choice withPredicates(Collection<Predicate> predicates) {
+        this.predicates.addAll(predicates);
+        return this;
     }
 
     private static class Bound {

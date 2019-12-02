@@ -30,13 +30,11 @@ public class Main {
         Rule rule = gen.createRule()
                 .withHead(new Head().withPredicates(fly))
                 .withBody(new Body().withPredicates(bird, notFly));
-        Choice c = new Choice().withUpperBound(1);
         Predicate p1 = new Predicate();
         p1.withName("test1");
         Predicate p2 = new Predicate();
         p2.withName("test2");
-        c.addPredicate(p1);
-        c.addPredicate(p2);
+        Choice c = new Choice().withPredicates(p1, p2).withUpperBound(1);
         gen.createRule().withBody(new Body().withPredicates(c));
 
         System.out.println(gen);
