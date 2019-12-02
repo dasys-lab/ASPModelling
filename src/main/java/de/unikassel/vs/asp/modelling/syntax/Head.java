@@ -36,7 +36,7 @@ public class Head {
      * @param predicates The predicate terms that are to be added.
      * @return The head the method was called on.
      */
-    private Head withPredicates(Collection<PredicateTerm> predicates) {
+    public Head withPredicates(Collection<PredicateTerm> predicates) {
         this.predicateTerms.addAll(predicates);
         return this;
     }

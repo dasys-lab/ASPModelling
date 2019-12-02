@@ -37,7 +37,7 @@ public class Body {
      * @param predicates The predicate terms that are to be added.
      * @return The body the method was called on.
      */
-    private Body withPredicates(Collection<PredicateTerm> predicates) {
+    public Body withPredicates(Collection<PredicateTerm> predicates) {
         this.predicateTerms.addAll(predicates);
         return this;
     }

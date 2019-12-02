@@ -84,7 +84,7 @@ public class Predicate extends PredicateTerm {
      * @param elements The predicate's elements that are to be set.
      * @return The predicate this method was called on.
      */
-    private <T> Predicate withElements(Collection<Element> elements) {
+    public Predicate withElements(Collection<Element> elements) {
         this.elements.addAll(elements);
         return this;
     }
