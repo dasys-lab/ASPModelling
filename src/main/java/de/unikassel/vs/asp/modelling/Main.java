@@ -30,10 +30,9 @@ public class Main {
         Predicate fly = new Predicate().withName("fly").withElements(v1);
         Predicate bird = new Predicate().withName("bird").withElements(v1);
         Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
-        Rule rule = gen.createRule();
-        rule.addHead().withPredicates(fly);
-        rule.addBody().withPredicates(bird, notFly);
-
+        Rule rule = gen.createRule()
+                .withHead(new Head().withPredicates(fly))
+                .withBody(new Body().withPredicates(bird, notFly));
         Choice c = new Choice().withUpperBound(1);
         Predicate p1 = new Predicate();
         p1.withName("test1");
@@ -41,7 +40,7 @@ public class Main {
         p2.withName("test2");
         c.addPredicate(p1);
         c.addPredicate(p2);
-        gen.createRule().addBody().getPredicateTerms().add(c);
+        gen.createRule().withBody(new Body().withPredicates(c));
 
         System.out.println(gen);
 

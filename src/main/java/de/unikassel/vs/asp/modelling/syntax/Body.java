@@ -10,7 +10,6 @@ import java.util.Collection;
 public class Body {
 
     private ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
-    private Rule rule;
 
     /**
      * Standard getter.
@@ -41,19 +40,5 @@ public class Body {
     private Body withPredicates(Collection<PredicateTerm> predicates) {
         this.predicateTerms.addAll(predicates);
         return this;
-    }
-
-    /**
-     * Adds a predicate with 'not' to the body's list of predicates.
-     *
-     * @param predicateName The name of the predicate that is to be added.
-     * @return The predicate that was created in this method.
-     */
-    public Predicate withPredicateNot(String predicateName) {
-        Predicate predicate = new Predicate();
-        predicate.withName(predicateName);
-        predicate.withTrue(false);
-        predicateTerms.add(predicate);
-        return predicate;
     }
 }

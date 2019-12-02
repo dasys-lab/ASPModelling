@@ -10,7 +10,6 @@ import java.util.Collection;
 public class Head {
 
     private ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
-    private Rule rule;
 
     /**
      * Standard getter.
@@ -40,23 +39,5 @@ public class Head {
     private Head withPredicates(Collection<PredicateTerm> predicates) {
         this.predicateTerms.addAll(predicates);
         return this;
-    }
-
-    /**
-     * Standard getter.
-     *
-     * @return The head's rule.
-     */
-    public Rule getRule() {
-        return this.rule;
-    }
-
-    /**
-     * Standard setter.
-     *
-     * @param rule The head's rule that is to be set.
-     */
-    public void setRule(Rule rule) {
-        this.rule = rule;
     }
 }

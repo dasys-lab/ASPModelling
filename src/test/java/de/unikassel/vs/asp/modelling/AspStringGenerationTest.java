@@ -17,9 +17,9 @@ public class AspStringGenerationTest {
         Predicate fly = new Predicate().withName("fly").withElements(v1);
         Predicate bird = new Predicate().withName("bird").withElements(v1);
         Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
-        Rule rule = gen.createRule();
-        rule.addHead().withPredicates(fly);
-        rule.addBody().withPredicates(bird, notFly);
+        gen.createRule()
+                .withHead(new Head().withPredicates(fly))
+                .withBody(new Body().withPredicates(bird, notFly));
 
 
         String testString = "fly(X) :- bird(X), not -fly(X).";
@@ -71,9 +71,9 @@ public class AspStringGenerationTest {
 
         Predicate fromEddy = new Predicate().withName("fromEddy").withElements(x);
         Predicate edge = new Predicate().withName("edge").withElements(eddy, x);
-        Rule rule = gen.createRule();
-        rule.addHead().withPredicates(fromEddy);
-        rule.addBody().withPredicates(edge);
+        gen.createRule()
+                .withHead(new Head().withPredicates(fromEddy))
+                .withBody(new Body().withPredicates(edge));
 
         final String generatedCodeString = gen.toString().replaceAll(lineSeparator, "");
 

@@ -18,14 +18,13 @@ public class Rule {
     }
 
     /**
-     * Adds a new head for this rule.
+     * Adds the head for this rule.
      *
-     * @return The head that was created in this method.
+     * @return The rule this method was called on.
      */
-    public Head addHead() {
-        this.head = new Head();
-        this.head.setRule(this);
-        return this.head;
+    public Rule withHead(Head head) {
+        this.head = head;
+        return this;
     }
 
     /**
@@ -38,12 +37,12 @@ public class Rule {
     }
 
     /**
-     * Adds a new Body for this rule.
+     * Adds the body for this rule.
      *
-     * @return The body that was created in this method.
+     * @return The rule this method was called on.
      */
-    public Body addBody() {
-        this.body = new Body();
-        return this.body;
+    public Rule withBody(Body body) {
+        this.body = body;
+        return this;
     }
 }
