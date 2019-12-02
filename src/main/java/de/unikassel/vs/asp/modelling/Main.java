@@ -21,9 +21,9 @@ public class Main {
 
         Range tuf = new Range(0, 3);
 
-        gen.createFact("eagle").withConstant(eddy);
-        gen.createFact("penguin").withConstant(tux);
-        gen.createFact("penguin").withConstant(tuf);
+        gen.createFact("eagle").withConstants(eddy);
+        gen.createFact("penguin").withConstants(tux);
+        gen.createFact("penguin").withConstants(tuf);
 
         Variable v1 = new Variable();
         v1.setName("X");

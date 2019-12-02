@@ -25,7 +25,7 @@ public class AspGenerator {
      */
     public Fact createFact(String factName) {
         Fact fact = new Fact();
-        fact.setName(factName);
+        fact.withName(factName);
         facts.add(fact);
         return fact;
     }

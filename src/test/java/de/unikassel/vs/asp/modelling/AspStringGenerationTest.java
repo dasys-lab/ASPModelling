@@ -40,9 +40,9 @@ public class AspStringGenerationTest {
 
         Range tuf = new Range(0, 3);
 
-        gen.createFact("eagle").withConstant(eddy);
-        gen.createFact("penguin").withConstant(tux);
-        gen.createFact("penguin").withConstant(tuf);
+        gen.createFact("eagle").withConstants(eddy);
+        gen.createFact("penguin").withConstants(tux);
+        gen.createFact("penguin").withConstants(tuf);
 
         final String generatedCodeString = gen.toString().replaceAll(lineSeparator, "");
 
@@ -65,7 +65,7 @@ public class AspStringGenerationTest {
 
         AspGenerator gen = new AspGenerator();
 
-        gen.createFact("edge").withConstant(eddy, tux);
+        gen.createFact("edge").withConstants(eddy, tux);
 
         gen.createRule().addHead().withPredicate("fromEddy").withElementsAsRule(x)
                 .addBody().withPredicate("edge").withElementsAsBody(eddy, x);
