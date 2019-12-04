@@ -22,7 +22,7 @@ public class Main {
         Variable v1 = new Variable().withName("X");
         Predicate fly = new Predicate().withName("fly").withElements(v1);
         Predicate bird = new Predicate().withName("bird").withElements(v1);
-        Predicate notFly = new Predicate().withName("-fly").withNot(true).withElements(v1);
+        Predicate notFly = new Predicate().withName("-fly").withNot().withElements(v1);
         Rule rule1 = new Rule()
                 .withHead(new Head().withPredicates(fly))
                 .withBody(new Body().withPredicates(bird, notFly));

@@ -12,27 +12,68 @@ public class Predicate extends PredicateTerm {
     private static final String LEGAL_PREDICATE_NAMES
             = "-?[a-z]\\w*"; // Maybe start with -, than lowercase letter, than any letter, number or _
 
-    private boolean isTrue = true;
+    private boolean withFalse = false;
+    private boolean withNot = false;
     private String name;
     private ArrayList<Element> elements = new ArrayList<>();
 
     /**
      * Standard checker.
      *
-     * @return The predicate's truthiness.
+     * @return The predicate's falseness indicator.
      */
-    public boolean isTrue() {
-        return isTrue;
+    public boolean isWithFalse() {
+        return withFalse;
+    }
+
+    /**
+     * Standard setter for "true".
+     *
+     * @return the predicate on which the method was called on.
+     */
+    public Predicate withFalse() {
+        this.withFalse = true;
+        return this;
     }
 
     /**
      * Standard setter.
      *
-     * @param isTrue The truthiness that is to be set.
+     * @param isFalse The falseness indicator that is to be set.
      * @return the predicate on which the method was called on.
      */
-    public Predicate withTrue(boolean isTrue) {
-        this.isTrue = isTrue;
+    public Predicate withFalse(boolean isFalse) {
+        this.withFalse = isFalse;
+        return this;
+    }
+
+    /**
+     * Standard checker.
+     *
+     * @return The predicate's "not" indicator.
+     */
+    public boolean isWithNot() {
+        return withNot;
+    }
+
+    /**
+     * Standard setter for "true".
+     *
+     * @return the predicate on which the method was called on.
+     */
+    public Predicate withNot() {
+        this.withNot = true;
+        return this;
+    }
+
+    /**
+     * Standard setter.
+     *
+     * @param withNot The "not" indicator that is to be set.
+     * @return the predicate on which the method was called on.
+     */
+    public Predicate withNot(boolean withNot) {
+        this.withNot = withNot;
         return this;
     }
 
