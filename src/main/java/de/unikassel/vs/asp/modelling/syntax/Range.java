@@ -1,5 +1,7 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
+import java.util.Objects;
+
 /**
  * Defines a range of numbers/constants.
  */
@@ -67,5 +69,18 @@ public class Range extends Constant {
     @Override
     public Constant withName(String name) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("The name of a range cannot be set manually");
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Range) {
+            return (Objects.equals(this.getMin(), ((Range) other).getMin())) &&(Objects.equals(this.getMax(), ((Range) other).getMax()));
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.min, this.max);
     }
 }

@@ -3,6 +3,7 @@ package de.unikassel.vs.asp.modelling.syntax;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Defines the left part of the binary {@code :-} ("if") operator.
@@ -39,5 +40,27 @@ public class Head {
     public Head withPredicates(Collection<PredicateTerm> predicates) {
         this.predicateTerms.addAll(predicates);
         return this;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Head) {
+            int i = 0;
+            boolean headsEqual = true;
+            for(PredicateTerm p : this.predicateTerms){
+                if(!(p.equals(((Head) other).getPredicateTerms().get(i)))){
+                    headsEqual = false;
+                    break;
+                }
+                i++;
+            }
+            return headsEqual;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.predicateTerms.hashCode());
     }
 }

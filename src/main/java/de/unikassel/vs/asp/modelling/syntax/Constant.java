@@ -2,6 +2,8 @@ package de.unikassel.vs.asp.modelling.syntax;
 
 import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalConstantNameException;
 
+import java.util.Objects;
+
 public class Constant extends Element {
 
     private static final String LEGAL_CONSTANT_NAMES
@@ -32,5 +34,18 @@ public class Constant extends Element {
         }
         this.name = name;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Constant) {
+            return Objects.equals(this.getName(), ((Constant) other).getName());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.name);
     }
 }

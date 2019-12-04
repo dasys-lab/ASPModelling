@@ -1,5 +1,7 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
+import java.util.Objects;
+
 /**
  * Defines a rule, i.e. a full ASP-if statement with a head and a body separated by the {@code :-} operator.
  */
@@ -44,5 +46,18 @@ public class Rule {
     public Rule withBody(Body body) {
         this.body = body;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Rule) {
+            return Objects.equals(this.getBody(), ((Rule) other).getBody()) && Objects.equals(this.getHead(), ((Rule) other).getHead()) ;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.body.hashCode(), this.head.hashCode());
     }
 }

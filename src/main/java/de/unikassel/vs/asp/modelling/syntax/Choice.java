@@ -151,4 +151,26 @@ public class Choice extends PredicateTerm {
             this.value = value;
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Choice) {
+            int i = 0;
+            boolean predicatesEqual = true;
+            for(Predicate p : this.predicates){
+                if(!(p.equals(((Choice) other).getPredicates().get(i)))){
+                    predicatesEqual = false;
+                    break;
+                }
+                i++;
+            }
+            return Objects.equals(this.getLowerBound(), ((Choice) other).getLowerBound()) && Objects.equals(this.getUpperBound(), ((Choice) other).getUpperBound()) && predicatesEqual ;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.upperBound, this.lowerBound, this.predicates.hashCode());
+    }
 }
