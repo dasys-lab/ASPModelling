@@ -10,7 +10,7 @@ import java.util.*;
 public class Predicate extends PredicateTerm {
 
     private static final String LEGAL_PREDICATE_NAMES
-            = "-?[a-z]\\w*"; // Maybe start with -, than lowercase letter, than any letter, number or _
+            = "[a-z]\\w*"; // Start with lowercase letter, than any letter, number or _
 
     private boolean withFalse = false;
     private boolean withNot = false;

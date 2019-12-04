@@ -80,9 +80,13 @@ Variable $AspGenerator.createJavaCodeName($v) = new Variable().withName("$v.getN
 ## Macro for declaring one predicate
 #macro(declarePredicate $p)
 Predicate $AspGenerator.createJavaCodeName($p) = new Predicate().withName("$p.getName()")##
-#if(!$p.isTrue())
+#if($p.isWithNot())
 
-    .withTrue(false)##
+    .withNot()##
+#end
+#if($p.isWithFalse())
+
+    .withFalse()##
 #end
 #if(!$p.getElements().isEmpty()) ## Newline to make it look nicer
 

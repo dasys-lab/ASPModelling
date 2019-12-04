@@ -16,7 +16,7 @@ public class AspStringGenerationTest {
         Variable v1 = new Variable().withName("X");
         Predicate fly = new Predicate().withName("fly").withElements(v1);
         Predicate bird = new Predicate().withName("bird").withElements(v1);
-        Predicate notFly = new Predicate().withName("-fly").withNot().withElements(v1);
+        Predicate notFly = new Predicate().withName("fly").withNot().withFalse().withElements(v1);
         Rule rule = new Rule()
                 .withHead(new Head().withPredicates(fly))
                 .withBody(new Body().withPredicates(bird, notFly));
