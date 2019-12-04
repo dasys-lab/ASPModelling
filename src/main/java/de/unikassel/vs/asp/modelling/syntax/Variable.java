@@ -5,6 +5,7 @@ import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalVariableNameExcept
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 public class Variable extends Element {
 
@@ -65,5 +66,13 @@ public class Variable extends Element {
         }
         this.name = name;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Variable) {
+            return Objects.equals(this.getName(), ((Variable) other).getName());
+        }
+        return false;
     }
 }
