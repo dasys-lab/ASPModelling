@@ -14,9 +14,10 @@
 
 ## Macro for a single fact
 #macro(fact $f)
-$f.getName()(##
-#constants($f.getConstants())##
-)##
+$f.getName()##
+#if(!$f.getConstants().isEmpty())
+(#constants($f.getConstants()))##
+#end
 .
 #end
 
@@ -69,9 +70,10 @@ $separator##
 #if(!$p.isTrue())
 not ##
 #end
-$p.getName()(##
-#elements($p.getElements())##
-)##
+$p.getName()##
+#if(!$p.getElements().isEmpty())
+(#elements($p.getElements()))##
+#end
 #end
 
 ## Macro fo a choice

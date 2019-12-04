@@ -3,7 +3,8 @@ package de.unikassel.vs.asp.modelling.syntax;
 import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalVariableNameException;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
 
 public class Variable extends Element {
 
@@ -11,24 +12,36 @@ public class Variable extends Element {
             = "([A-Z]\\w*)"; // start with uppercase letter than any letter, number or _
 
     private String name;
-    private List<Constant> constantsOutOfValueRange = new ArrayList<>();
+    private ArrayList<Constant> constantsOutOfValueRange = new ArrayList<>();
 
     /**
      * Standard getter.
      *
      * @return The variable's constants that are out of value range.
      */
-    public List<Constant> getConstantsOutOfValueRange() {
+    public ArrayList<Constant> getConstantsOutOfValueRange() {
         return constantsOutOfValueRange;
     }
 
     /**
-     * Standard setter.
+     * Adds the given constants to the out of value range.
      *
      * @param constantsOutOfValueRange The constants that are out of value range which are to be set.
+     * @return The variable this method was called on.
      */
-    public void setConstantsOutOfValueRange(List<Constant> constantsOutOfValueRange) {
-        this.constantsOutOfValueRange = constantsOutOfValueRange;
+    public Variable withConstantsOutOfValueRange(Constant... constantsOutOfValueRange) {
+        return this.withConstantsOutOfValueRange(Arrays.asList(constantsOutOfValueRange));
+    }
+
+    /**
+     * Adds the given constants to the out of value range.
+     *
+     * @param constantsOutOfValueRange The constants that are out of value range which are to be set.
+     * @return The variable this method was called on.
+     */
+    public Variable withConstantsOutOfValueRange(Collection<Constant> constantsOutOfValueRange) {
+        this.constantsOutOfValueRange.addAll(constantsOutOfValueRange);
+        return this;
     }
 
     /**
@@ -41,14 +54,16 @@ public class Variable extends Element {
     }
 
     /**
-     * Standard setter, which validates the input.
+     * Sets the variable's name.
      *
      * @param name The variable's name that is to be set.
+     * @return The variable this method was called on.
      */
-    public void setName(String name) {
+    public Variable withName(String name) {
         if (!name.matches(LEGAL_VARIABLE_NAMES)) {
             throw new IllegalVariableNameException(name);
         }
         this.name = name;
+        return this;
     }
 }

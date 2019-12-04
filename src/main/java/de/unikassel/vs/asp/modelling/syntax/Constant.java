@@ -21,14 +21,16 @@ public class Constant extends Element {
     }
 
     /**
-     * Standard setter, which validates the input.
+     * Sets the constant's name.
      *
      * @param name The constant's name that is to be set.
+     * @return The Constant this method was called on.
      */
-    public void setName(String name) {
+    public Constant withName(String name) {
         if (!name.matches(LEGAL_CONSTANT_NAMES)) {
             throw new IllegalConstantNameException(name);
         }
         this.name = name;
+        return this;
     }
 }

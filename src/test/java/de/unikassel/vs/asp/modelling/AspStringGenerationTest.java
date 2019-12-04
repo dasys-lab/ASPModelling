@@ -1,8 +1,6 @@
 package de.unikassel.vs.asp.modelling;
 
-import de.unikassel.vs.asp.modelling.syntax.Constant;
-import de.unikassel.vs.asp.modelling.syntax.Range;
-import de.unikassel.vs.asp.modelling.syntax.Variable;
+import de.unikassel.vs.asp.modelling.syntax.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +12,16 @@ public class AspStringGenerationTest {
     public void predicateStringTest() {
         String testString = "fly(X) :- bird(X), not -fly(X).";
 
-        AspGenerator gen = new AspGenerator();
 
-        Variable v1 = new Variable();
-        v1.setName("X");
-        gen.createRule().addHead().withPredicate("fly").withElementsAsRule(v1)
-                .addBody().withPredicate("bird").withElementsAsBody(v1)
-                .withPredicateNot("-fly").withElementsAsBody(v1);
+        Variable v1 = new Variable().withName("X");
+        Predicate fly = new Predicate().withName("fly").withElements(v1);
+        Predicate bird = new Predicate().withName("bird").withElements(v1);
+        Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
+        Rule rule = new Rule()
+                .withHead(new Head().withPredicates(fly))
+                .withBody(new Body().withPredicates(bird, notFly));
 
+        AspGenerator gen = new AspGenerator().withRules(rule);
         Assertions.assertEquals(testString, gen.toString());
     }
 
@@ -30,20 +30,18 @@ public class AspStringGenerationTest {
 
         final String testString = "eagle(eddy).penguin(tux).penguin(0..3).";
 
-        AspGenerator gen = new AspGenerator();
 
-        Constant eddy = new Constant();
-        eddy.setName("eddy");
+        Constant eddy = new Constant().withName("eddy");
 
-        Constant tux = new Constant();
-        tux.setName("tux");
+        Constant tux = new Constant().withName("tux");
 
-        Range tuf = new Range(0, 3);
+        Range tuf = new Range().withMin(0).withMax(3);
 
-        gen.createFact("eagle").withConstant(eddy);
-        gen.createFact("penguin").withConstant(tux);
-        gen.createFact("penguin").withConstant(tuf);
+        Fact eagle = new Fact().withName("eagle").withConstants(eddy);
+        Fact penguinTux = new Fact().withName("penguin").withConstants(tux);
+        Fact penguinTuf = new Fact().withName("penguin").withConstants(tuf);
 
+        AspGenerator gen = new AspGenerator().withFacts(eagle, penguinTux, penguinTuf);
         final String generatedCodeString = gen.toString().replaceAll(lineSeparator, "");
 
         Assertions.assertEquals(testString, generatedCodeString);
@@ -54,22 +52,23 @@ public class AspStringGenerationTest {
         final String testString = "edge(eddy, tux).fromEddy(X) :- edge(eddy, X).";
 
 
-        Variable x = new Variable();
-        x.setName("X");
+        Variable x = new Variable().withName("X");
 
-        Constant eddy = new Constant();
-        eddy.setName("eddy");
+        Constant eddy = new Constant().withName("eddy");
 
-        Constant tux = new Constant();
-        tux.setName("tux");
+        Constant tux = new Constant().withName("tux");
 
-        AspGenerator gen = new AspGenerator();
+        Fact fact = new Fact().withName("edge").withConstants(eddy, tux);
 
-        gen.createFact("edge").withConstant(eddy, tux);
+        Predicate fromEddy = new Predicate().withName("fromEddy").withElements(x);
+        Predicate edge = new Predicate().withName("edge").withElements(eddy, x);
+        Rule rule = new Rule()
+                .withHead(new Head().withPredicates(fromEddy))
+                .withBody(new Body().withPredicates(edge));
 
-        gen.createRule().addHead().withPredicate("fromEddy").withElementsAsRule(x)
-                .addBody().withPredicate("edge").withElementsAsBody(eddy, x);
-
+        AspGenerator gen = new AspGenerator()
+                .withFacts(fact)
+                .withRules(rule);
         final String generatedCodeString = gen.toString().replaceAll(lineSeparator, "");
 
         Assertions.assertEquals(testString, generatedCodeString);
