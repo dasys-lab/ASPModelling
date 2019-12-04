@@ -70,7 +70,7 @@ public class Variable extends Element {
 
     @Override
     public boolean equals(Object other) {
-        if(other instanceof Variable) {
+        if (other instanceof Variable) {
             return Objects.equals(this.getName(), ((Variable) other).getName());
         }
         return false;
