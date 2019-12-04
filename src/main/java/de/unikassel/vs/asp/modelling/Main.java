@@ -13,16 +13,16 @@ public class Main {
 
         Constant eddy = new Constant().withName("eddy");
         Constant tux = new Constant().withName("tux");
-//        Range tuf = new Range().withMin(0).withMax(3);
+        // Range tuf = new Range().withMin(0).withMax(3);
 
         Fact eagle = new Fact().withName("eagle").withConstants(eddy);
         Fact penguinTux = new Fact().withName("penguin").withConstants(tux);
-//        Fact penguinTuf = new Fact().withName("penguin").withConstants(tuf);
+        // Fact penguinTuf = new Fact().withName("penguin").withConstants(tuf);
 
         Variable v1 = new Variable().withName("X");
         Predicate fly = new Predicate().withName("fly").withElements(v1);
         Predicate bird = new Predicate().withName("bird").withElements(v1);
-        Predicate notFly = new Predicate().withName("-fly").withTrue(false).withElements(v1);
+        Predicate notFly = new Predicate().withName("-fly").withNot(true).withElements(v1);
         Rule rule1 = new Rule()
                 .withHead(new Head().withPredicates(fly))
                 .withBody(new Body().withPredicates(bird, notFly));
@@ -44,8 +44,8 @@ public class Main {
 
         Predicate p1 = new Predicate().withName("test1");
         Predicate p2 = new Predicate().withName("test2");
-//        Choice c = new Choice().withPredicates(p1, p2).withUpperBound(1);
-//        Rule rule2 = new Rule().withBody(new Body().withPredicates(c));
+        // Choice c = new Choice().withPredicates(p1, p2).withUpperBound(1);
+        // Rule rule2 = new Rule().withBody(new Body().withPredicates(c));
 
         AspGenerator gen = new AspGenerator()
                 .withFacts(eagle, penguinTux) //, penguinTuf)
