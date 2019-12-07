@@ -10,36 +10,36 @@ import java.util.Objects;
  */
 public class Body {
 
-    private ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
+    private ArrayList<Predicate> predicates = new ArrayList<>();
 
     /**
      * Standard getter.
      *
      * @return The body's terms.
      */
-    public ArrayList<PredicateTerm> getPredicateTerms() {
-        return this.predicateTerms;
+    public ArrayList<Predicate> getPredicates() {
+        return this.predicates;
     }
 
 
     /**
-     * Adds the given predicate terms to this body's predicate terms.
+     * Adds the given predicates to this body's predicate terms.
      *
-     * @param predicates The predicate terms that are to be added.
+     * @param predicates The predicates that are to be added.
      * @return The body the method was called on.
      */
-    public Body withPredicates(PredicateTerm... predicates) {
+    public Body withPredicates(Predicate... predicates) {
         return this.withPredicates(Arrays.asList(predicates));
     }
 
     /**
-     * Adds the given predicate terms to this body's predicate terms.
+     * Adds the given predicates to this body's predicate terms.
      *
-     * @param predicates The predicate terms that are to be added.
+     * @param predicates The predicates that are to be added.
      * @return The body the method was called on.
      */
-    public Body withPredicates(Collection<PredicateTerm> predicates) {
-        this.predicateTerms.addAll(predicates);
+    public Body withPredicates(Collection<Predicate> predicates) {
+        this.predicates.addAll(predicates);
         return this;
     }
 
@@ -48,8 +48,8 @@ public class Body {
         if (other instanceof Body) {
             int i = 0;
             boolean bodysEqual = true;
-            for (PredicateTerm p : this.predicateTerms) {
-                if (!(p.equals(((Body) other).getPredicateTerms().get(i)))) {
+            for (PredicateTerm p : this.predicates) {
+                if (!(p.equals(((Body) other).getPredicates().get(i)))) {
                     bodysEqual = false;
                     break;
                 }
@@ -62,6 +62,6 @@ public class Body {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.predicateTerms.hashCode());
+        return Objects.hash(this.predicates.hashCode());
     }
 }

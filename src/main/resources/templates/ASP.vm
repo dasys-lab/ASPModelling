@@ -8,7 +8,7 @@
 #foreach($rule in $rules)
 #terms($rule.getHead().getPredicateTerms()) ##
 :- ##
-#terms($rule.getBody().getPredicateTerms())##
+#terms($rule.getBody().getPredicates())##
 .
 #end
 
