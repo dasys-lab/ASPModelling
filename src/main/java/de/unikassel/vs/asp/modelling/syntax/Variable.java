@@ -77,7 +77,7 @@ public class Variable extends Element {
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(this.name);
     }
 }
