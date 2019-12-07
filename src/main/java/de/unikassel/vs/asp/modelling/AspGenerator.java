@@ -84,7 +84,7 @@ public class AspGenerator {
                 predicateTerms.addAll(rule.getHead().getPredicateTerms());
             }
             if (rule.getBody() != null) {
-                predicateTerms.addAll(rule.getBody().getPredicateTerms());
+                predicateTerms.addAll(rule.getBody().getPredicates());
             }
 
             for (PredicateTerm predicateTerm : predicateTerms) {
