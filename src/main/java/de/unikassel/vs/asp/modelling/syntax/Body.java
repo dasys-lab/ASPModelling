@@ -23,9 +23,9 @@ public class Body {
 
 
     /**
-     * Adds the given predicate terms to this body's predicate terms.
+     * Adds the given predicates to this body's predicate terms.
      *
-     * @param predicates The predicate terms that are to be added.
+     * @param predicates The predicates that are to be added.
      * @return The body the method was called on.
      */
     public Body withPredicates(Predicate... predicates) {
@@ -33,9 +33,9 @@ public class Body {
     }
 
     /**
-     * Adds the given predicate terms to this body's predicate terms.
+     * Adds the given predicates to this body's predicate terms.
      *
-     * @param predicates The predicate terms that are to be added.
+     * @param predicates The predicates that are to be added.
      * @return The body the method was called on.
      */
     public Body withPredicates(Collection<Predicate> predicates) {
