@@ -6,19 +6,13 @@
 
 ## Iterate over all rules
 #foreach($rule in $rules)
-#terms($rule.getHead().getPredicateTerms()) ##
-:- ##
-#terms($rule.getBody().getPredicateTerms())##
-.
+#if($rule.getType() == $Fact)
+#terms($rule.getHead().getPredicateTerms()).
+#elseif($rule.getType() == $Constraint)
+:- #terms($rule.getBody().getPredicateTerms()).
+#else
+#terms($rule.getHead().getPredicateTerms()) :- #terms($rule.getBody().getPredicateTerms()).
 #end
-
-## Macro for a single fact
-#macro(fact $f)
-$f.getName()##
-#if(!$f.getConstants().isEmpty())
-(#constants($f.getConstants()))##
-#end
-.
 #end
 
 ## Macro for multiple elements, seperated by ','
@@ -34,21 +28,6 @@ $separator##
 ## Macro for single Element
 #macro (element $e)
 $e.getName()##
-#end
-
-## Macro for multiple constants, seperated by ','
-#macro(constants $cs)
-#set($separator = "")## No comma before first element
-#foreach ($c in $cs)##
-$separator##
-#constant($c)##
-#set($separator = ", ")##
-#end
-#end
-
-## Macro for single Constant
-#macro (constant $c)
-$c.getName()##
 #end
 
 ## Macro for multiple predicate terms, separated by ','

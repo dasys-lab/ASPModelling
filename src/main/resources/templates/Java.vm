@@ -33,13 +33,6 @@
 
 #end
 
-## Iterate over all facts
-// Facts, that are part of the Asp-program
-#foreach($f in $facts)
-#declareFact($f)
-
-#end
-
 ## Iterate over all rules
 // Rules, that are part of the Asp-program
 #foreach($r in $rules)
@@ -114,15 +107,6 @@ Choice $AspGenerator.createJavaCodeName($c) = new Choice()##
 #if(!$c.getPredicates().isEmpty())
 
     .withPredicates(#list($c.getPredicates()))##
-#end
-;##
-#end
-
-## Macro for declaring one fact
-#macro(declareFact $f)
-Fact $AspGenerator.createJavaCodeName($f) = new Fact().withName("$f.getName()")
-#if(!$f.getConstants().isEmpty())
-    .withConstants(#list($f.getConstants()))##
 #end
 ;##
 #end

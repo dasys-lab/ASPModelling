@@ -49,12 +49,14 @@ public class AspGenerator {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
 
-        // Load the template
-        Template t = ve.getTemplate("./src/main/resources/templates/ASP.vm");
-
         // Add all rules and facts
         VelocityContext c = new VelocityContext();
         c.put("rules", rules);
+        c.put("Fact", Type.FACT);
+        c.put("Constraint", Type.CONSTRAINT);
+
+        // Load the template
+        Template t = ve.getTemplate("./src/main/resources/templates/ASP.vm");
 
         // Create the ASP-program
         StringWriter w = new StringWriter();
@@ -152,7 +154,7 @@ public class AspGenerator {
      * @return The name of the Java-variable.
      */
     public static String createJavaCodeName(Object aspObject) {
-        // TODO: Be a bit smarter about this
-        return aspObject.getClass().getSimpleName().toLowerCase() + aspObject.hashCode();
+        return aspObject.getClass().getSimpleName().toLowerCase()
+                + ("" + aspObject.hashCode()).replace("-", "Negative");
     }
 }

@@ -17,10 +17,11 @@ public class Main {
 
         // Fact penguinTuf = new Fact().withName("penguin").withConstants(tuf);
 
-        Rule eagle = new Rule().
-                withHead(new Head().withPredicates(new Predicate().withName("eagle").withElements(eddy)));
-        Rule penguinTuf = new Rule().
-                withHead(new Head().withPredicates(new Predicate().withName("penguin").withElements(tux)));
+        Rule eagle = new Rule()
+                .withHead(new Head()
+                        .withPredicates(new Predicate().withName("eagle").withElements(eddy)));
+        Rule penguinTuf = new Rule()
+                .withHead(new Head().withPredicates(new Predicate().withName("penguin").withElements(tux)));
 
         Variable v1 = new Variable().withName("X");
         Predicate fly = new Predicate().withName("fly").withElements(v1);
