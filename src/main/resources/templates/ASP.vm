@@ -67,8 +67,11 @@ $separator##
 
 ## Macro for a single predicate
 #macro(predicate $p)
-#if(!$p.isTrue())
+#if($p.isWithNot())
 not ##
+#end
+#if($p.isWithFalse())
+-##
 #end
 $p.getName()##
 #if(!$p.getElements().isEmpty())
