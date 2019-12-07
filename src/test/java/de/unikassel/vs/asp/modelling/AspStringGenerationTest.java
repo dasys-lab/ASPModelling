@@ -30,18 +30,20 @@ public class AspStringGenerationTest {
 
         final String testString = "eagle(eddy).penguin(tux).penguin(0..3).";
 
-
         Constant eddy = new Constant().withName("eddy");
 
         Constant tux = new Constant().withName("tux");
 
         Range tuf = new Range().withMin(0).withMax(3);
 
-        Fact eagle = new Fact().withName("eagle").withConstants(eddy);
-        Fact penguinTux = new Fact().withName("penguin").withConstants(tux);
-        Fact penguinTuf = new Fact().withName("penguin").withConstants(tuf);
+        Rule eagle = new Rule().withHead(
+                new Head().withPredicates(new Predicate().withName("eagle").withElements(eddy)));
+        Rule penguinTux = new Rule().withHead(
+                new Head().withPredicates(new Predicate().withName("penguin").withElements(tux)));
+        Rule penguinTuf = new Rule().withHead(
+                new Head().withPredicates(new Predicate().withName("penguin").withElements(tuf)));
 
-        AspGenerator gen = new AspGenerator().withFacts(eagle, penguinTux, penguinTuf);
+        AspGenerator gen = new AspGenerator().withRules(eagle, penguinTux, penguinTuf);
         final String generatedCodeString = gen.toString().replaceAll(lineSeparator, "");
 
         Assertions.assertEquals(testString, generatedCodeString);
@@ -51,24 +53,23 @@ public class AspStringGenerationTest {
     public void moreDigitPredicatesAndFacts() {
         final String testString = "edge(eddy, tux).fromEddy(X) :- edge(eddy, X).";
 
-
         Variable x = new Variable().withName("X");
 
         Constant eddy = new Constant().withName("eddy");
 
         Constant tux = new Constant().withName("tux");
 
-        Fact fact = new Fact().withName("edge").withConstants(eddy, tux);
+        Rule ruleOne = new Rule().withHead(
+                new Head().withPredicates(new Predicate().withName("edge").withElements(eddy, tux)));
 
         Predicate fromEddy = new Predicate().withName("fromEddy").withElements(x);
         Predicate edge = new Predicate().withName("edge").withElements(eddy, x);
-        Rule rule = new Rule()
+        Rule ruleTwo = new Rule()
                 .withHead(new Head().withPredicates(fromEddy))
                 .withBody(new Body().withPredicates(edge));
 
         AspGenerator gen = new AspGenerator()
-                .withFacts(fact)
-                .withRules(rule);
+                .withRules(ruleOne, ruleTwo);
         final String generatedCodeString = gen.toString().replaceAll(lineSeparator, "");
 
         Assertions.assertEquals(testString, generatedCodeString);

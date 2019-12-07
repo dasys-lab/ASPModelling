@@ -15,9 +15,13 @@ public class Main {
         Constant tux = new Constant().withName("tux");
         // Range tuf = new Range().withMin(0).withMax(3);
 
-        Fact eagle = new Fact().withName("eagle").withConstants(eddy);
-        Fact penguinTux = new Fact().withName("penguin").withConstants(tux);
         // Fact penguinTuf = new Fact().withName("penguin").withConstants(tuf);
+
+        Rule eagle = new Rule()
+                .withHead(new Head()
+                        .withPredicates(new Predicate().withName("eagle").withElements(eddy)));
+        Rule penguinTuf = new Rule()
+                .withHead(new Head().withPredicates(new Predicate().withName("penguin").withElements(tux)));
 
         Variable v1 = new Variable().withName("X");
         Predicate fly = new Predicate().withName("fly").withElements(v1);
@@ -48,8 +52,7 @@ public class Main {
         // Rule rule2 = new Rule().withBody(new Body().withPredicates(c));
 
         AspGenerator gen = new AspGenerator()
-                .withFacts(eagle, penguinTux) //, penguinTuf)
-                .withRules(rule1, rule2, rule3, rule4);
+                .withRules(eagle, penguinTuf, rule1, rule2, rule3, rule4);
         System.out.println("ASP: \n" + gen);
         System.out.println();
         System.out.println("Java: \n" + gen.toJavaString());

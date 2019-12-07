@@ -15,29 +15,7 @@ import org.apache.velocity.app.VelocityEngine;
  */
 public class AspGenerator {
 
-    private ArrayList<Fact> facts = new ArrayList<>();
     private ArrayList<Rule> rules = new ArrayList<>();
-
-    /**
-     * Add the given facts to this ASP generator's facts.
-     *
-     * @param facts The facts to be added.
-     * @return The ASP generator this method was called on.
-     */
-    public AspGenerator withFacts(Fact... facts) {
-        return this.withFacts(Arrays.asList(facts));
-    }
-
-    /**
-     * Add the given facts to this ASP generator's facts.
-     *
-     * @param facts The facts to be added.
-     * @return The ASP generator this method was called on.
-     */
-    public AspGenerator withFacts(Collection<Fact> facts) {
-        this.facts.addAll(facts);
-        return this;
-    }
 
     /**
      * Add the given rules to this ASP generator's rules.
@@ -71,13 +49,14 @@ public class AspGenerator {
         VelocityEngine ve = new VelocityEngine();
         ve.init();
 
-        // Load the template
-        Template t = ve.getTemplate("./src/main/resources/templates/ASP.vm");
-
         // Add all rules and facts
         VelocityContext c = new VelocityContext();
-        c.put("facts", facts);
         c.put("rules", rules);
+        c.put("Fact", Type.FACT);
+        c.put("Constraint", Type.CONSTRAINT);
+
+        // Load the template
+        Template t = ve.getTemplate("./src/main/resources/templates/ASP.vm");
 
         // Create the ASP-program
         StringWriter w = new StringWriter();
@@ -99,15 +78,6 @@ public class AspGenerator {
         LinkedHashSet<Predicate> predicates = new LinkedHashSet<>();
         LinkedHashSet<Choice> choices = new LinkedHashSet<>();
 
-        for (Fact fact : this.facts) {
-            for (Constant constant : fact.getConstants()) {
-                if (constant instanceof Range) {
-                    ranges.add((Range) constant);
-                } else {
-                    constants.add(constant);
-                }
-            }
-        }
         for (Rule rule : this.rules) {
             ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
             if (rule.getHead() != null) {
@@ -155,7 +125,6 @@ public class AspGenerator {
 
         // Add all rules and facts
         VelocityContext c = new VelocityContext();
-        c.put("facts", facts);
         c.put("rules", rules);
 
         c.put("constants", constants);
@@ -185,7 +154,7 @@ public class AspGenerator {
      * @return The name of the Java-variable.
      */
     public static String createJavaCodeName(Object aspObject) {
-        // TODO: Be a bit smarter about this
-        return aspObject.getClass().getSimpleName().toLowerCase() + aspObject.hashCode();
+        return aspObject.getClass().getSimpleName().toLowerCase()
+                + ("" + aspObject.hashCode()).replace("-", "Negative");
     }
 }

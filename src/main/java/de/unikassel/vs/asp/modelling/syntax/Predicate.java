@@ -1,6 +1,7 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalPredicateNameException;
+import de.unikassel.vs.asp.modelling.syntax.exceptions.IllegalVariableException;
 
 import java.util.*;
 
