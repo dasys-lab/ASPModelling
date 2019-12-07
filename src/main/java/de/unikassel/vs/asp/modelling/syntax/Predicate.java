@@ -142,13 +142,13 @@ public class Predicate extends PredicateTerm {
                 }
                 i++;
             }
-            return Objects.equals(this.getName(), ((Predicate) other).getName()) && Objects.equals(this.isTrue(), ((Predicate) other).isTrue()) && elementsEqual;
+            return Objects.equals(this.getName(), ((Predicate) other).getName()) && Objects.equals(!this.isWithFalse(), !((Predicate) other).isWithFalse()) && elementsEqual;
         }
         return false;
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(this.getName(), this.isTrue, this.elements.hashCode());
+        return Objects.hash(this.getName(), !this.isWithFalse(), this.elements.hashCode());
     }
 }
