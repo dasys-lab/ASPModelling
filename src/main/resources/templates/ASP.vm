@@ -9,9 +9,9 @@
 #if($rule.getType() == $Fact)
 #terms($rule.getHead().getPredicateTerms()).
 #elseif($rule.getType() == $Constraint)
-:- #terms($rule.getBody().getPredicateTerms()).
+:- #terms($rule.getBody().getPredicates()).
 #else
-#terms($rule.getHead().getPredicateTerms()) :- #terms($rule.getBody().getPredicateTerms()).
+#terms($rule.getHead().getPredicateTerms()) :- #terms($rule.getBody().getPredicates()).
 #end
 #end
 
