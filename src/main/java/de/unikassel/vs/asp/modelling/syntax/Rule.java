@@ -9,6 +9,7 @@ public class Rule {
 
     private Head head;
     private Body body;
+    private Type myType;
 
     /**
      * Standard getter.
@@ -26,7 +27,18 @@ public class Rule {
      */
     public Rule withHead(Head head) {
         this.head = head;
+        checkAndSetType();
         return this;
+    }
+
+    private void checkAndSetType() {
+        if (head != null && body != null) {
+            this.setType(Type.COMPLETE);
+        } else if (head == null && body != null) {
+            this.setType(Type.CONSTRAINT);
+        } else if (head != null && body == null) {
+            this.setType(Type.FACT);
+        }
     }
 
     /**
@@ -45,6 +57,7 @@ public class Rule {
      */
     public Rule withBody(Body body) {
         this.body = body;
+        checkAndSetType();
         return this;
     }
 
@@ -59,6 +72,20 @@ public class Rule {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.body.hashCode(), this.head.hashCode());
+        if (myType.equals(Type.COMPLETE)) {
+            return Objects.hash(this.body.hashCode(), this.head.hashCode());
+        } else if (myType.equals(Type.FACT)) {
+            return Objects.hash(this.head.hashCode());
+        } else {
+            return Objects.hash(this.body.hashCode());
+        }
+    }
+
+    public Type getType() {
+        return myType;
+    }
+
+    public void setType(Type myType) {
+        this.myType = myType;
     }
 }
