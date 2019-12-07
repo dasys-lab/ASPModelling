@@ -132,23 +132,24 @@ public class Predicate extends PredicateTerm {
 
     @Override
     public boolean equals(Object other) {
-        if(other instanceof Predicate) {
+        if (other instanceof Predicate) {
             int i = 0;
             boolean elementsEqual = true;
-            for(Element e : this.elements){
-                if(!(e.equals(((Predicate) other).getElements().get(i)))){
+            for (Element e : this.elements) {
+                if (!(e.equals(((Predicate) other).getElements().get(i)))) {
                     elementsEqual = false;
                     break;
                 }
                 i++;
             }
-            return Objects.equals(this.getName(), ((Predicate) other).getName()) && Objects.equals(this.isTrue(), ((Predicate) other).isTrue()) && elementsEqual;
+            return Objects.equals(this.getName(), ((Predicate) other).getName()) && Objects.equals(!this.isWithFalse(),
+                    !((Predicate) other).isWithFalse()) && elementsEqual;
         }
         return false;
     }
 
     @Override
-    public int hashCode(){
-        return Objects.hash(this.getName(), this.isTrue, this.elements.hashCode());
+    public int hashCode() {
+        return Objects.hash(this.getName(), !this.isWithFalse(), this.elements.hashCode());
     }
 }

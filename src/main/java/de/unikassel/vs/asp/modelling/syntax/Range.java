@@ -73,14 +73,15 @@ public class Range extends Constant {
 
     @Override
     public boolean equals(Object other) {
-        if(other instanceof Range) {
-            return (Objects.equals(this.getMin(), ((Range) other).getMin())) &&(Objects.equals(this.getMax(), ((Range) other).getMax()));
+        if (other instanceof Range) {
+            return (Objects.equals(this.getMin(), ((Range) other).getMin())) && (Objects.equals(this.getMax(),
+                    ((Range) other).getMax()));
         }
         return false;
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(this.min, this.max);
     }
 }

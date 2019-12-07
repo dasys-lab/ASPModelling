@@ -50,14 +50,15 @@ public class Rule {
 
     @Override
     public boolean equals(Object other) {
-        if(other instanceof Rule) {
-            return Objects.equals(this.getBody(), ((Rule) other).getBody()) && Objects.equals(this.getHead(), ((Rule) other).getHead()) ;
+        if (other instanceof Rule) {
+            return Objects.equals(this.getBody(), ((Rule) other).getBody()) && Objects.equals(this.getHead(),
+                    ((Rule) other).getHead());
         }
         return false;
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(this.body.hashCode(), this.head.hashCode());
     }
 }
