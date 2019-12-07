@@ -31,6 +31,9 @@ public class Rule {
         return this;
     }
 
+    /**
+     * Sets the {@link Type} of a rule as fact, constraint or complete rule.
+     */
     private void checkAndSetType() {
         if (head != null && body != null) {
             this.setType(Type.COMPLETE);
