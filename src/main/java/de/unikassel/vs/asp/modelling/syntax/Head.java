@@ -44,23 +44,17 @@ public class Head {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Head) {
-            int i = 0;
-            boolean headsEqual = true;
-            for (PredicateTerm p : this.predicateTerms) {
-                if (!(p.equals(((Head) other).getPredicateTerms().get(i)))) {
-                    headsEqual = false;
-                    break;
-                }
-                i++;
-            }
-            return headsEqual;
+        if (this == other) {
+            return true;
         }
-        return false;
+        if (!(other instanceof Head)) {
+            return false;
+        }
+        return Objects.equals(this.predicateTerms, ((Head) other).predicateTerms);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.predicateTerms.hashCode());
+        return Objects.hash(this.predicateTerms);
     }
 }
