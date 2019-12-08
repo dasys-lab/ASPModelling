@@ -38,10 +38,13 @@ public class Constant extends Element {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Constant) {
-            return Objects.equals(this.getName(), ((Constant) other).getName());
+        if (other == this) {
+            return true;
         }
-        return false;
+        if (!(other instanceof Constant)) {
+            return false;
+        }
+        return Objects.equals(this.getName(), ((Constant) other).getName());
     }
 
     @Override
