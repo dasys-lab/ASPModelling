@@ -45,23 +45,17 @@ public class Body {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Body) {
-            int i = 0;
-            boolean bodysEqual = true;
-            for (PredicateTerm p : this.predicates) {
-                if (!(p.equals(((Body) other).getPredicates().get(i)))) {
-                    bodysEqual = false;
-                    break;
-                }
-                i++;
-            }
-            return bodysEqual;
+        if (this == other) {
+            return true;
         }
-        return false;
+        if (!(other instanceof Body)) {
+            return false;
+        }
+        return Objects.equals(this.predicates, ((Body) other).predicates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.predicates.hashCode());
+        return Objects.hash(this.predicates);
     }
 }
