@@ -157,4 +157,20 @@ public class AspGenerator {
         return aspObject.getClass().getSimpleName().toLowerCase()
                 + ("" + aspObject.hashCode()).replace("-", "Negative");
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof AspGenerator)) {
+            return false;
+        }
+        return Objects.equals(this.rules, ((AspGenerator) other).rules);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.rules);
+    }
 }
