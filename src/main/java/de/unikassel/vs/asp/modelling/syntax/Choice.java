@@ -76,7 +76,7 @@ public class Choice extends PredicateTerm {
      */
     public String getUpperBoundString() {
         return upperBound == null ? ""
-                : (lowerBound != null && lowerBound.value == upperBound.value) ?  " = " + upperBound.value
+                : (lowerBound != null && lowerBound.value == upperBound.value) ? " = " + upperBound.value
                 : "" + upperBound.value;
     }
 
@@ -150,29 +150,39 @@ public class Choice extends PredicateTerm {
         private Bound(int value) {
             this.value = value;
         }
+
+        @Override
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof Bound)) {
+                return false;
+            }
+            return this.value == ((Bound) other).value;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(this.value);
+        }
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Choice) {
-            int i = 0;
-            boolean predicatesEqual = true;
-            for (Predicate p : this.predicates) {
-                if (!(p.equals(((Choice) other).getPredicates().get(i)))) {
-                    predicatesEqual = false;
-                    break;
-                }
-                i++;
-            }
-            return Objects.equals(this.getLowerBound(),
-                    ((Choice) other).getLowerBound()) && Objects.equals(this.getUpperBound(),
-                    ((Choice) other).getUpperBound()) && predicatesEqual;
+        if (this == other) {
+            return true;
         }
-        return false;
+        if (!(other instanceof Choice)) {
+            return false;
+        }
+        return Objects.equals(this.predicates, ((Choice) other).predicates)
+                && Objects.equals(this.lowerBound, ((Choice) other).lowerBound)
+                && Objects.equals(this.upperBound, ((Choice) other).upperBound);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.upperBound, this.lowerBound, this.predicates.hashCode());
+        return Objects.hash(this.predicates, this.upperBound, this.lowerBound);
     }
 }
