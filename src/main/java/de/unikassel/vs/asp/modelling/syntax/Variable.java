@@ -70,14 +70,18 @@ public class Variable extends Element {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Variable) {
-            return Objects.equals(this.getName(), ((Variable) other).getName());
+        if (this == other) {
+            return true;
         }
-        return false;
+        if (!(other instanceof Variable)) {
+            return false;
+        }
+        return Objects.equals(this.name, ((Variable) other).name)
+                && Objects.equals(this.constantsOutOfValueRange, ((Variable) other).constantsOutOfValueRange);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.name);
+        return Objects.hash(this.name, this.constantsOutOfValueRange);
     }
 }
