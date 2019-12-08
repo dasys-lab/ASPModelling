@@ -66,29 +66,27 @@ public class Rule {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Rule) {
-            return Objects.equals(this.getBody(), ((Rule) other).getBody()) && Objects.equals(this.getHead(),
-                    ((Rule) other).getHead());
+        if (this == other) {
+            return true;
         }
-        return false;
+        if (!(other instanceof Rule)) {
+            return false;
+        }
+        return Objects.equals(this.myType, ((Rule) other).myType)
+                && Objects.equals(this.head, ((Rule) other).head)
+                && Objects.equals(this.body, ((Rule) other).body);
     }
 
     @Override
     public int hashCode() {
-        if (myType.equals(Type.COMPLETE)) {
-            return Objects.hash(this.body.hashCode(), this.head.hashCode());
-        } else if (myType.equals(Type.FACT)) {
-            return Objects.hash(this.head.hashCode());
-        } else {
-            return Objects.hash(this.body.hashCode());
-        }
+        return Objects.hash(this.myType, this.head, this.body);
     }
 
     public Type getType() {
         return myType;
     }
 
-    public void setType(Type myType) {
+    private void setType(Type myType) {
         this.myType = myType;
     }
 }
