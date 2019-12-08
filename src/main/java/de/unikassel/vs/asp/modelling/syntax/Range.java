@@ -73,11 +73,15 @@ public class Range extends Constant {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Range) {
-            return (Objects.equals(this.getMin(), ((Range) other).getMin())) && (Objects.equals(this.getMax(),
-                    ((Range) other).getMax()));
+        if (this == other) {
+            return true;
         }
-        return false;
+        if (!(other instanceof Range)) {
+            return false;
+        }
+        // min and max are int, so they cant't be null
+        return this.min == ((Range) other).min
+                && this.max == ((Range) other).max;
     }
 
     @Override
