@@ -106,7 +106,7 @@ public class AspGenerator {
                     elements.addAll(((ConditionalLiteral) predicateTerm).getConditional().getElements());
                     predicates.add(((ConditionalLiteral) predicateTerm).getConditional());
                     predicates.addAll(((ConditionalLiteral) predicateTerm).getConditions());
-                    for(Predicate predicate : ((ConditionalLiteral) predicateTerm).getConditions()) {
+                    for (Predicate predicate : ((ConditionalLiteral) predicateTerm).getConditions()) {
                         elements.addAll(predicate.getElements());
                     }
                 } else {
