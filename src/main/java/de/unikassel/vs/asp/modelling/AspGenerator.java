@@ -77,6 +77,7 @@ public class AspGenerator {
 
         LinkedHashSet<Predicate> predicates = new LinkedHashSet<>();
         LinkedHashSet<Choice> choices = new LinkedHashSet<>();
+        LinkedHashSet<ConditionalLiteral> conditionalLiterals = new LinkedHashSet<>();
 
         for (Rule rule : this.rules) {
             ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
@@ -84,7 +85,7 @@ public class AspGenerator {
                 predicateTerms.addAll(rule.getHead().getPredicateTerms());
             }
             if (rule.getBody() != null) {
-                predicateTerms.addAll(rule.getBody().getPredicates());
+                predicateTerms.addAll(rule.getBody().getPredicateTerms());
             }
 
             for (PredicateTerm predicateTerm : predicateTerms) {
@@ -95,10 +96,18 @@ public class AspGenerator {
                     elements.addAll(((Predicate) predicateTerm).getElements());
                     predicates.add((Predicate) predicateTerm);
                 } else if (predicateTerm instanceof Choice) {
+                    choices.add((Choice) predicateTerm);
+                    predicates.addAll(((Choice) predicateTerm).getPredicates());
                     for (Predicate predicate : ((Choice) predicateTerm).getPredicates()) {
                         elements.addAll(predicate.getElements());
-                        choices.add((Choice) predicateTerm);
-                        predicates.addAll(((Choice) predicateTerm).getPredicates());
+                    }
+                } else if (predicateTerm instanceof ConditionalLiteral) {
+                    conditionalLiterals.add((ConditionalLiteral) predicateTerm);
+                    elements.addAll(((ConditionalLiteral) predicateTerm).getConditional().getElements());
+                    predicates.add(((ConditionalLiteral) predicateTerm).getConditional());
+                    predicates.addAll(((ConditionalLiteral) predicateTerm).getConditions());
+                    for (Predicate predicate : ((ConditionalLiteral) predicateTerm).getConditions()) {
+                        elements.addAll(predicate.getElements());
                     }
                 } else {
                     throw new RuntimeException("Unknown type of predicate: "
@@ -133,6 +142,7 @@ public class AspGenerator {
 
         c.put("predicates", predicates);
         c.put("choices", choices);
+        c.put("conditionalLiterals", conditionalLiterals);
 
         c.put("AspGenerator", AspGenerator.class);
 

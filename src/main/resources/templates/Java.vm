@@ -33,6 +33,13 @@
 
 #end
 
+## Iterate over all conditional literals
+// ConditionalLiterals in the Asp-program
+#foreach($cl in $conditionalLiterals)
+#declareConditionalLiteral($cl)
+
+#end
+
 ## Iterate over all rules
 // Rules, that are part of the Asp-program
 #foreach($r in $rules)
@@ -109,6 +116,13 @@ Choice $AspGenerator.createJavaCodeName($c) = new Choice()##
     .withPredicates(#list($c.getPredicates()))##
 #end
 ;##
+#end
+
+## Macro for declaring one conditional literal
+#macro(declareConditionalLiteral $cl)
+ConditionalLiteral $AspGenerator.createJavaCodeName($cl) = new ConditionalLiteral()
+    .withConditional($AspGenerator.createJavaCodeName($cl.getConditional()))
+    .withConditions(#list($cl.getConditions()));
 #end
 
 ## Macro for declaring one rule
