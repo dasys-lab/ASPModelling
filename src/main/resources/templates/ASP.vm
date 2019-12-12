@@ -9,9 +9,9 @@
 #if($rule.getType() == $Fact)
 #terms($rule.getHead().getPredicateTerms()).
 #elseif($rule.getType() == $Constraint)
-:- #terms($rule.getBody().getPredicates()).
+:- #terms($rule.getBody().getPredicateTerms()).
 #else
-#terms($rule.getHead().getPredicateTerms()) :- #terms($rule.getBody().getPredicates()).
+#terms($rule.getHead().getPredicateTerms()) :- #terms($rule.getBody().getPredicateTerms()).
 #end
 #end
 
@@ -34,13 +34,23 @@ $e.getName()##
 #macro(terms $ts)
 #set($separator = "")## No comma before first element
 #foreach($t in $ts)
+#if(!$t.getName())## Choices and conditional literal don't have names
+#if($t.getLowerBound())## Only choices have lower bounds
 $separator##
-#if(!$t.getName())## Choices don't have names
 #choice($t)
-#else
-#predicate($t)
-#end
 #set($separator = ", ")## Comma before all following elements
+#else## Must be conditional literal
+#if($separator && !$separator.isEmpty())
+; ## Use semicolon instead of comma
+#end
+#conditional($t)
+#set($separator = "; ")## Semicolon before next element
+#end
+#else
+$separator##
+#predicate($t)
+#set($separator = ", ")## Comma before all following elements
+#end
 #end
 #end
 
@@ -58,7 +68,7 @@ $p.getName()##
 #end
 #end
 
-## Macro fo a choice
+## Macro for a choice
 #macro(choice $c)
 $c.getLowerBoundString(){##
 #set($separator = "")## No semicolon before first element
@@ -68,4 +78,15 @@ $separator##
 #set($separator = "; ")## Semicolon before all following elements
 #end
 }$c.getUpperBoundString()##
+#end
+
+## Macro for a conditional literal
+#macro(conditional $cl)
+#predicate($cl.getConditional()) : ##
+#set($separator = "")## No comma before first element
+#foreach($c in $cl.getConditions())
+$separator##
+#predicate($c)##
+#set($separator = ", ")## Comma before all following elements
+#end
 #end

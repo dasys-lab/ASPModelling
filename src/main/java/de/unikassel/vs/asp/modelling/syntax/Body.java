@@ -10,15 +10,15 @@ import java.util.Objects;
  */
 public class Body {
 
-    private ArrayList<Predicate> predicates = new ArrayList<>();
+    private ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
 
     /**
      * Standard getter.
      *
      * @return The body's terms.
      */
-    public ArrayList<Predicate> getPredicates() {
-        return this.predicates;
+    public ArrayList<PredicateTerm> getPredicateTerms() {
+        return this.predicateTerms;
     }
 
 
@@ -28,7 +28,7 @@ public class Body {
      * @param predicates The predicates that are to be added.
      * @return The body the method was called on.
      */
-    public Body withPredicates(Predicate... predicates) {
+    public Body withPredicates(PredicateTerm... predicates) {
         return this.withPredicates(Arrays.asList(predicates));
     }
 
@@ -38,8 +38,8 @@ public class Body {
      * @param predicates The predicates that are to be added.
      * @return The body the method was called on.
      */
-    public Body withPredicates(Collection<Predicate> predicates) {
-        this.predicates.addAll(predicates);
+    public Body withPredicates(Collection<PredicateTerm> predicates) {
+        this.predicateTerms.addAll(predicates);
         return this;
     }
 
@@ -51,11 +51,11 @@ public class Body {
         if (!(other instanceof Body)) {
             return false;
         }
-        return Objects.equals(this.predicates, ((Body) other).predicates);
+        return Objects.equals(this.predicateTerms, ((Body) other).predicateTerms);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.predicates);
+        return Objects.hash(this.predicateTerms);
     }
 }
