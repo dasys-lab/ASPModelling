@@ -1,14 +1,14 @@
 package de.unikassel.vs.asp.modelling;
 
 import de.unikassel.vs.asp.modelling.syntax.*;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 
 public class EqualsTest {
 
     @Test
-    public void constantsEquals(){
+    public void constantsEquals() {
         Constant c1 = new Constant().withName("x1");
         Constant c2 = new Constant().withName("x1");
         Constant c3 = new Constant().withName("x2");
@@ -18,7 +18,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void variablesEquals(){
+    public void variablesEquals() {
         Constant c1 = new Constant().withName("x1");
         Variable v1 = new Variable().withName("X1").withConstantsOutOfValueRange(c1);
         Variable v2 = new Variable().withName("X1").withConstantsOutOfValueRange(c1);
@@ -29,7 +29,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void rangeEquals(){
+    public void rangeEquals() {
         Range r1 = new Range().withMin(1).withMax(3);
         Range r2 = new Range().withMin(1).withMax(3);
         Range r3 = new Range().withMin(3).withMax(5);
@@ -39,7 +39,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void predicateEquals(){
+    public void predicateEquals() {
         Predicate p1 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p2 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p3 = new Predicate().withName("x1").withNot();
@@ -49,7 +49,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void choiceEquals(){
+    public void choiceEquals() {
         Predicate p1 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p2 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p3 = new Predicate().withName("x1").withNot();
@@ -63,7 +63,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void conditionalLiteralEquals(){
+    public void conditionalLiteralEquals() {
         Predicate p1 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p2 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p3 = new Predicate().withName("x1").withNot();
@@ -78,7 +78,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void bodyEquals(){
+    public void bodyEquals() {
         Predicate p1 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p2 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p3 = new Predicate().withName("x1").withNot();
@@ -93,7 +93,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void headEquals(){
+    public void headEquals() {
         Predicate p1 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p2 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p3 = new Predicate().withName("x1").withNot();
@@ -108,7 +108,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void ruleEquals(){
+    public void ruleEquals() {
         Predicate p1 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p2 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p3 = new Predicate().withName("x1").withNot();
