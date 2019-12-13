@@ -126,4 +126,28 @@ public class EqualsTest {
         Assertions.assertTrue(r1.equals(r2));
         Assertions.assertFalse(r1.equals(r3));
     }
+
+    @Test
+    public void aspGeneratorEquals() {
+        Predicate p1 = new Predicate().withName("x1").withNot().withFalse();
+        Predicate p2 = new Predicate().withName("x1").withNot().withFalse();
+        Predicate p3 = new Predicate().withName("x1").withNot();
+        Predicate p4 = new Predicate().withName("x3").withNot();
+
+        Body b1 = new Body().withPredicates(p1,p3,p4);
+        Body b2 = new Body().withPredicates(p1,p2,p4);
+
+        Head h1 = new Head().withPredicates(p1,p3,p4);
+
+        Rule r1 = new Rule().withHead(h1).withBody(b1);
+        Rule r2 = new Rule().withHead(h1).withBody(b1);
+        Rule r3 = new Rule().withHead(h1).withBody(b2);
+
+        AspGenerator a1 = new AspGenerator().withRules(r1,r2);
+        AspGenerator a2 = new AspGenerator().withRules(r1,r2);
+        AspGenerator a3 = new AspGenerator().withRules(r1,r3);
+
+        Assertions.assertTrue(a1.equals(a2));
+        Assertions.assertFalse(a1.equals(a3));
+    }
 }
