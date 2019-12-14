@@ -56,6 +56,5 @@ public class Main {
         System.out.println("ASP: \n" + gen);
         System.out.println();
         System.out.println("Java: \n" + gen.toJavaString());
-
     }
 }
