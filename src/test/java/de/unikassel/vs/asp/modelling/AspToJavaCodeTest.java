@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.tree.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class AspToJavaCode {
+public class AspToJavaCodeTest {
 
     @Test
     public void testGenerateJavaObjectsFromAst() {
@@ -38,6 +38,39 @@ public class AspToJavaCode {
 
         AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
 
+        // System.out.println(tree.toStringTree(parser));
+
+        AspGenerator gen = toJavaGenerator.startTraversing(parser, tree);
+        Assertions.assertEquals(gen, testGen);
+        Assertions.assertEquals(gen.toString(), testString);
+    }
+
+    @Test
+    public void testAspWithMoreSemantic(){
+
+        final AspGenerator testGen = new AspGenerator();
+
+        testGen.withRules(new Rule()
+                .withHead(new Head().withPredicates(new Predicate().withName("fly")
+                        .withElements(new Variable().withName("X"))))
+                .withBody(new Body()
+                    .withPredicates(new Predicate().withName("bird").withElements(new Variable().withName("X")))
+                    .withPredicates(new Predicate().withName("fly").withFalse().withNot()
+                        .withElements(new Variable().withName("X")))));
+
+        String testString = "fly(X) :- bird(X), not -fly(X).";
+
+        CharStream stringStream = CharStreams.fromString(testString);
+
+        ASPCore2Lexer lexer = new ASPCore2Lexer(stringStream);
+
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+        ASPCore2Parser parser = new ASPCore2Parser(tokens);
+
+        ParseTree tree = parser.statements();
+
+        AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
         // System.out.println(tree.toStringTree(parser));
 
         AspGenerator gen = toJavaGenerator.startTraversing(parser, tree);

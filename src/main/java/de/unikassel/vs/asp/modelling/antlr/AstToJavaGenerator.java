@@ -13,7 +13,7 @@ public class AstToJavaGenerator {
 
     List<String> ruleNamesList;
     AspGenerator gen;
-
+    boolean notWasSeen;
 
     public AspGenerator startTraversing(Parser parser, ParseTree tree) {
         gen = new AspGenerator();
@@ -53,9 +53,6 @@ public class AstToJavaGenerator {
                 traverseWithBody(tree.getChild(i), ruleNames, body);
             }
         }
-        if (tree.getChildCount() == 0) {
-            return;
-        }
     }
 
     public void traverseWithHead(ParseTree tree, List<String> ruleNames, Head head) {
@@ -66,6 +63,10 @@ public class AstToJavaGenerator {
             }
         } else if (nodeText.equals("classical_literal")) {
             Predicate predicate = new Predicate();
+            if (notWasSeen) {
+                predicate.withNot();
+                notWasSeen = false;
+            }
             head.withPredicates(predicate);
             for (int i = 0; i < tree.getChildCount(); i++) {
                 String childText = Trees.getNodeText(tree.getChild(i), ruleNames);
@@ -73,8 +74,9 @@ public class AstToJavaGenerator {
                     continue;
                 }
                 if (childText.equals("terms")) {
-                    Variable variable = new Variable();
-                    traverseWithVariable(tree.getChild(i), ruleNames, predicate);
+                    traverseWitPredicateForElement(tree.getChild(i), ruleNames, predicate);
+                } else if (childText.equals("-")){
+                    predicate.withFalse();
                 } else {
                     traverseWithPredicate(tree.getChild(i), ruleNames, predicate);
                 }
@@ -90,6 +92,10 @@ public class AstToJavaGenerator {
             }
         } else if (nodeText.equals("classical_literal")) {
             Predicate predicate = new Predicate();
+            if (notWasSeen) {
+                predicate.withNot();
+                notWasSeen = false;
+            }
             body.withPredicates(predicate);
             for (int i = 0; i < tree.getChildCount(); i++) {
                 String childText = Trees.getNodeText(tree.getChild(i), ruleNames);
@@ -97,12 +103,19 @@ public class AstToJavaGenerator {
                     continue;
                 }
                 if (childText.equals("terms")) {
-                    Variable variable = new Variable();
-                    traverseWithVariable(tree.getChild(i), ruleNames, predicate);
+                    traverseWitPredicateForElement(tree.getChild(i), ruleNames, predicate);
+                } else if (childText.equals("-")){
+                    predicate.withFalse();
                 } else {
                     traverseWithPredicate(tree.getChild(i), ruleNames, predicate);
                 }
             }
+        } else if (nodeText.equals("body")){
+            for (int i = 0; i < tree.getChildCount(); i++) {
+                traverseWithBody(tree.getChild(i), ruleNames, body);
+            }
+        } else if (nodeText.equals("not")){
+            notWasSeen = true;
         }
     }
 
@@ -111,15 +124,15 @@ public class AstToJavaGenerator {
         predicate.withName(predicateName);
     }
 
-    private void traverseWithVariable(ParseTree tree, List<String> ruleNames, Predicate predicate) {
+    private void traverseWitPredicateForElement(ParseTree tree, List<String> ruleNames, Predicate predicate) {
         String nodeText = Trees.getNodeText(tree, ruleNames);
         if (nodeText.equals("terms")) {
             for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithVariable(tree.getChild(i), ruleNames, predicate);
+                traverseWitPredicateForElement(tree.getChild(i), ruleNames, predicate);
             }
         } else if (nodeText.equals("term")) {
             for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithVariable(tree.getChild(i), ruleNames, predicate);
+                traverseWitPredicateForElement(tree.getChild(i), ruleNames, predicate);
             }
         } else {
             if (nodeText.matches(Variable.getLEGAL_VARIABLE_NAMES())) {
