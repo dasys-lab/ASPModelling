@@ -77,4 +77,38 @@ public class AspToJavaCodeTest {
         Assertions.assertEquals(gen, testGen);
         Assertions.assertEquals(gen.toString(), testString);
     }
+
+    @Test
+    public void testChoiceGeneration(){
+
+        String testString = "{color(X)} = 1 :- node(X).";
+
+        AspGenerator testGen = new AspGenerator();
+        testGen.withRules(new Rule()
+            .withHead(new Head()
+                    .withPredicates(new Choice().withUpperBound(1).withLowerBound(1)
+                            .withPredicates(new Predicate().withName("color")
+                                    .withElements(new Variable().withName("X")))))
+            .withBody(new Body()
+                    .withPredicates(new Predicate().withName("node").withElements(new Variable().withName("X")))));
+
+        CharStream stringStream = CharStreams.fromString(testString);
+
+        ASPCore2Lexer lexer = new ASPCore2Lexer(stringStream);
+
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+        ASPCore2Parser parser = new ASPCore2Parser(tokens);
+
+        ParseTree tree = parser.statements();
+
+        AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
+
+        AspGenerator gen = toJavaGenerator.startTraversing(parser, tree);
+
+        System.out.println(tree.toStringTree(parser));
+
+        System.out.println(gen.toString());
+
+    }
 }
