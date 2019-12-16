@@ -1,14 +1,17 @@
 package de.unikassel.vs.asp.modelling.antlr;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import de.unikassel.vs.asp.modelling.AspGenerator;
 import de.unikassel.vs.asp.modelling.syntax.Body;
 import de.unikassel.vs.asp.modelling.syntax.Head;
 import de.unikassel.vs.asp.modelling.syntax.Rule;
-import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.Token;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class EvalVisitor extends ASPCore2BaseVisitor {
 
@@ -16,11 +19,15 @@ public class EvalVisitor extends ASPCore2BaseVisitor {
     Map<String, String> queries = new HashMap<String, String>();
     AspGenerator gen;
 
+
     @Override
     public AspGenerator visitProgram(ASPCore2Parser.ProgramContext ctx) {
         gen = new AspGenerator();
-        ASPCore2Parser.StatementsContext statements = ctx.statements();
-        gen.withRules(visitStatements(statements));
+        ASPCore2Parser.QueryContext query = ctx.query();
+        RuleContext ruleContext = ctx.getRuleContext();
+        Token start = ctx.getStart();
+        Class<? extends ASPCore2Parser.ProgramContext> aClass = ctx.getClass();
+        gen.withRules(visitStatements(ctx.statements()));
         return gen;
     }
     // ???

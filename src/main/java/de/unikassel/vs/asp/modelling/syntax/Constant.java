@@ -11,6 +11,10 @@ public class Constant extends Element {
             + "|([1-9]\\d*|0)"        // or any number without leading zeros
             + "|(\"(.*)\")";            // or any String in "s
 
+    public static String getLegalConstantNames() {
+        return LEGAL_CONSTANT_NAMES;
+    }
+
     private String name;
 
     /**
