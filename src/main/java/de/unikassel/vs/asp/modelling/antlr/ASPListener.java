@@ -1,5 +1,6 @@
 package de.unikassel.vs.asp.modelling.antlr;
 
+<<<<<<< HEAD
 import de.unikassel.vs.asp.modelling.AspGenerator;
 import de.unikassel.vs.asp.modelling.syntax.*;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -75,4 +76,7 @@ public class ASPListener extends ASPCore2BaseListener {
         String text = ctx.getText();
     }
 
+=======
+public class ASPListener {
+>>>>>>> ast-to-java-juri
 }
