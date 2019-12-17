@@ -14,9 +14,9 @@ public class ASPListener extends ASPCore2BaseListener {
     RuleComponent currentHeadOrBody;
     Predicate currentPredicate;
 
-    public ASPListener(ASPCore2Parser parser){
+    public ASPListener(ASPCore2Parser parser, AspGenerator gen){
         this.parser = parser;
-        gen = new AspGenerator();
+        this.gen = gen;
     }
 
     @Override

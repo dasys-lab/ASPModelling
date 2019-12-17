@@ -1,9 +1,6 @@
 package de.unikassel.vs.asp.modelling;
 
-import de.unikassel.vs.asp.modelling.antlr.ASPCore2Lexer;
-import de.unikassel.vs.asp.modelling.antlr.ASPCore2Parser;
-import de.unikassel.vs.asp.modelling.antlr.ASPListener;
-import de.unikassel.vs.asp.modelling.antlr.AstToJavaGenerator;
+import de.unikassel.vs.asp.modelling.antlr.*;
 import de.unikassel.vs.asp.modelling.syntax.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -38,20 +35,32 @@ public class AspToJavaCodeTest {
 
         ParseTree tree = parser.statements();
 
-        /*
-        AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
+        ParseTree tree2 = parser.program();
 
-        // System.out.println(tree.toStringTree(parser));
+
+         /*
+        AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
+        System.out.println(tree.toStringTree(parser));
         AspGenerator gen = toJavaGenerator.startTraversing(parser, tree);
         Assertions.assertEquals(gen, testGen);
         Assertions.assertEquals(gen.toString(), testString);
-         */
 
+          */
+
+         /*
+        ASPVisitor aspVisitor = new ASPVisitor();
+        AspGenerator gen = aspVisitor.visit(tree);
+        */
+
+        AspGenerator gen = new AspGenerator();
         ParseTreeWalker walker = new ParseTreeWalker();
         // create standard walker
-        ASPListener extractor = new ASPListener(parser);
+        ASPListener extractor = new ASPListener(parser, gen);
         walker.walk(extractor, tree);
         // initiate walk of tree with listener
+
+        Assertions.assertEquals(gen, testGen);
+        Assertions.assertEquals(gen.toString(), testString);
 
     }
 
