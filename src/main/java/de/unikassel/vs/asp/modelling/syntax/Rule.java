@@ -7,8 +7,8 @@ import java.util.Objects;
  */
 public class Rule {
 
-    private Head head;
-    private Body body;
+    private RuleComponent head;
+    private RuleComponent body;
     private Type myType;
 
     /**
@@ -16,7 +16,7 @@ public class Rule {
      *
      * @return The rule's head.
      */
-    public Head getHead() {
+    public RuleComponent getHead() {
         return this.head;
     }
 
@@ -25,7 +25,7 @@ public class Rule {
      *
      * @return The rule this method was called on.
      */
-    public Rule withHead(Head head) {
+    public Rule withHead(RuleComponent head) {
         this.head = head;
         checkAndSetType();
         return this;
@@ -49,7 +49,7 @@ public class Rule {
      *
      * @return The rule's body.
      */
-    public Body getBody() {
+    public RuleComponent getBody() {
         return this.body;
     }
 
@@ -58,7 +58,7 @@ public class Rule {
      *
      * @return The rule this method was called on.
      */
-    public Rule withBody(Body body) {
+    public Rule withBody(RuleComponent body) {
         this.body = body;
         checkAndSetType();
         return this;

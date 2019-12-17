@@ -11,8 +11,7 @@ public class ASPListener extends ASPCore2BaseListener {
     ASPCore2Parser parser;
     AspGenerator gen;
     Rule currentRule;
-    Head currentHead;
-    Body currentBody;
+    RuleComponent currentHeadOrBody;
     Predicate currentPredicate;
 
     public ASPListener(ASPCore2Parser parser){
@@ -38,8 +37,8 @@ public class ASPListener extends ASPCore2BaseListener {
     }
 
     @Override public void enterHead(ASPCore2Parser.HeadContext ctx) {
-        currentHead = new Head();
-        currentRule.withHead(currentHead);
+        currentHeadOrBody = new Head();
+        currentRule.withHead(currentHeadOrBody);
         String text = ctx.getText();
     }
 
@@ -54,11 +53,23 @@ public class ASPListener extends ASPCore2BaseListener {
         String s = id.toString();
         currentPredicate = new Predicate();
         currentPredicate.withName(id.toString());
-        currentHead.withPredicates(currentPredicate);
+        currentHeadOrBody.withPredicates(currentPredicate);
     }
 
     @Override public void visitTerminal(TerminalNode node) {
         String text = node.getText();
+    }
+
+    @Override
+    public void enterBody(ASPCore2Parser.BodyContext ctx) {
+        currentHeadOrBody = new Body();
+        currentRule.withBody(currentHeadOrBody);
+        String text = ctx.getText();
+    }
+
+    @Override
+    public void enterNaf_literal(ASPCore2Parser.Naf_literalContext ctx) {
+        String text = ctx.getText();
     }
 
     @Override public void enterTerm_variable(ASPCore2Parser.Term_variableContext ctx) {
@@ -66,14 +77,13 @@ public class ASPListener extends ASPCore2BaseListener {
         Variable variable = new Variable();
         variable.withName(variableName);
         currentPredicate.withElements(variable);
-
     }
 
-    @Override
-    public void enterBody(ASPCore2Parser.BodyContext ctx) {
-        currentBody = new Body();
-        currentRule.withBody(currentBody);
-        String text = ctx.getText();
+    @Override public void enterTerm_const(ASPCore2Parser.Term_constContext ctx) {
+        String constantName = ctx.getText();
+        Constant constant = new Constant();
+        constant.withName(constantName);
+        currentPredicate.withElements(constant);
     }
 
 }
