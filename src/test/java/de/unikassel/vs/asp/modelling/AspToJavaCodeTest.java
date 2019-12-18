@@ -37,7 +37,6 @@ public class AspToJavaCodeTest {
 
         ParseTree tree2 = parser.program();
 
-
          /*
         AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
         System.out.println(tree.toStringTree(parser));
@@ -47,21 +46,8 @@ public class AspToJavaCodeTest {
 
           */
 
-         /*
         ASPVisitor aspVisitor = new ASPVisitor();
         AspGenerator gen = aspVisitor.visit(tree);
-        */
-
-        AspGenerator gen = new AspGenerator();
-        ParseTreeWalker walker = new ParseTreeWalker();
-        // create standard walker
-        ASPListener extractor = new ASPListener(parser, gen);
-        walker.walk(extractor, tree);
-        // initiate walk of tree with listener
-
-        Assertions.assertEquals(gen, testGen);
-        Assertions.assertEquals(gen.toString(), testString);
-
     }
 
     @Test
