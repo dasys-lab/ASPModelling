@@ -1,5 +1,5 @@
 // Generated from ASPCore2.g4 by ANTLR 4.7.2
-package de.unikassel.vs.asp.modelling.antlr;
+package de.unikassel.vs.asp_modelling;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
