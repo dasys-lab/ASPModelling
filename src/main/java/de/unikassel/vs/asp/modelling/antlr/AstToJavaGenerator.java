@@ -1,15 +1,10 @@
 package de.unikassel.vs.asp.modelling.antlr;
 
-import java.util.Arrays;
-import java.util.List;
 import de.unikassel.vs.asp.modelling.AspGenerator;
-import de.unikassel.vs.asp.modelling.syntax.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.Trees;
 
 
 public class AstToJavaGenerator {

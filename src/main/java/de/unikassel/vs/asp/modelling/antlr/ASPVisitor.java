@@ -2,11 +2,6 @@ package de.unikassel.vs.asp.modelling.antlr;
 
 import de.unikassel.vs.asp.modelling.AspGenerator;
 import de.unikassel.vs.asp.modelling.syntax.*;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
@@ -142,15 +137,15 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         return gen;
     }
 
-    @Override
-    public AspGenerator visitTerm_number(ASPCore2Parser.Term_numberContext ctx) {
-        String constantName = ctx.getText();
-        Constant constant = new Constant();
-        constant.withName(constantName);
-        currentPredicate.withElements(constant);
-        visitChildren(ctx);
-        return gen;
-    }
+//    @Override
+//    public AspGenerator visitTerm_number(ASPCore2Parser.Term_numberContext ctx) {
+//        String constantName = ctx.getText();
+//        Constant constant = new Constant();
+//        constant.withName(constantName);
+//        currentPredicate.withElements(constant);
+//        visitChildren(ctx);
+//        return gen;
+//    }
 
     @Override
     public AspGenerator visitInterval(ASPCore2Parser.IntervalContext ctx) {
@@ -187,12 +182,9 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     }
 
 
+
     //
 //    @Override public AspGenerator visitQuery(ASPCore2Parser.QueryContext ctx) { return visitChildren(ctx); }
-//
-//    @Override public AspGenerator visitStatement_fact(ASPCore2Parser.Statement_factContext ctx) { return visitChildren(ctx); }
-//
-//    @Override public AspGenerator visitStatement_constraint(ASPCore2Parser.Statement_constraintContext ctx) { return visitChildren(ctx); }
 //
 //    @Override public AspGenerator visitStatement_weightConstraint(ASPCore2Parser.Statement_weightConstraintContext ctx) { return visitChildren(ctx); }
 //
