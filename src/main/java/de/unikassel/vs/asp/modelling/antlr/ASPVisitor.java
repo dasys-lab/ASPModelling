@@ -2,23 +2,24 @@ package de.unikassel.vs.asp.modelling.antlr;
 
 import de.unikassel.vs.asp.modelling.AspGenerator;
 import de.unikassel.vs.asp.modelling.syntax.*;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
-    public AspGenerator(){
-
-    }
     boolean notToSet;
-
     boolean nextPredicateInChoice;
+
     AspGenerator gen = new AspGenerator();
     Rule currentRule;
     RuleComponent currentHeadOrBody;
     Predicate currentPredicate;
-
     Choice currentChoice;
+
 
     @Override
     public AspGenerator visitStatements(ASPCore2Parser.StatementsContext ctx) {
@@ -142,6 +143,16 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     }
 
     @Override
+    public AspGenerator visitTerm_number(ASPCore2Parser.Term_numberContext ctx) {
+        String constantName = ctx.getText();
+        Constant constant = new Constant();
+        constant.withName(constantName);
+        currentPredicate.withElements(constant);
+        visitChildren(ctx);
+        return gen;
+    }
+
+    @Override
     public AspGenerator visitInterval(ASPCore2Parser.IntervalContext ctx) {
         String text = ctx.getText();
         visitChildren(ctx);
@@ -156,6 +167,25 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         visitChildren(ctx);
         return gen;
     }
+
+    @Override
+    public AspGenerator visitStatement_fact(ASPCore2Parser.Statement_factContext ctx) {
+        String text = ctx.getText();
+        currentRule = new Rule();
+        this.gen.withRules(currentRule);
+        visitChildren(ctx);
+        return gen;
+    }
+
+    @Override
+    public AspGenerator visitStatement_constraint(ASPCore2Parser.Statement_constraintContext ctx) {
+        String text = ctx.getText();
+        currentRule = new Rule();
+        this.gen.withRules(currentRule);
+        visitChildren(ctx);
+        return gen;
+    }
+
 
     //
 //    @Override public AspGenerator visitQuery(ASPCore2Parser.QueryContext ctx) { return visitChildren(ctx); }

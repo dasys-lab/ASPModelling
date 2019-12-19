@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import de.unikassel.vs.asp.modelling.AspGenerator;
 import de.unikassel.vs.asp.modelling.syntax.*;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.Trees;
@@ -11,139 +14,20 @@ import org.antlr.v4.runtime.tree.Trees;
 
 public class AstToJavaGenerator {
 
-    List<String> ruleNamesList;
-    AspGenerator gen;
-    boolean notWasSeen;
 
-    public AspGenerator startTraversing(Parser parser, ParseTree tree) {
-        gen = new AspGenerator();
-        String[] ruleNames = parser != null ? parser.getRuleNames() : null;
-        ruleNamesList = ruleNames != null ? Arrays.asList(ruleNames) : null;
-        traverseWithGenerator(tree, ruleNamesList, gen);
-        return gen;
-    }
+    public AspGenerator generateJavaObjectsFromAspString(String aspString) {
+        CharStream stringStream = CharStreams.fromString(aspString);
 
-    public void traverseWithGenerator(ParseTree tree, List<String> ruleNames, AspGenerator gen) {
-        String nodeText = Trees.getNodeText(tree, ruleNames);
-        if (nodeText.equals("statements")) {
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithGenerator(tree.getChild(i), ruleNames, gen);
-            }
-        } else if (nodeText.equals("statement")) {
-            Rule rule = new Rule();
-            gen.withRules(rule);
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithRule(tree.getChild(i), ruleNames, rule);
-            }
-        }
-    }
+        ASPCore2Lexer lexer = new ASPCore2Lexer(stringStream);
 
-    public void traverseWithRule(ParseTree tree, List<String> ruleNames, Rule rule) {
-        String nodeText = Trees.getNodeText(tree, ruleNames);
-        if (nodeText.equals("head")) {
-            Head head = new Head();
-            rule.withHead(head);
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithHead(tree.getChild(i), ruleNames, head);
-            }
-        } else if (nodeText.equals("body")) {
-            Body body = new Body();
-            rule.withBody(body);
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithBody(tree.getChild(i), ruleNames, body);
-            }
-        }
-    }
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
 
-    public void traverseWithHead(ParseTree tree, List<String> ruleNames, Head head) {
-        String nodeText = Trees.getNodeText(tree, ruleNames);
-        if (nodeText.equals("disjunction")) {
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithHead(tree.getChild(i), ruleNames, head);
-            }
-        } else if (nodeText.equals("classical_literal")) {
-            Predicate predicate = new Predicate();
-            if (notWasSeen) {
-                predicate.withNot();
-                notWasSeen = false;
-            }
-            head.withPredicates(predicate);
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                String childText = Trees.getNodeText(tree.getChild(i), ruleNames);
-                if (childText.equals("(") || childText.equals(")")) {
-                    continue;
-                }
-                if (childText.equals("terms")) {
-                    traverseWitPredicateForElement(tree.getChild(i), ruleNames, predicate);
-                } else if (childText.equals("-")){
-                    predicate.withFalse();
-                } else {
-                    traverseWithPredicate(tree.getChild(i), ruleNames, predicate);
-                }
-            }
-        }
-    }
+        ASPCore2Parser parser = new ASPCore2Parser(tokens);
 
-    private void traverseWithBody(ParseTree tree, List<String> ruleNames, Body body) {
-        String nodeText = Trees.getNodeText(tree, ruleNames);
-        if (nodeText.equals("naf_literal")) {
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithBody(tree.getChild(i), ruleNames, body);
-            }
-        } else if (nodeText.equals("classical_literal")) {
-            Predicate predicate = new Predicate();
-            if (notWasSeen) {
-                predicate.withNot();
-                notWasSeen = false;
-            }
-            body.withPredicates(predicate);
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                String childText = Trees.getNodeText(tree.getChild(i), ruleNames);
-                if (childText.equals("(") || childText.equals(")")) {
-                    continue;
-                }
-                if (childText.equals("terms")) {
-                    traverseWitPredicateForElement(tree.getChild(i), ruleNames, predicate);
-                } else if (childText.equals("-")){
-                    predicate.withFalse();
-                } else {
-                    traverseWithPredicate(tree.getChild(i), ruleNames, predicate);
-                }
-            }
-        } else if (nodeText.equals("body")){
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWithBody(tree.getChild(i), ruleNames, body);
-            }
-        } else if (nodeText.equals("not")){
-            notWasSeen = true;
-        }
-    }
+        ParseTree tree = parser.statements();
 
-    private void traverseWithPredicate(ParseTree tree, List<String> ruleNames, Predicate predicate) {
-        String predicateName = Trees.getNodeText(tree, ruleNames);
-        predicate.withName(predicateName);
-    }
+        ASPVisitor aspVisitor = new ASPVisitor();
 
-    private void traverseWitPredicateForElement(ParseTree tree, List<String> ruleNames, Predicate predicate) {
-        String nodeText = Trees.getNodeText(tree, ruleNames);
-        if (nodeText.equals("terms")) {
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWitPredicateForElement(tree.getChild(i), ruleNames, predicate);
-            }
-        } else if (nodeText.equals("term")) {
-            for (int i = 0; i < tree.getChildCount(); i++) {
-                traverseWitPredicateForElement(tree.getChild(i), ruleNames, predicate);
-            }
-        } else {
-            if (nodeText.matches(Variable.getLEGAL_VARIABLE_NAMES())) {
-                Variable variable = new Variable();
-                variable.withName(nodeText);
-                predicate.withElements(variable);
-            } else if (nodeText.matches(Constant.getLegalConstantNames())) {
-                Constant constant = new Constant();
-                constant.withName(nodeText);
-                predicate.withElements(constant);
-            }
-        }
+        return aspVisitor.visit(tree);
     }
 }

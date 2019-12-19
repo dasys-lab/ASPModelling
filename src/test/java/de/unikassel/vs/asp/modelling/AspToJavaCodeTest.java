@@ -3,6 +3,7 @@ package de.unikassel.vs.asp.modelling;
 import de.unikassel.vs.asp.modelling.antlr.ASPCore2Lexer;
 import de.unikassel.vs.asp.modelling.antlr.ASPCore2Parser;
 import de.unikassel.vs.asp.modelling.antlr.ASPVisitor;
+import de.unikassel.vs.asp.modelling.antlr.AstToJavaGenerator;
 import de.unikassel.vs.asp.modelling.syntax.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -104,5 +105,31 @@ public class AspToJavaCodeTest {
     }
 
     @Test
-    public
+    public void travelingSalesman(){
+
+        String testString = "{cycle(X,Y): edge(X,Y)} = 1 :- node(X).\n" +
+                            "{cycle(X,Y): edge(X,Y)} = 1 :- node(Y).\n" +
+                            "reached(Y) :- cycle(1,Y).\n" +
+                            "reached(Y) :- cycle(X,Y), reached(X).\n" +
+                            ":- node(Y), not reached(Y).\n" +
+                            "node(1..6).\n" +
+                            "edge(1,(2;3;4))\n" +
+                            "cost(1,2,2).";
+
+        String testString2 =    "reached(Y) :- cycle(1,Y).\n" +
+                                "reached(Y) :- cycle(X,Y), reached(X).\n" +
+                                ":- node(Y), not reached(Y).\n" +
+                                "node(1..6).\n" +
+                                "edge(1,(2;3;4))\n" +
+                                "cost(1,2,2).";
+
+
+
+        AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
+
+        AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString2);
+
+        System.out.println(gen.toString());
+
+    }
 }
