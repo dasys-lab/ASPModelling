@@ -7,13 +7,17 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
-    boolean notToSet;
-    boolean nextPredicateInChoice;
+    public AspGenerator(){
 
+    }
+    boolean notToSet;
+
+    boolean nextPredicateInChoice;
     AspGenerator gen = new AspGenerator();
     Rule currentRule;
     RuleComponent currentHeadOrBody;
     Predicate currentPredicate;
+
     Choice currentChoice;
 
     @Override
