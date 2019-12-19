@@ -1,12 +1,13 @@
 package de.unikassel.vs.asp.modelling;
 
-import de.unikassel.vs.asp.modelling.antlr.*;
+import de.unikassel.vs.asp.modelling.antlr.ASPCore2Lexer;
+import de.unikassel.vs.asp.modelling.antlr.ASPCore2Parser;
+import de.unikassel.vs.asp.modelling.antlr.ASPVisitor;
 import de.unikassel.vs.asp.modelling.syntax.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

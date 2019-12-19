@@ -70,13 +70,6 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     }
 
     @Override
-    public AspGenerator visitChoice_elements(ASPCore2Parser.Choice_elementsContext ctx) {
-        // ctx.
-        visitChildren(ctx);
-        return gen;
-    }
-
-    @Override
     public AspGenerator visitChoice_element(ASPCore2Parser.Choice_elementContext ctx) {
         TerminalNode colon = ctx.COLON();
         visitChildren(ctx);
