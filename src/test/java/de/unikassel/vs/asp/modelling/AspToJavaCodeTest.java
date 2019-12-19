@@ -35,19 +35,10 @@ public class AspToJavaCodeTest {
 
         ParseTree tree = parser.statements();
 
-        ParseTree tree2 = parser.program();
-
-         /*
-        AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
-        System.out.println(tree.toStringTree(parser));
-        AspGenerator gen = toJavaGenerator.startTraversing(parser, tree);
-        Assertions.assertEquals(gen, testGen);
-        Assertions.assertEquals(gen.toString(), testString);
-
-          */
-
         ASPVisitor aspVisitor = new ASPVisitor();
         AspGenerator gen = aspVisitor.visit(tree);
+        Assertions.assertEquals(testGen, gen);
+        Assertions.assertEquals(testString, gen.toString());
     }
 
     @Test
@@ -75,12 +66,10 @@ public class AspToJavaCodeTest {
 
         ParseTree tree = parser.statements();
 
-        AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
-        // System.out.println(tree.toStringTree(parser));
-
-        AspGenerator gen = toJavaGenerator.startTraversing(parser, tree);
-        Assertions.assertEquals(gen, testGen);
-        Assertions.assertEquals(gen.toString(), testString);
+        ASPVisitor aspVisitor = new ASPVisitor();
+        AspGenerator gen = aspVisitor.visit(tree);
+        Assertions.assertEquals(testGen, gen);
+        Assertions.assertEquals(testString, gen.toString());
     }
 
     @Test
@@ -107,13 +96,9 @@ public class AspToJavaCodeTest {
 
         ParseTree tree = parser.statements();
 
-        AstToJavaGenerator toJavaGenerator = new AstToJavaGenerator();
-
-        AspGenerator gen = toJavaGenerator.startTraversing(parser, tree);
-
-        System.out.println(tree.toStringTree(parser));
-
-        System.out.println(gen.toString());
-
+        ASPVisitor aspVisitor = new ASPVisitor();
+        AspGenerator gen = aspVisitor.visit(tree);
+        Assertions.assertEquals(testGen, gen);
+        Assertions.assertEquals(testString, gen.toString());
     }
 }
