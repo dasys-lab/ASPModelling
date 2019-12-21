@@ -28,11 +28,11 @@ body : ( naf_literal | aggregate ) (COMMA body)?;
 
 disjunction : classical_literal (OR disjunction)?;
 
-choice : (lt=term lop=binop)? CURLY_OPEN choice_elements? CURLY_CLOSE (uop=binop ut=term)?;
+choice : (lt=NUMBER lop=binop)? CURLY_OPEN choice_elements? CURLY_CLOSE (uop=binop ut=NUMBER)?;
 
 choice_elements : choice_element (SEMICOLON choice_elements)?;
 
-choice_element : classical_literal (COLON naf_literals?)?;
+choice_element : (classical_literal | conditional_literal) (COLON naf_literals?)?;
 
 aggregate : NAF? (lt=term lop=binop)? aggregate_function CURLY_OPEN aggregate_elements CURLY_CLOSE (uop=binop ut=term)?;
 
@@ -43,6 +43,8 @@ aggregate_element : basic_terms? (COLON naf_literals?)?;
 aggregate_function : AGGREGATE_COUNT | AGGREGATE_MAX | AGGREGATE_MIN | AGGREGATE_SUM;
 
 weight_at_level : term (AT term)? (COMMA terms)?;
+
+conditional_literal: naf_literal COLON naf_literal;
 
 naf_literals : naf_literal (COMMA naf_literals)?;
 

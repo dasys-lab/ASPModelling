@@ -15,6 +15,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     RuleComponent currentHeadOrBody;
     Predicate currentPredicate;
     Choice currentChoice;
+    ConditionalLiteral currentConditionalLiteral;
 
     @Override
     public AspGenerator visitProgram(ASPCore2Parser.ProgramContext ctx) {
@@ -52,25 +53,29 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         nextPredicateInChoice = true;
 
         if (ctx.lt != null){
-            int lowerBound =  Integer.parseInt(ctx.lt.getChild(0).getText());
+            int lowerBound =  Integer.parseInt(ctx.lt.getText());
             currentChoice.withUpperBound(lowerBound);
         }
         if (ctx.ut != null){
-            int upperBound =  Integer.parseInt(ctx.ut.getChild(0).getText());
+            int upperBound =  Integer.parseInt(ctx.ut.getText());
             currentChoice.withUpperBound(upperBound);
         }
         if (ctx.ut != null && ctx.uop.EQUAL() != null) {
-            int upperAndLowerBound =  Integer.parseInt(ctx.ut.getChild(0).getText());
+            int upperAndLowerBound =  Integer.parseInt(ctx.ut.getText());
             currentChoice.withUpperBound(upperAndLowerBound);
             currentChoice.withLowerBound(upperAndLowerBound);
         };
         visitChildren(ctx);
+        nextPredicateInChoice = false;
         return gen;
     }
 
     @Override
     public AspGenerator visitChoice_element(ASPCore2Parser.Choice_elementContext ctx) {
         TerminalNode colon = ctx.COLON();
+        if (colon != null) {
+            currentConditionalLiteral = new ConditionalLiteral();
+        }
         visitChildren(ctx);
         if (colon == null) {
             nextPredicateInChoice = false;
