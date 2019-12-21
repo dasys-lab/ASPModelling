@@ -19,10 +19,11 @@ public class AstToJavaGenerator {
 
         ASPCore2Parser parser = new ASPCore2Parser(tokens);
 
-        ParseTree tree = parser.statements();
+        ParseTree tree = parser.program();
 
         ASPVisitor aspVisitor = new ASPVisitor();
 
-        return aspVisitor.visit(tree);
+        AspGenerator aspGenerator = aspVisitor.visit(tree);
+        return aspGenerator;
     }
 }

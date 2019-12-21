@@ -2,6 +2,7 @@ package de.unikassel.vs.asp.modelling.antlr;
 
 import de.unikassel.vs.asp.modelling.AspGenerator;
 import de.unikassel.vs.asp.modelling.syntax.*;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
@@ -15,10 +16,8 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     Predicate currentPredicate;
     Choice currentChoice;
 
-
     @Override
-    public AspGenerator visitStatements(ASPCore2Parser.StatementsContext ctx) {
-        String text = ctx.getText();
+    public AspGenerator visitProgram(ASPCore2Parser.ProgramContext ctx) {
         visitChildren(ctx);
         return gen;
     }
@@ -53,15 +52,15 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         nextPredicateInChoice = true;
 
         if (ctx.lt != null){
-            int lowerBound =  Integer.valueOf(ctx.lt.getChild(0).getText());
+            int lowerBound =  Integer.parseInt(ctx.lt.getChild(0).getText());
             currentChoice.withUpperBound(lowerBound);
         }
         if (ctx.ut != null){
-            int upperBound =  Integer.valueOf(ctx.ut.getChild(0).getText());
+            int upperBound =  Integer.parseInt(ctx.ut.getChild(0).getText());
             currentChoice.withUpperBound(upperBound);
         }
         if (ctx.ut != null && ctx.uop.EQUAL() != null) {
-            int upperAndLowerBound =  Integer.valueOf(ctx.ut.getChild(0).getText());
+            int upperAndLowerBound =  Integer.parseInt(ctx.ut.getChild(0).getText());
             currentChoice.withUpperBound(upperAndLowerBound);
             currentChoice.withLowerBound(upperAndLowerBound);
         };
@@ -102,6 +101,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         currentPredicate.withName(predicateName);
         if (notToSet) {
             currentPredicate.withNot();
+            notToSet = false;
         }
         if (minus != null) {
             currentPredicate.withFalse();
@@ -137,19 +137,25 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         return gen;
     }
 
-//    @Override
-//    public AspGenerator visitTerm_number(ASPCore2Parser.Term_numberContext ctx) {
-//        String constantName = ctx.getText();
-//        Constant constant = new Constant();
-//        constant.withName(constantName);
-//        currentPredicate.withElements(constant);
-//        visitChildren(ctx);
-//        return gen;
-//    }
+    @Override
+    public AspGenerator visitTerm_number(ASPCore2Parser.Term_numberContext ctx) {
+        String constantName = ctx.getText();
+        Constant constant = new Constant();
+        constant.withName(constantName);
+        currentPredicate.withElements(constant);
+        visitChildren(ctx);
+        return gen;
+    }
 
     @Override
     public AspGenerator visitInterval(ASPCore2Parser.IntervalContext ctx) {
         String text = ctx.getText();
+        Range range = new Range();
+        Token lower = ctx.lower;
+        Token upper = ctx.upper;
+        range.withMin(Integer.parseInt(lower.getText()));
+        range.withMax(Integer.parseInt(upper.getText()));
+        currentPredicate.withElements(range);
         visitChildren(ctx);
         return gen;
     }

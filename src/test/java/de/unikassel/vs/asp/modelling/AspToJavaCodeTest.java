@@ -124,7 +124,6 @@ public class AspToJavaCodeTest {
                                 "cost(1,2,2).";
 
 
-
         AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
 
         AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString2);
