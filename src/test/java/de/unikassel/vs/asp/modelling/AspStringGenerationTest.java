@@ -74,4 +74,39 @@ public class AspStringGenerationTest {
 
         Assertions.assertEquals(testString, generatedCodeString);
     }
+
+    @Test
+    public void conditionalLiteral() {
+
+        final String testString = "a(X, Y) :- b(X, Y) : c(X, Y); d(X, Y).";
+
+        Variable x = new Variable().withName("X");
+        Variable y = new Variable().withName("Y");
+
+        Predicate a = new Predicate().withName("a")
+                .withElements(x, y);
+        Predicate b = new Predicate().withName("b")
+                .withElements(x, y);
+        Predicate c = new Predicate().withName("c")
+                .withElements(x, y);
+        Predicate d = new Predicate().withName("d")
+                .withElements(x, y);
+
+        // ConditionalLiterals in the Asp-program
+        ConditionalLiteral conditionalLiteral = new ConditionalLiteral()
+                .withConditional(b)
+                .withConditions(c);
+
+
+        // Rules, that are part of the Asp-program
+        Rule rule = new Rule()
+                .withHead(new Head().withPredicates(a))
+                .withBody(new Body().withPredicates(conditionalLiteral, d));
+
+        // The final model
+        AspGenerator gen = new AspGenerator()
+                .withRules(rule);
+
+        Assertions.assertEquals(testString, gen.toString());
+    }
 }
