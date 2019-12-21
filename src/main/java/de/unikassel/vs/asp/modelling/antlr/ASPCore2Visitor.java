@@ -1,5 +1,5 @@
 // Generated from ASPCore2.g4 by ANTLR 4.7.2
-package de.unikassel.vs.asp.modelling.antlr;
+package de.unikassel.vs.asp_modelling;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -129,6 +129,12 @@ public interface ASPCore2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWeight_at_level(ASPCore2Parser.Weight_at_levelContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ASPCore2Parser#naf_literals}.
 	 * @param ctx the parse tree

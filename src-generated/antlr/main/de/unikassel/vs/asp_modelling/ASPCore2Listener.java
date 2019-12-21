@@ -208,6 +208,16 @@ public interface ASPCore2Listener extends ParseTreeListener {
 	 */
 	void exitWeight_at_level(ASPCore2Parser.Weight_at_levelContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ASPCore2Parser#naf_literals}.
 	 * @param ctx the parse tree
 	 */

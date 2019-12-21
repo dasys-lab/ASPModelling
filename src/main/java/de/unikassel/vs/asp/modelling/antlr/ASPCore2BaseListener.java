@@ -1,5 +1,5 @@
 // Generated from ASPCore2.g4 by ANTLR 4.7.2
-package de.unikassel.vs.asp.modelling.antlr;
+package de.unikassel.vs.asp_modelling;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -239,6 +239,18 @@ public class ASPCore2BaseListener implements ASPCore2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitWeight_at_level(ASPCore2Parser.Weight_at_levelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditional_literal(ASPCore2Parser.Conditional_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

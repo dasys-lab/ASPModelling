@@ -1,5 +1,5 @@
 // Generated from ASPCore2.g4 by ANTLR 4.7.2
-package de.unikassel.vs.asp.modelling.antlr;
+package de.unikassel.vs.asp_modelling;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -207,6 +207,16 @@ public interface ASPCore2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWeight_at_level(ASPCore2Parser.Weight_at_levelContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ASPCore2Parser#naf_literals}.
 	 * @param ctx the parse tree

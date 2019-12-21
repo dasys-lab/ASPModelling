@@ -244,6 +244,18 @@ public class ASPCore2BaseListener implements ASPCore2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConditional_literal(ASPCore2Parser.Conditional_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNaf_literals(ASPCore2Parser.Naf_literalsContext ctx) { }
 	/**
 	 * {@inheritDoc}

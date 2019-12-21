@@ -130,6 +130,12 @@ public interface ASPCore2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWeight_at_level(ASPCore2Parser.Weight_at_levelContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ASPCore2Parser#naf_literals}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
