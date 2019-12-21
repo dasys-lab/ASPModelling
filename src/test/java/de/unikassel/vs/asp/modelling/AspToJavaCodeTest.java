@@ -123,10 +123,12 @@ public class AspToJavaCodeTest {
                                 "edge(1,(2;3;4))\n" +
                                 "cost(1,2,2).";
 
+        String testString3 = "{cycle(X,Y): edge(X,Y)} = 1 :- node(X).";
+
 
         AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
 
-        AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString2);
+        AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString3);
 
         System.out.println(gen.toString());
 
