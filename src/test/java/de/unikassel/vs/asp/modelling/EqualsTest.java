@@ -13,8 +13,8 @@ public class EqualsTest {
         Constant c2 = new Constant().withName("x1");
         Constant c3 = new Constant().withName("x2");
 
-        Assertions.assertTrue(c1.equals(c2));
-        Assertions.assertFalse(c1.equals(c3));
+        Assertions.assertEquals(c1, c2);
+        Assertions.assertNotEquals(c1, c3);
     }
 
     @Test
@@ -24,8 +24,8 @@ public class EqualsTest {
         Variable v2 = new Variable().withName("X1").withConstantsOutOfValueRange(c1);
         Variable v3 = new Variable().withName("Y1").withConstantsOutOfValueRange(c1);
 
-        Assertions.assertTrue(v1.equals(v2));
-        Assertions.assertFalse(v1.equals(v3));
+        Assertions.assertEquals(v1, v2);
+        Assertions.assertNotEquals(v1, v3);
     }
 
     @Test
@@ -34,8 +34,8 @@ public class EqualsTest {
         Range r2 = new Range().withMin(1).withMax(3);
         Range r3 = new Range().withMin(3).withMax(5);
 
-        Assertions.assertTrue(r1.equals(r2));
-        Assertions.assertFalse(r1.equals(r3));
+        Assertions.assertEquals(r1, r2);
+        Assertions.assertNotEquals(r1, r3);
     }
 
     @Test
@@ -44,8 +44,8 @@ public class EqualsTest {
         Predicate p2 = new Predicate().withName("x1").withNot().withFalse();
         Predicate p3 = new Predicate().withName("x1").withNot();
 
-        Assertions.assertTrue(p1.equals(p2));
-        Assertions.assertFalse(p1.equals(p3));
+        Assertions.assertEquals(p1, p2);
+        Assertions.assertNotEquals(p1, p3);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class EqualsTest {
         Choice c2 = new Choice().withPredicates(p1,p2,p3).withLowerBound(1).withUpperBound(3);
         Choice c3 = new Choice().withPredicates(p1,p3).withLowerBound(1).withUpperBound(2);
 
-        Assertions.assertTrue(c1.equals(c2));
-        Assertions.assertFalse(c1.equals(c3));
+        Assertions.assertEquals(c1, c2);
+        Assertions.assertNotEquals(c1, c3);
     }
 
     @Test
@@ -73,8 +73,8 @@ public class EqualsTest {
         ConditionalLiteral cl2 = new ConditionalLiteral().withConditional(p1).withConditions(p2,p3);
         ConditionalLiteral cl3 = new ConditionalLiteral().withConditional(p1).withConditions(p2,p4);
 
-        Assertions.assertTrue(cl1.equals(cl2));
-        Assertions.assertFalse(cl1.equals(cl3));
+        Assertions.assertEquals(cl1, cl2);
+        Assertions.assertNotEquals(cl1, cl3);
     }
 
     @Test
@@ -88,8 +88,8 @@ public class EqualsTest {
         Body b2 = new Body().withPredicates(p1,p3,p4);
         Body b3 = new Body().withPredicates(p1,p2,p4);
 
-        Assertions.assertTrue(p1.equals(p2));
-        Assertions.assertFalse(p1.equals(p3));
+        Assertions.assertEquals(p1, p2);
+        Assertions.assertNotEquals(p1, p3);
     }
 
     @Test
@@ -103,8 +103,8 @@ public class EqualsTest {
         Head h2 = new Head().withPredicates(p1,p3,p4);
         Head h3 = new Head().withPredicates(p1,p2,p4);
 
-        Assertions.assertTrue(h1.equals(h2));
-        Assertions.assertFalse(h1.equals(h3));
+        Assertions.assertEquals(h1, h2);
+        Assertions.assertNotEquals(h1, h3);
     }
 
     @Test
@@ -123,8 +123,8 @@ public class EqualsTest {
         Rule r2 = new Rule().withHead(h1).withBody(b1);
         Rule r3 = new Rule().withHead(h1).withBody(b2);
 
-        Assertions.assertTrue(r1.equals(r2));
-        Assertions.assertFalse(r1.equals(r3));
+        Assertions.assertEquals(r1, r2);
+        Assertions.assertNotEquals(r1, r3);
     }
 
     @Test
@@ -147,7 +147,7 @@ public class EqualsTest {
         AspGenerator a2 = new AspGenerator().withRules(r1,r2);
         AspGenerator a3 = new AspGenerator().withRules(r1,r3);
 
-        Assertions.assertTrue(a1.equals(a2));
-        Assertions.assertFalse(a1.equals(a3));
+        Assertions.assertEquals(a1, a2);
+        Assertions.assertNotEquals(a1, a3);
     }
 }

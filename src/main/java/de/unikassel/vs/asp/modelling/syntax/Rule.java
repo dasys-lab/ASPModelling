@@ -39,7 +39,7 @@ public class Rule {
             this.setType(Type.COMPLETE);
         } else if (head == null && body != null) {
             this.setType(Type.CONSTRAINT);
-        } else if (head != null && body == null) {
+        } else if (head != null) {
             this.setType(Type.FACT);
         }
     }
