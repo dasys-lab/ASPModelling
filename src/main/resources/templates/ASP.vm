@@ -74,7 +74,15 @@ $c.getLowerBoundString(){##
 #set($separator = "")## No semicolon before first element
 #foreach($p in $c.getPredicates())
 $separator##
+#if(!$p.getName())## Choices and conditional literal don't have names
+#if($p.getLowerBound())## Only choices have lower bounds
+#choice($p)
+#else## Must be conditional literal
+#conditional($p)
+#end
+#else
 #predicate($p)
+#end
 #set($separator = "; ")## Semicolon before all following elements
 #end
 }$c.getUpperBoundString()##

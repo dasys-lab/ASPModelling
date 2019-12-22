@@ -79,6 +79,7 @@ public class AspGenerator {
         LinkedHashSet<Choice> choices = new LinkedHashSet<>();
         LinkedHashSet<ConditionalLiteral> conditionalLiterals = new LinkedHashSet<>();
 
+
         for (Rule rule : this.rules) {
             ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
             if (rule.getHead() != null) {
@@ -89,42 +90,8 @@ public class AspGenerator {
             }
 
             for (PredicateTerm predicateTerm : predicateTerms) {
-
-                LinkedHashSet<Element> elements = new LinkedHashSet<>();
-
-                if (predicateTerm instanceof Predicate) {
-                    elements.addAll(((Predicate) predicateTerm).getElements());
-                    predicates.add((Predicate) predicateTerm);
-                } else if (predicateTerm instanceof Choice) {
-                    choices.add((Choice) predicateTerm);
-                    predicates.addAll(((Choice) predicateTerm).getPredicates());
-                    for (Predicate predicate : ((Choice) predicateTerm).getPredicates()) {
-                        elements.addAll(predicate.getElements());
-                    }
-                } else if (predicateTerm instanceof ConditionalLiteral) {
-                    conditionalLiterals.add((ConditionalLiteral) predicateTerm);
-                    elements.addAll(((ConditionalLiteral) predicateTerm).getConditional().getElements());
-                    predicates.add(((ConditionalLiteral) predicateTerm).getConditional());
-                    predicates.addAll(((ConditionalLiteral) predicateTerm).getConditions());
-                    for (Predicate predicate : ((ConditionalLiteral) predicateTerm).getConditions()) {
-                        elements.addAll(predicate.getElements());
-                    }
-                } else {
-                    throw new RuntimeException("Unknown type of predicate: "
-                            + predicateTerm.getClass().getSimpleName());
-                }
-
-                for (Element element : elements) {
-                    if (element instanceof Range) {
-                        ranges.add((Range) element);
-                    } else if (element instanceof Constant) {
-                        constants.add((Constant) element);
-                    } else if (element instanceof Variable) {
-                        variables.add((Variable) element);
-                    } else {
-                        throw new RuntimeException("Unknown type of element: " + element.getClass().getSimpleName());
-                    }
-                }
+                sortPredicateTerm(predicateTerm,
+                        constants, ranges, variables, predicates, choices, conditionalLiterals);
             }
         }
 
@@ -155,6 +122,46 @@ public class AspGenerator {
         t.merge(c, w);
 
         return w.toString().trim();
+    }
+
+    private void sortPredicateTerm(PredicateTerm predicateTerm, LinkedHashSet<Constant> constants,
+                                   LinkedHashSet<Range> ranges, LinkedHashSet<Variable> variables,
+                                   LinkedHashSet<Predicate> predicates, LinkedHashSet<Choice> choices,
+                                   LinkedHashSet<ConditionalLiteral> conditionalLiterals) {
+        if (predicateTerm instanceof Predicate) {
+            for (Element element : ((Predicate) predicateTerm).getElements()) {
+                sortElement(element, constants, ranges, variables);
+            }
+            predicates.add((Predicate) predicateTerm);
+        } else if (predicateTerm instanceof Choice) {
+            for (PredicateTerm innerPredicateTerm : ((Choice) predicateTerm).getPredicates()) {
+                sortPredicateTerm(innerPredicateTerm,
+                        constants, ranges, variables, predicates, choices, conditionalLiterals);
+            }
+        } else if (predicateTerm instanceof ConditionalLiteral) {
+            sortPredicateTerm(((ConditionalLiteral) predicateTerm).getConditional(),
+                    constants, ranges, variables, predicates, choices, conditionalLiterals);
+            for (PredicateTerm innerPredicateTerm : ((ConditionalLiteral) predicateTerm).getConditions()) {
+                sortPredicateTerm(innerPredicateTerm,
+                        constants, ranges, variables, predicates, choices, conditionalLiterals);
+            }
+        } else {
+            throw new IllegalStateException("Unknown predicate term of type: "
+                    + predicateTerm.getClass().getSimpleName());
+        }
+    }
+
+    private void sortElement(Element element, LinkedHashSet<Constant> constants,
+                             LinkedHashSet<Range> ranges, LinkedHashSet<Variable> variables) {
+        if (element instanceof Range) { // Range before Constant , because Range extends Constant
+            ranges.add((Range) element);
+        } else if (element instanceof Constant) {
+            constants.add((Constant) element);
+        } else if (element instanceof Variable) {
+            variables.add((Variable) element);
+        } else {
+            throw new IllegalStateException("Unknown element of type: " + element.getClass().getSimpleName());
+        }
     }
 
     /**
