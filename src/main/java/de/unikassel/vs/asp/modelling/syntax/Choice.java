@@ -10,7 +10,7 @@ public class Choice extends PredicateTerm {
     private Bound lowerBound;
     private Bound upperBound;
 
-    private List<Predicate> predicates;
+    private List<PredicateTerm> predicates;
 
     /**
      * Initializes the internal predicate list.
@@ -118,7 +118,7 @@ public class Choice extends PredicateTerm {
      *
      * @return The choice's predicates.
      */
-    public List<Predicate> getPredicates() {
+    public List<PredicateTerm> getPredicates() {
         return predicates;
     }
 
@@ -128,7 +128,7 @@ public class Choice extends PredicateTerm {
      * @param predicates The predicate that are to be added.
      * @return The choice this method was called on.
      */
-    public Choice withPredicates(Predicate... predicates) {
+    public Choice withPredicates(PredicateTerm... predicates) {
         return this.withPredicates(Arrays.asList(predicates));
     }
 
@@ -138,7 +138,7 @@ public class Choice extends PredicateTerm {
      * @param predicates The predicate that are to be added.
      * @return The choice this method was called on.
      */
-    public Choice withPredicates(Collection<Predicate> predicates) {
+    public Choice withPredicates(Collection<PredicateTerm> predicates) {
         this.predicates.addAll(predicates);
         return this;
     }
