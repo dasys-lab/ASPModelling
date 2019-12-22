@@ -128,7 +128,7 @@ public class Choice extends PredicateTerm {
      * @param predicates The predicateTerms that are to be added.
      * @return The choice this method was called on.
      */
-    public Choice withPredicates(Predicate... predicates) {
+    public Choice withPredicates(PredicateTerm... predicates) {
         return this.withPredicates(Arrays.asList(predicates));
     }
 
