@@ -32,7 +32,7 @@ choice : (lt=NUMBER lop=binop)? CURLY_OPEN choice_elements? CURLY_CLOSE (uop=bin
 
 choice_elements : choice_element (SEMICOLON choice_elements)?;
 
-choice_element : (classical_literal | conditional_literal) (COLON naf_literals?)?;
+choice_element : (classical_literal) (COLON naf_literals?)?;
 
 aggregate : NAF? (lt=term lop=binop)? aggregate_function CURLY_OPEN aggregate_elements CURLY_CLOSE (uop=binop ut=term)?;
 
@@ -44,11 +44,18 @@ aggregate_function : AGGREGATE_COUNT | AGGREGATE_MAX | AGGREGATE_MIN | AGGREGATE
 
 weight_at_level : term (AT term)? (COMMA terms)?;
 
-conditional_literal: naf_literal COLON naf_literal;
 
 naf_literals : naf_literal (COMMA naf_literals)?;
 
-naf_literal : NAF? (external_atom | classical_literal | builtin_atom);
+naf_literal : NAF? (external_atom | classical_literal | builtin_atom | conditional_literal);
+
+conditional_literal: conditional COLON conditions;
+
+conditional: classical_literal;
+
+conditions: condition (COMMA condition)?;
+
+condition: classical_literal;
 
 classical_literal : MINUS? ID (PAREN_OPEN terms PAREN_CLOSE)?;
 
