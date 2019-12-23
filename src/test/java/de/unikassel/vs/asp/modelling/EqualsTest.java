@@ -88,8 +88,8 @@ public class EqualsTest {
         Body b2 = new Body().withPredicates(p1,p3,p4);
         Body b3 = new Body().withPredicates(p1,p2,p4);
 
-        Assertions.assertEquals(p1, p2);
-        Assertions.assertNotEquals(p1, p3);
+        Assertions.assertEquals(b1, b2);
+        Assertions.assertNotEquals(b1, b3);
     }
 
     @Test
