@@ -34,21 +34,21 @@ public class ASPCore2Parser extends Parser {
 		RULE_head = 4, RULE_body = 5, RULE_disjunction = 6, RULE_choice = 7, RULE_choice_elements = 8, 
 		RULE_choice_element = 9, RULE_aggregate = 10, RULE_aggregate_elements = 11, 
 		RULE_aggregate_element = 12, RULE_aggregate_function = 13, RULE_weight_at_level = 14, 
-		RULE_conditional_literal = 15, RULE_naf_literals = 16, RULE_naf_literal = 17, 
-		RULE_classical_literal = 18, RULE_builtin_atom = 19, RULE_binop = 20, 
-		RULE_terms = 21, RULE_term = 22, RULE_interval = 23, RULE_external_atom = 24, 
-		RULE_directive = 25, RULE_directive_enumeration = 26, RULE_basic_terms = 27, 
-		RULE_basic_term = 28, RULE_ground_term = 29, RULE_variable_term = 30, 
-		RULE_answer_set = 31, RULE_answer_sets = 32;
+		RULE_naf_literals = 15, RULE_naf_literal = 16, RULE_conditional_literal = 17, 
+		RULE_conditional = 18, RULE_conditions = 19, RULE_condition = 20, RULE_classical_literal = 21, 
+		RULE_builtin_atom = 22, RULE_binop = 23, RULE_terms = 24, RULE_term = 25, 
+		RULE_interval = 26, RULE_external_atom = 27, RULE_directive = 28, RULE_directive_enumeration = 29, 
+		RULE_basic_terms = 30, RULE_basic_term = 31, RULE_ground_term = 32, RULE_variable_term = 33, 
+		RULE_answer_set = 34, RULE_answer_sets = 35;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"program", "statements", "query", "statement", "head", "body", "disjunction", 
 			"choice", "choice_elements", "choice_element", "aggregate", "aggregate_elements", 
-			"aggregate_element", "aggregate_function", "weight_at_level", "conditional_literal", 
-			"naf_literals", "naf_literal", "classical_literal", "builtin_atom", "binop", 
-			"terms", "term", "interval", "external_atom", "directive", "directive_enumeration", 
-			"basic_terms", "basic_term", "ground_term", "variable_term", "answer_set", 
-			"answer_sets"
+			"aggregate_element", "aggregate_function", "weight_at_level", "naf_literals", 
+			"naf_literal", "conditional_literal", "conditional", "conditions", "condition", 
+			"classical_literal", "builtin_atom", "binop", "terms", "term", "interval", 
+			"external_atom", "directive", "directive_enumeration", "basic_terms", 
+			"basic_term", "ground_term", "variable_term", "answer_set", "answer_sets"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -160,27 +160,27 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
+			setState(73);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
 				{
-				setState(66);
+				setState(72);
 				statements();
 				}
 				break;
 			}
-			setState(70);
+			setState(76);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==MINUS || _la==ID) {
 				{
-				setState(69);
+				setState(75);
 				query();
 				}
 			}
 
-			setState(72);
+			setState(78);
 			match(EOF);
 			}
 		}
@@ -228,7 +228,7 @@ public class ASPCore2Parser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(75); 
+			setState(81); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -236,7 +236,7 @@ public class ASPCore2Parser extends Parser {
 				case 1:
 					{
 					{
-					setState(74);
+					setState(80);
 					statement();
 					}
 					}
@@ -244,7 +244,7 @@ public class ASPCore2Parser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(77); 
+				setState(83); 
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			} while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER );
@@ -291,9 +291,9 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(79);
+			setState(85);
 			classical_literal();
-			setState(80);
+			setState(86);
 			match(QUERY_MARK);
 			}
 		}
@@ -435,16 +435,16 @@ public class ASPCore2Parser extends Parser {
 		enterRule(_localctx, 6, RULE_statement);
 		int _la;
 		try {
-			setState(104);
+			setState(110);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				_localctx = new Statement_factContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(82);
+				setState(88);
 				head();
-				setState(83);
+				setState(89);
 				match(DOT);
 				}
 				break;
@@ -452,11 +452,11 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Statement_constraintContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(85);
+				setState(91);
 				match(CONS);
-				setState(86);
+				setState(92);
 				body();
-				setState(87);
+				setState(93);
 				match(DOT);
 				}
 				break;
@@ -464,13 +464,13 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Statement_ruleContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(89);
+				setState(95);
 				head();
-				setState(90);
+				setState(96);
 				match(CONS);
-				setState(91);
+				setState(97);
 				body();
-				setState(92);
+				setState(98);
 				match(DOT);
 				}
 				break;
@@ -478,25 +478,25 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Statement_weightConstraintContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(94);
+				setState(100);
 				match(WCONS);
-				setState(96);
+				setState(102);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ANONYMOUS_VARIABLE) | (1L << NAF) | (1L << MINUS) | (1L << AMPERSAND) | (1L << PAREN_OPEN) | (1L << AGGREGATE_COUNT) | (1L << AGGREGATE_MAX) | (1L << AGGREGATE_MIN) | (1L << AGGREGATE_SUM) | (1L << ID) | (1L << VARIABLE) | (1L << NUMBER) | (1L << QUOTED_STRING))) != 0)) {
 					{
-					setState(95);
+					setState(101);
 					body();
 					}
 				}
 
-				setState(98);
+				setState(104);
 				match(DOT);
-				setState(99);
+				setState(105);
 				match(SQUARE_OPEN);
-				setState(100);
+				setState(106);
 				weight_at_level();
-				setState(101);
+				setState(107);
 				match(SQUARE_CLOSE);
 				}
 				break;
@@ -504,7 +504,7 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Statement_directiveContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(103);
+				setState(109);
 				directive();
 				}
 				break;
@@ -551,14 +551,14 @@ public class ASPCore2Parser extends Parser {
 		HeadContext _localctx = new HeadContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_head);
 		try {
-			setState(108);
+			setState(114);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case MINUS:
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(106);
+				setState(112);
 				disjunction();
 				}
 				break;
@@ -566,7 +566,7 @@ public class ASPCore2Parser extends Parser {
 			case NUMBER:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(107);
+				setState(113);
 				choice();
 				}
 				break;
@@ -622,30 +622,30 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(112);
+			setState(118);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				{
-				setState(110);
+				setState(116);
 				naf_literal();
 				}
 				break;
 			case 2:
 				{
-				setState(111);
+				setState(117);
 				aggregate();
 				}
 				break;
 			}
-			setState(116);
+			setState(122);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==COMMA) {
 				{
-				setState(114);
+				setState(120);
 				match(COMMA);
-				setState(115);
+				setState(121);
 				body();
 				}
 			}
@@ -697,16 +697,16 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(118);
+			setState(124);
 			classical_literal();
-			setState(121);
+			setState(127);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==OR) {
 				{
-				setState(119);
+				setState(125);
 				match(OR);
-				setState(120);
+				setState(126);
 				disjunction();
 				}
 			}
@@ -770,40 +770,40 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(125);
+			setState(131);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NUMBER) {
 				{
-				setState(123);
+				setState(129);
 				((ChoiceContext)_localctx).lt = match(NUMBER);
-				setState(124);
+				setState(130);
 				((ChoiceContext)_localctx).lop = binop();
 				}
 			}
 
-			setState(127);
+			setState(133);
 			match(CURLY_OPEN);
-			setState(129);
+			setState(135);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ANONYMOUS_VARIABLE) | (1L << NAF) | (1L << MINUS) | (1L << AMPERSAND) | (1L << PAREN_OPEN) | (1L << ID) | (1L << VARIABLE) | (1L << NUMBER) | (1L << QUOTED_STRING))) != 0)) {
+			if (_la==MINUS || _la==ID) {
 				{
-				setState(128);
+				setState(134);
 				choice_elements();
 				}
 			}
 
-			setState(131);
+			setState(137);
 			match(CURLY_CLOSE);
-			setState(135);
+			setState(141);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EQUAL) | (1L << UNEQUAL) | (1L << LESS) | (1L << GREATER) | (1L << LESS_OR_EQ) | (1L << GREATER_OR_EQ))) != 0)) {
 				{
-				setState(132);
+				setState(138);
 				((ChoiceContext)_localctx).uop = binop();
-				setState(133);
+				setState(139);
 				((ChoiceContext)_localctx).ut = match(NUMBER);
 				}
 			}
@@ -855,16 +855,16 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(137);
+			setState(143);
 			choice_element();
-			setState(140);
+			setState(146);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==SEMICOLON) {
 				{
-				setState(138);
+				setState(144);
 				match(SEMICOLON);
-				setState(139);
+				setState(145);
 				choice_elements();
 				}
 			}
@@ -883,11 +883,11 @@ public class ASPCore2Parser extends Parser {
 	}
 
 	public static class Choice_elementContext extends ParserRuleContext {
-		public Classical_literalContext classical_literal() {
-			return getRuleContext(Classical_literalContext.class,0);
-		}
 		public Conditional_literalContext conditional_literal() {
 			return getRuleContext(Conditional_literalContext.class,0);
+		}
+		public Classical_literalContext classical_literal() {
+			return getRuleContext(Classical_literalContext.class,0);
 		}
 		public TerminalNode COLON() { return getToken(ASPCore2Parser.COLON, 0); }
 		public Naf_literalsContext naf_literals() {
@@ -919,35 +919,35 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(144);
+			setState(150);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 			case 1:
 				{
-				setState(142);
-				classical_literal();
+				setState(148);
+				conditional_literal();
 				}
 				break;
 			case 2:
 				{
-				setState(143);
-				conditional_literal();
+				setState(149);
+				classical_literal();
 				}
 				break;
 			}
-			setState(150);
+			setState(156);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==COLON) {
 				{
-				setState(146);
+				setState(152);
 				match(COLON);
-				setState(148);
+				setState(154);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ANONYMOUS_VARIABLE) | (1L << NAF) | (1L << MINUS) | (1L << AMPERSAND) | (1L << PAREN_OPEN) | (1L << ID) | (1L << VARIABLE) | (1L << NUMBER) | (1L << QUOTED_STRING))) != 0)) {
 					{
-					setState(147);
+					setState(153);
 					naf_literals();
 					}
 				}
@@ -1020,44 +1020,44 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(153);
+			setState(159);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NAF) {
 				{
-				setState(152);
+				setState(158);
 				match(NAF);
 				}
 			}
 
-			setState(158);
+			setState(164);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ANONYMOUS_VARIABLE) | (1L << MINUS) | (1L << PAREN_OPEN) | (1L << ID) | (1L << VARIABLE) | (1L << NUMBER) | (1L << QUOTED_STRING))) != 0)) {
 				{
-				setState(155);
+				setState(161);
 				((AggregateContext)_localctx).lt = term(0);
-				setState(156);
+				setState(162);
 				((AggregateContext)_localctx).lop = binop();
 				}
 			}
 
-			setState(160);
+			setState(166);
 			aggregate_function();
-			setState(161);
-			match(CURLY_OPEN);
-			setState(162);
-			aggregate_elements();
-			setState(163);
-			match(CURLY_CLOSE);
 			setState(167);
+			match(CURLY_OPEN);
+			setState(168);
+			aggregate_elements();
+			setState(169);
+			match(CURLY_CLOSE);
+			setState(173);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EQUAL) | (1L << UNEQUAL) | (1L << LESS) | (1L << GREATER) | (1L << LESS_OR_EQ) | (1L << GREATER_OR_EQ))) != 0)) {
 				{
-				setState(164);
+				setState(170);
 				((AggregateContext)_localctx).uop = binop();
-				setState(165);
+				setState(171);
 				((AggregateContext)_localctx).ut = term(0);
 				}
 			}
@@ -1109,16 +1109,16 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(169);
+			setState(175);
 			aggregate_element();
-			setState(172);
+			setState(178);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==SEMICOLON) {
 				{
-				setState(170);
+				setState(176);
 				match(SEMICOLON);
-				setState(171);
+				setState(177);
 				aggregate_elements();
 				}
 			}
@@ -1170,29 +1170,29 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(175);
+			setState(181);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ANONYMOUS_VARIABLE) | (1L << MINUS) | (1L << ID) | (1L << VARIABLE) | (1L << NUMBER) | (1L << QUOTED_STRING))) != 0)) {
 				{
-				setState(174);
+				setState(180);
 				basic_terms();
 				}
 			}
 
-			setState(181);
+			setState(187);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==COLON) {
 				{
-				setState(177);
+				setState(183);
 				match(COLON);
-				setState(179);
+				setState(185);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ANONYMOUS_VARIABLE) | (1L << NAF) | (1L << MINUS) | (1L << AMPERSAND) | (1L << PAREN_OPEN) | (1L << ID) | (1L << VARIABLE) | (1L << NUMBER) | (1L << QUOTED_STRING))) != 0)) {
 					{
-					setState(178);
+					setState(184);
 					naf_literals();
 					}
 				}
@@ -1244,7 +1244,7 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(183);
+			setState(189);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AGGREGATE_COUNT) | (1L << AGGREGATE_MAX) | (1L << AGGREGATE_MIN) | (1L << AGGREGATE_SUM))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1305,84 +1305,32 @@ public class ASPCore2Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(185);
+			setState(191);
 			term(0);
-			setState(188);
+			setState(194);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==AT) {
 				{
-				setState(186);
+				setState(192);
 				match(AT);
-				setState(187);
+				setState(193);
 				term(0);
 				}
 			}
 
-			setState(192);
+			setState(198);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==COMMA) {
 				{
-				setState(190);
+				setState(196);
 				match(COMMA);
-				setState(191);
+				setState(197);
 				terms();
 				}
 			}
 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Conditional_literalContext extends ParserRuleContext {
-		public List<Naf_literalContext> naf_literal() {
-			return getRuleContexts(Naf_literalContext.class);
-		}
-		public Naf_literalContext naf_literal(int i) {
-			return getRuleContext(Naf_literalContext.class,i);
-		}
-		public TerminalNode COLON() { return getToken(ASPCore2Parser.COLON, 0); }
-		public Conditional_literalContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_conditional_literal; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).enterConditional_literal(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitConditional_literal(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitConditional_literal(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Conditional_literalContext conditional_literal() throws RecognitionException {
-		Conditional_literalContext _localctx = new Conditional_literalContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_conditional_literal);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(194);
-			naf_literal();
-			setState(195);
-			match(COLON);
-			setState(196);
-			naf_literal();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1425,21 +1373,21 @@ public class ASPCore2Parser extends Parser {
 
 	public final Naf_literalsContext naf_literals() throws RecognitionException {
 		Naf_literalsContext _localctx = new Naf_literalsContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_naf_literals);
+		enterRule(_localctx, 30, RULE_naf_literals);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(198);
+			setState(200);
 			naf_literal();
-			setState(201);
+			setState(203);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==COMMA) {
 				{
-				setState(199);
+				setState(201);
 				match(COMMA);
-				setState(200);
+				setState(202);
 				naf_literals();
 				}
 			}
@@ -1489,43 +1437,244 @@ public class ASPCore2Parser extends Parser {
 
 	public final Naf_literalContext naf_literal() throws RecognitionException {
 		Naf_literalContext _localctx = new Naf_literalContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_naf_literal);
+		enterRule(_localctx, 32, RULE_naf_literal);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(204);
+			setState(206);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NAF) {
 				{
-				setState(203);
+				setState(205);
 				match(NAF);
 				}
 			}
 
-			setState(209);
+			setState(211);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,27,_ctx) ) {
 			case 1:
 				{
-				setState(206);
+				setState(208);
 				external_atom();
 				}
 				break;
 			case 2:
 				{
-				setState(207);
+				setState(209);
 				classical_literal();
 				}
 				break;
 			case 3:
 				{
-				setState(208);
+				setState(210);
 				builtin_atom();
 				}
 				break;
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Conditional_literalContext extends ParserRuleContext {
+		public ConditionalContext conditional() {
+			return getRuleContext(ConditionalContext.class,0);
+		}
+		public TerminalNode COLON() { return getToken(ASPCore2Parser.COLON, 0); }
+		public ConditionsContext conditions() {
+			return getRuleContext(ConditionsContext.class,0);
+		}
+		public Conditional_literalContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_conditional_literal; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).enterConditional_literal(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitConditional_literal(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitConditional_literal(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Conditional_literalContext conditional_literal() throws RecognitionException {
+		Conditional_literalContext _localctx = new Conditional_literalContext(_ctx, getState());
+		enterRule(_localctx, 34, RULE_conditional_literal);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(213);
+			conditional();
+			setState(214);
+			match(COLON);
+			setState(215);
+			conditions();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ConditionalContext extends ParserRuleContext {
+		public Classical_literalContext classical_literal() {
+			return getRuleContext(Classical_literalContext.class,0);
+		}
+		public ConditionalContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_conditional; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).enterConditional(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitConditional(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitConditional(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ConditionalContext conditional() throws RecognitionException {
+		ConditionalContext _localctx = new ConditionalContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_conditional);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(217);
+			classical_literal();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ConditionsContext extends ParserRuleContext {
+		public List<ConditionContext> condition() {
+			return getRuleContexts(ConditionContext.class);
+		}
+		public ConditionContext condition(int i) {
+			return getRuleContext(ConditionContext.class,i);
+		}
+		public TerminalNode COMMA() { return getToken(ASPCore2Parser.COMMA, 0); }
+		public ConditionsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_conditions; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).enterConditions(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitConditions(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitConditions(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ConditionsContext conditions() throws RecognitionException {
+		ConditionsContext _localctx = new ConditionsContext(_ctx, getState());
+		enterRule(_localctx, 38, RULE_conditions);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(219);
+			condition();
+			setState(222);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==COMMA) {
+				{
+				setState(220);
+				match(COMMA);
+				setState(221);
+				condition();
+				}
+			}
+
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ConditionContext extends ParserRuleContext {
+		public Classical_literalContext classical_literal() {
+			return getRuleContext(Classical_literalContext.class,0);
+		}
+		public ConditionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_condition; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).enterCondition(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ASPCore2Listener ) ((ASPCore2Listener)listener).exitCondition(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ASPCore2Visitor ) return ((ASPCore2Visitor<? extends T>)visitor).visitCondition(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ConditionContext condition() throws RecognitionException {
+		ConditionContext _localctx = new ConditionContext(_ctx, getState());
+		enterRule(_localctx, 40, RULE_condition);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(224);
+			classical_literal();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1568,33 +1717,33 @@ public class ASPCore2Parser extends Parser {
 
 	public final Classical_literalContext classical_literal() throws RecognitionException {
 		Classical_literalContext _localctx = new Classical_literalContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_classical_literal);
+		enterRule(_localctx, 42, RULE_classical_literal);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(212);
+			setState(227);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==MINUS) {
 				{
-				setState(211);
+				setState(226);
 				match(MINUS);
 				}
 			}
 
-			setState(214);
+			setState(229);
 			match(ID);
-			setState(219);
+			setState(234);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==PAREN_OPEN) {
 				{
-				setState(215);
+				setState(230);
 				match(PAREN_OPEN);
-				setState(216);
+				setState(231);
 				terms();
-				setState(217);
+				setState(232);
 				match(PAREN_CLOSE);
 				}
 			}
@@ -1643,15 +1792,15 @@ public class ASPCore2Parser extends Parser {
 
 	public final Builtin_atomContext builtin_atom() throws RecognitionException {
 		Builtin_atomContext _localctx = new Builtin_atomContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_builtin_atom);
+		enterRule(_localctx, 44, RULE_builtin_atom);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(221);
+			setState(236);
 			term(0);
-			setState(222);
+			setState(237);
 			binop();
-			setState(223);
+			setState(238);
 			term(0);
 			}
 		}
@@ -1694,12 +1843,12 @@ public class ASPCore2Parser extends Parser {
 
 	public final BinopContext binop() throws RecognitionException {
 		BinopContext _localctx = new BinopContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_binop);
+		enterRule(_localctx, 46, RULE_binop);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(225);
+			setState(240);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EQUAL) | (1L << UNEQUAL) | (1L << LESS) | (1L << GREATER) | (1L << LESS_OR_EQ) | (1L << GREATER_OR_EQ))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1751,21 +1900,21 @@ public class ASPCore2Parser extends Parser {
 
 	public final TermsContext terms() throws RecognitionException {
 		TermsContext _localctx = new TermsContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_terms);
+		enterRule(_localctx, 48, RULE_terms);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(227);
+			setState(242);
 			term(0);
-			setState(230);
+			setState(245);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==COMMA) {
 				{
-				setState(228);
+				setState(243);
 				match(COMMA);
-				setState(229);
+				setState(244);
 				terms();
 				}
 			}
@@ -2066,23 +2215,23 @@ public class ASPCore2Parser extends Parser {
 		int _parentState = getState();
 		TermContext _localctx = new TermContext(_ctx, _parentState);
 		TermContext _prevctx = _localctx;
-		int _startState = 44;
-		enterRecursionRule(_localctx, 44, RULE_term, _p);
+		int _startState = 50;
+		enterRecursionRule(_localctx, 50, RULE_term, _p);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(251);
+			setState(266);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,32,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,33,_ctx) ) {
 			case 1:
 				{
 				_localctx = new Term_constContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(233);
+				setState(248);
 				match(ID);
 				}
 				break;
@@ -2091,22 +2240,22 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Term_funcContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(234);
+				setState(249);
 				match(ID);
 				{
-				setState(235);
+				setState(250);
 				match(PAREN_OPEN);
-				setState(237);
+				setState(252);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ANONYMOUS_VARIABLE) | (1L << MINUS) | (1L << PAREN_OPEN) | (1L << ID) | (1L << VARIABLE) | (1L << NUMBER) | (1L << QUOTED_STRING))) != 0)) {
 					{
-					setState(236);
+					setState(251);
 					terms();
 					}
 				}
 
-				setState(239);
+				setState(254);
 				match(PAREN_CLOSE);
 				}
 				}
@@ -2116,7 +2265,7 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Term_numberContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(240);
+				setState(255);
 				match(NUMBER);
 				}
 				break;
@@ -2125,7 +2274,7 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Term_stringContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(241);
+				setState(256);
 				match(QUOTED_STRING);
 				}
 				break;
@@ -2134,7 +2283,7 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Term_variableContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(242);
+				setState(257);
 				match(VARIABLE);
 				}
 				break;
@@ -2143,7 +2292,7 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Term_anonymousVariableContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(243);
+				setState(258);
 				match(ANONYMOUS_VARIABLE);
 				}
 				break;
@@ -2152,11 +2301,11 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Term_parenthesisedTermContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(244);
+				setState(259);
 				match(PAREN_OPEN);
-				setState(245);
+				setState(260);
 				term(0);
-				setState(246);
+				setState(261);
 				match(PAREN_CLOSE);
 				}
 				break;
@@ -2165,7 +2314,7 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Term_intervalContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(248);
+				setState(263);
 				interval();
 				}
 				break;
@@ -2174,34 +2323,34 @@ public class ASPCore2Parser extends Parser {
 				_localctx = new Term_minusArithTermContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(249);
+				setState(264);
 				match(MINUS);
-				setState(250);
+				setState(265);
 				term(5);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(267);
+			setState(282);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,34,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,35,_ctx);
 			while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(265);
+					setState(280);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,33,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,34,_ctx) ) {
 					case 1:
 						{
 						_localctx = new Term_powerArithTermContext(new TermContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_term);
-						setState(253);
+						setState(268);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(254);
+						setState(269);
 						match(POWER);
-						setState(255);
+						setState(270);
 						term(4);
 						}
 						break;
@@ -2209,9 +2358,9 @@ public class ASPCore2Parser extends Parser {
 						{
 						_localctx = new Term_timesdivmodArithTermContext(new TermContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_term);
-						setState(256);
+						setState(271);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(257);
+						setState(272);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TIMES) | (1L << DIV) | (1L << MODULO))) != 0)) ) {
 						_errHandler.recoverInline(this);
@@ -2221,7 +2370,7 @@ public class ASPCore2Parser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(258);
+						setState(273);
 						term(4);
 						}
 						break;
@@ -2229,9 +2378,9 @@ public class ASPCore2Parser extends Parser {
 						{
 						_localctx = new Term_plusminusArithTermContext(new TermContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_term);
-						setState(259);
+						setState(274);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(260);
+						setState(275);
 						_la = _input.LA(1);
 						if ( !(_la==PLUS || _la==MINUS) ) {
 						_errHandler.recoverInline(this);
@@ -2241,7 +2390,7 @@ public class ASPCore2Parser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(261);
+						setState(276);
 						term(3);
 						}
 						break;
@@ -2249,20 +2398,20 @@ public class ASPCore2Parser extends Parser {
 						{
 						_localctx = new Term_bitxorArithTermContext(new TermContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_term);
-						setState(262);
+						setState(277);
 						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-						setState(263);
+						setState(278);
 						match(BITXOR);
-						setState(264);
+						setState(279);
 						term(2);
 						}
 						break;
 					}
 					} 
 				}
-				setState(269);
+				setState(284);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,34,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,35,_ctx);
 			}
 			}
 		}
@@ -2313,12 +2462,12 @@ public class ASPCore2Parser extends Parser {
 
 	public final IntervalContext interval() throws RecognitionException {
 		IntervalContext _localctx = new IntervalContext(_ctx, getState());
-		enterRule(_localctx, 46, RULE_interval);
+		enterRule(_localctx, 52, RULE_interval);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(270);
+			setState(285);
 			((IntervalContext)_localctx).lower = _input.LT(1);
 			_la = _input.LA(1);
 			if ( !(_la==VARIABLE || _la==NUMBER) ) {
@@ -2329,11 +2478,11 @@ public class ASPCore2Parser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(271);
+			setState(286);
 			match(DOT);
-			setState(272);
+			setState(287);
 			match(DOT);
-			setState(273);
+			setState(288);
 			((IntervalContext)_localctx).upper = _input.LT(1);
 			_la = _input.LA(1);
 			if ( !(_la==VARIABLE || _la==NUMBER) ) {
@@ -2394,49 +2543,49 @@ public class ASPCore2Parser extends Parser {
 
 	public final External_atomContext external_atom() throws RecognitionException {
 		External_atomContext _localctx = new External_atomContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_external_atom);
+		enterRule(_localctx, 54, RULE_external_atom);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(276);
+			setState(291);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==MINUS) {
 				{
-				setState(275);
+				setState(290);
 				match(MINUS);
 				}
 			}
 
-			setState(278);
+			setState(293);
 			match(AMPERSAND);
-			setState(279);
+			setState(294);
 			match(ID);
-			setState(284);
+			setState(299);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==SQUARE_OPEN) {
 				{
-				setState(280);
+				setState(295);
 				match(SQUARE_OPEN);
-				setState(281);
+				setState(296);
 				((External_atomContext)_localctx).input = terms();
-				setState(282);
+				setState(297);
 				match(SQUARE_CLOSE);
 				}
 			}
 
-			setState(290);
+			setState(305);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==PAREN_OPEN) {
 				{
-				setState(286);
+				setState(301);
 				match(PAREN_OPEN);
-				setState(287);
+				setState(302);
 				((External_atomContext)_localctx).output = terms();
-				setState(288);
+				setState(303);
 				match(PAREN_CLOSE);
 				}
 			}
@@ -2479,11 +2628,11 @@ public class ASPCore2Parser extends Parser {
 
 	public final DirectiveContext directive() throws RecognitionException {
 		DirectiveContext _localctx = new DirectiveContext(_ctx, getState());
-		enterRule(_localctx, 50, RULE_directive);
+		enterRule(_localctx, 56, RULE_directive);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(292);
+			setState(307);
 			directive_enumeration();
 			}
 		}
@@ -2523,17 +2672,17 @@ public class ASPCore2Parser extends Parser {
 
 	public final Directive_enumerationContext directive_enumeration() throws RecognitionException {
 		Directive_enumerationContext _localctx = new Directive_enumerationContext(_ctx, getState());
-		enterRule(_localctx, 52, RULE_directive_enumeration);
+		enterRule(_localctx, 58, RULE_directive_enumeration);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(294);
+			setState(309);
 			match(SHARP);
-			setState(295);
+			setState(310);
 			match(T__0);
-			setState(296);
+			setState(311);
 			match(ID);
-			setState(297);
+			setState(312);
 			match(DOT);
 			}
 		}
@@ -2577,21 +2726,21 @@ public class ASPCore2Parser extends Parser {
 
 	public final Basic_termsContext basic_terms() throws RecognitionException {
 		Basic_termsContext _localctx = new Basic_termsContext(_ctx, getState());
-		enterRule(_localctx, 54, RULE_basic_terms);
+		enterRule(_localctx, 60, RULE_basic_terms);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(299);
+			setState(314);
 			basic_term();
-			setState(302);
+			setState(317);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==COMMA) {
 				{
-				setState(300);
+				setState(315);
 				match(COMMA);
-				setState(301);
+				setState(316);
 				basic_terms();
 				}
 			}
@@ -2637,9 +2786,9 @@ public class ASPCore2Parser extends Parser {
 
 	public final Basic_termContext basic_term() throws RecognitionException {
 		Basic_termContext _localctx = new Basic_termContext(_ctx, getState());
-		enterRule(_localctx, 56, RULE_basic_term);
+		enterRule(_localctx, 62, RULE_basic_term);
 		try {
-			setState(306);
+			setState(321);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case MINUS:
@@ -2648,7 +2797,7 @@ public class ASPCore2Parser extends Parser {
 			case QUOTED_STRING:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(304);
+				setState(319);
 				ground_term();
 				}
 				break;
@@ -2656,7 +2805,7 @@ public class ASPCore2Parser extends Parser {
 			case VARIABLE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(305);
+				setState(320);
 				variable_term();
 				}
 				break;
@@ -2701,23 +2850,23 @@ public class ASPCore2Parser extends Parser {
 
 	public final Ground_termContext ground_term() throws RecognitionException {
 		Ground_termContext _localctx = new Ground_termContext(_ctx, getState());
-		enterRule(_localctx, 58, RULE_ground_term);
+		enterRule(_localctx, 64, RULE_ground_term);
 		int _la;
 		try {
-			setState(314);
+			setState(329);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(308);
+				setState(323);
 				match(ID);
 				}
 				break;
 			case QUOTED_STRING:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(309);
+				setState(324);
 				match(QUOTED_STRING);
 				}
 				break;
@@ -2725,17 +2874,17 @@ public class ASPCore2Parser extends Parser {
 			case NUMBER:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(311);
+				setState(326);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==MINUS) {
 					{
-					setState(310);
+					setState(325);
 					match(MINUS);
 					}
 				}
 
-				setState(313);
+				setState(328);
 				match(NUMBER);
 				}
 				break;
@@ -2778,12 +2927,12 @@ public class ASPCore2Parser extends Parser {
 
 	public final Variable_termContext variable_term() throws RecognitionException {
 		Variable_termContext _localctx = new Variable_termContext(_ctx, getState());
-		enterRule(_localctx, 60, RULE_variable_term);
+		enterRule(_localctx, 66, RULE_variable_term);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(316);
+			setState(331);
 			_la = _input.LA(1);
 			if ( !(_la==ANONYMOUS_VARIABLE || _la==VARIABLE) ) {
 			_errHandler.recoverInline(this);
@@ -2840,40 +2989,40 @@ public class ASPCore2Parser extends Parser {
 
 	public final Answer_setContext answer_set() throws RecognitionException {
 		Answer_setContext _localctx = new Answer_setContext(_ctx, getState());
-		enterRule(_localctx, 62, RULE_answer_set);
+		enterRule(_localctx, 68, RULE_answer_set);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(318);
+			setState(333);
 			match(CURLY_OPEN);
-			setState(320);
+			setState(335);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==MINUS || _la==ID) {
 				{
-				setState(319);
+				setState(334);
 				classical_literal();
 				}
 			}
 
-			setState(326);
+			setState(341);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				setState(322);
+				setState(337);
 				match(COMMA);
-				setState(323);
+				setState(338);
 				classical_literal();
 				}
 				}
-				setState(328);
+				setState(343);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(329);
+			setState(344);
 			match(CURLY_CLOSE);
 			}
 		}
@@ -2917,26 +3066,26 @@ public class ASPCore2Parser extends Parser {
 
 	public final Answer_setsContext answer_sets() throws RecognitionException {
 		Answer_setsContext _localctx = new Answer_setsContext(_ctx, getState());
-		enterRule(_localctx, 64, RULE_answer_sets);
+		enterRule(_localctx, 70, RULE_answer_sets);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(334);
+			setState(349);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==CURLY_OPEN) {
 				{
 				{
-				setState(331);
+				setState(346);
 				answer_set();
 				}
 				}
-				setState(336);
+				setState(351);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(337);
+			setState(352);
 			match(EOF);
 			}
 		}
@@ -2953,7 +3102,7 @@ public class ASPCore2Parser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 22:
+		case 25:
 			return term_sempred((TermContext)_localctx, predIndex);
 		}
 		return true;
@@ -2973,128 +3122,133 @@ public class ASPCore2Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3/\u0156\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3/\u0165\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
 		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\4\37\t\37\4 \t \4!"+
-		"\t!\4\"\t\"\3\2\5\2F\n\2\3\2\5\2I\n\2\3\2\3\2\3\3\6\3N\n\3\r\3\16\3O\3"+
-		"\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5"+
-		"c\n\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5k\n\5\3\6\3\6\5\6o\n\6\3\7\3\7\5\7s\n"+
-		"\7\3\7\3\7\5\7w\n\7\3\b\3\b\3\b\5\b|\n\b\3\t\3\t\5\t\u0080\n\t\3\t\3\t"+
-		"\5\t\u0084\n\t\3\t\3\t\3\t\3\t\5\t\u008a\n\t\3\n\3\n\3\n\5\n\u008f\n\n"+
-		"\3\13\3\13\5\13\u0093\n\13\3\13\3\13\5\13\u0097\n\13\5\13\u0099\n\13\3"+
-		"\f\5\f\u009c\n\f\3\f\3\f\3\f\5\f\u00a1\n\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f"+
-		"\5\f\u00aa\n\f\3\r\3\r\3\r\5\r\u00af\n\r\3\16\5\16\u00b2\n\16\3\16\3\16"+
-		"\5\16\u00b6\n\16\5\16\u00b8\n\16\3\17\3\17\3\20\3\20\3\20\5\20\u00bf\n"+
-		"\20\3\20\3\20\5\20\u00c3\n\20\3\21\3\21\3\21\3\21\3\22\3\22\3\22\5\22"+
-		"\u00cc\n\22\3\23\5\23\u00cf\n\23\3\23\3\23\3\23\5\23\u00d4\n\23\3\24\5"+
-		"\24\u00d7\n\24\3\24\3\24\3\24\3\24\3\24\5\24\u00de\n\24\3\25\3\25\3\25"+
-		"\3\25\3\26\3\26\3\27\3\27\3\27\5\27\u00e9\n\27\3\30\3\30\3\30\3\30\3\30"+
-		"\5\30\u00f0\n\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30"+
-		"\3\30\5\30\u00fe\n\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30"+
-		"\3\30\3\30\7\30\u010c\n\30\f\30\16\30\u010f\13\30\3\31\3\31\3\31\3\31"+
-		"\3\31\3\32\5\32\u0117\n\32\3\32\3\32\3\32\3\32\3\32\3\32\5\32\u011f\n"+
-		"\32\3\32\3\32\3\32\3\32\5\32\u0125\n\32\3\33\3\33\3\34\3\34\3\34\3\34"+
-		"\3\34\3\35\3\35\3\35\5\35\u0131\n\35\3\36\3\36\5\36\u0135\n\36\3\37\3"+
-		"\37\3\37\5\37\u013a\n\37\3\37\5\37\u013d\n\37\3 \3 \3!\3!\5!\u0143\n!"+
-		"\3!\3!\7!\u0147\n!\f!\16!\u014a\13!\3!\3!\3\"\7\"\u014f\n\"\f\"\16\"\u0152"+
-		"\13\"\3\"\3\"\3\"\2\3.#\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*"+
-		",.\60\62\64\668:<>@B\2\b\3\2%(\3\2\37$\4\2\20\21\23\23\3\2\16\17\3\2*"+
-		"+\4\2\4\4**\2\u016f\2E\3\2\2\2\4M\3\2\2\2\6Q\3\2\2\2\bj\3\2\2\2\nn\3\2"+
-		"\2\2\fr\3\2\2\2\16x\3\2\2\2\20\177\3\2\2\2\22\u008b\3\2\2\2\24\u0092\3"+
-		"\2\2\2\26\u009b\3\2\2\2\30\u00ab\3\2\2\2\32\u00b1\3\2\2\2\34\u00b9\3\2"+
-		"\2\2\36\u00bb\3\2\2\2 \u00c4\3\2\2\2\"\u00c8\3\2\2\2$\u00ce\3\2\2\2&\u00d6"+
-		"\3\2\2\2(\u00df\3\2\2\2*\u00e3\3\2\2\2,\u00e5\3\2\2\2.\u00fd\3\2\2\2\60"+
-		"\u0110\3\2\2\2\62\u0116\3\2\2\2\64\u0126\3\2\2\2\66\u0128\3\2\2\28\u012d"+
-		"\3\2\2\2:\u0134\3\2\2\2<\u013c\3\2\2\2>\u013e\3\2\2\2@\u0140\3\2\2\2B"+
-		"\u0150\3\2\2\2DF\5\4\3\2ED\3\2\2\2EF\3\2\2\2FH\3\2\2\2GI\5\6\4\2HG\3\2"+
-		"\2\2HI\3\2\2\2IJ\3\2\2\2JK\7\2\2\3K\3\3\2\2\2LN\5\b\5\2ML\3\2\2\2NO\3"+
-		"\2\2\2OM\3\2\2\2OP\3\2\2\2P\5\3\2\2\2QR\5&\24\2RS\7\7\2\2S\7\3\2\2\2T"+
-		"U\5\n\6\2UV\7\5\2\2Vk\3\2\2\2WX\7\f\2\2XY\5\f\7\2YZ\7\5\2\2Zk\3\2\2\2"+
-		"[\\\5\n\6\2\\]\7\f\2\2]^\5\f\7\2^_\7\5\2\2_k\3\2\2\2`b\7\r\2\2ac\5\f\7"+
-		"\2ba\3\2\2\2bc\3\2\2\2cd\3\2\2\2de\7\5\2\2ef\7\33\2\2fg\5\36\20\2gh\7"+
-		"\34\2\2hk\3\2\2\2ik\5\64\33\2jT\3\2\2\2jW\3\2\2\2j[\3\2\2\2j`\3\2\2\2"+
-		"ji\3\2\2\2k\t\3\2\2\2lo\5\16\b\2mo\5\20\t\2nl\3\2\2\2nm\3\2\2\2o\13\3"+
-		"\2\2\2ps\5$\23\2qs\5\26\f\2rp\3\2\2\2rq\3\2\2\2sv\3\2\2\2tu\7\6\2\2uw"+
-		"\5\f\7\2vt\3\2\2\2vw\3\2\2\2w\r\3\2\2\2x{\5&\24\2yz\7\n\2\2z|\5\16\b\2"+
-		"{y\3\2\2\2{|\3\2\2\2|\17\3\2\2\2}~\7+\2\2~\u0080\5*\26\2\177}\3\2\2\2"+
-		"\177\u0080\3\2\2\2\u0080\u0081\3\2\2\2\u0081\u0083\7\35\2\2\u0082\u0084"+
-		"\5\22\n\2\u0083\u0082\3\2\2\2\u0083\u0084\3\2\2\2\u0084\u0085\3\2\2\2"+
-		"\u0085\u0089\7\36\2\2\u0086\u0087\5*\26\2\u0087\u0088\7+\2\2\u0088\u008a"+
-		"\3\2\2\2\u0089\u0086\3\2\2\2\u0089\u008a\3\2\2\2\u008a\21\3\2\2\2\u008b"+
-		"\u008e\5\24\13\2\u008c\u008d\7\t\2\2\u008d\u008f\5\22\n\2\u008e\u008c"+
-		"\3\2\2\2\u008e\u008f\3\2\2\2\u008f\23\3\2\2\2\u0090\u0093\5&\24\2\u0091"+
-		"\u0093\5 \21\2\u0092\u0090\3\2\2\2\u0092\u0091\3\2\2\2\u0093\u0098\3\2"+
-		"\2\2\u0094\u0096\7\b\2\2\u0095\u0097\5\"\22\2\u0096\u0095\3\2\2\2\u0096"+
-		"\u0097\3\2\2\2\u0097\u0099\3\2\2\2\u0098\u0094\3\2\2\2\u0098\u0099\3\2"+
-		"\2\2\u0099\25\3\2\2\2\u009a\u009c\7\13\2\2\u009b\u009a\3\2\2\2\u009b\u009c"+
-		"\3\2\2\2\u009c\u00a0\3\2\2\2\u009d\u009e\5.\30\2\u009e\u009f\5*\26\2\u009f"+
-		"\u00a1\3\2\2\2\u00a0\u009d\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1\u00a2\3\2"+
-		"\2\2\u00a2\u00a3\5\34\17\2\u00a3\u00a4\7\35\2\2\u00a4\u00a5\5\30\r\2\u00a5"+
-		"\u00a9\7\36\2\2\u00a6\u00a7\5*\26\2\u00a7\u00a8\5.\30\2\u00a8\u00aa\3"+
-		"\2\2\2\u00a9\u00a6\3\2\2\2\u00a9\u00aa\3\2\2\2\u00aa\27\3\2\2\2\u00ab"+
-		"\u00ae\5\32\16\2\u00ac\u00ad\7\t\2\2\u00ad\u00af\5\30\r\2\u00ae\u00ac"+
-		"\3\2\2\2\u00ae\u00af\3\2\2\2\u00af\31\3\2\2\2\u00b0\u00b2\58\35\2\u00b1"+
-		"\u00b0\3\2\2\2\u00b1\u00b2\3\2\2\2\u00b2\u00b7\3\2\2\2\u00b3\u00b5\7\b"+
-		"\2\2\u00b4\u00b6\5\"\22\2\u00b5\u00b4\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6"+
-		"\u00b8\3\2\2\2\u00b7\u00b3\3\2\2\2\u00b7\u00b8\3\2\2\2\u00b8\33\3\2\2"+
-		"\2\u00b9\u00ba\t\2\2\2\u00ba\35\3\2\2\2\u00bb\u00be\5.\30\2\u00bc\u00bd"+
-		"\7\25\2\2\u00bd\u00bf\5.\30\2\u00be\u00bc\3\2\2\2\u00be\u00bf\3\2\2\2"+
-		"\u00bf\u00c2\3\2\2\2\u00c0\u00c1\7\6\2\2\u00c1\u00c3\5,\27\2\u00c2\u00c0"+
-		"\3\2\2\2\u00c2\u00c3\3\2\2\2\u00c3\37\3\2\2\2\u00c4\u00c5\5$\23\2\u00c5"+
-		"\u00c6\7\b\2\2\u00c6\u00c7\5$\23\2\u00c7!\3\2\2\2\u00c8\u00cb\5$\23\2"+
-		"\u00c9\u00ca\7\6\2\2\u00ca\u00cc\5\"\22\2\u00cb\u00c9\3\2\2\2\u00cb\u00cc"+
-		"\3\2\2\2\u00cc#\3\2\2\2\u00cd\u00cf\7\13\2\2\u00ce\u00cd\3\2\2\2\u00ce"+
-		"\u00cf\3\2\2\2\u00cf\u00d3\3\2\2\2\u00d0\u00d4\5\62\32\2\u00d1\u00d4\5"+
-		"&\24\2\u00d2\u00d4\5(\25\2\u00d3\u00d0\3\2\2\2\u00d3\u00d1\3\2\2\2\u00d3"+
-		"\u00d2\3\2\2\2\u00d4%\3\2\2\2\u00d5\u00d7\7\17\2\2\u00d6\u00d5\3\2\2\2"+
-		"\u00d6\u00d7\3\2\2\2\u00d7\u00d8\3\2\2\2\u00d8\u00dd\7)\2\2\u00d9\u00da"+
-		"\7\31\2\2\u00da\u00db\5,\27\2\u00db\u00dc\7\32\2\2\u00dc\u00de\3\2\2\2"+
-		"\u00dd\u00d9\3\2\2\2\u00dd\u00de\3\2\2\2\u00de\'\3\2\2\2\u00df\u00e0\5"+
-		".\30\2\u00e0\u00e1\5*\26\2\u00e1\u00e2\5.\30\2\u00e2)\3\2\2\2\u00e3\u00e4"+
-		"\t\3\2\2\u00e4+\3\2\2\2\u00e5\u00e8\5.\30\2\u00e6\u00e7\7\6\2\2\u00e7"+
-		"\u00e9\5,\27\2\u00e8\u00e6\3\2\2\2\u00e8\u00e9\3\2\2\2\u00e9-\3\2\2\2"+
-		"\u00ea\u00eb\b\30\1\2\u00eb\u00fe\7)\2\2\u00ec\u00ed\7)\2\2\u00ed\u00ef"+
-		"\7\31\2\2\u00ee\u00f0\5,\27\2\u00ef\u00ee\3\2\2\2\u00ef\u00f0\3\2\2\2"+
-		"\u00f0\u00f1\3\2\2\2\u00f1\u00fe\7\32\2\2\u00f2\u00fe\7+\2\2\u00f3\u00fe"+
-		"\7,\2\2\u00f4\u00fe\7*\2\2\u00f5\u00fe\7\4\2\2\u00f6\u00f7\7\31\2\2\u00f7"+
-		"\u00f8\5.\30\2\u00f8\u00f9\7\32\2\2\u00f9\u00fe\3\2\2\2\u00fa\u00fe\5"+
-		"\60\31\2\u00fb\u00fc\7\17\2\2\u00fc\u00fe\5.\30\7\u00fd\u00ea\3\2\2\2"+
-		"\u00fd\u00ec\3\2\2\2\u00fd\u00f2\3\2\2\2\u00fd\u00f3\3\2\2\2\u00fd\u00f4"+
-		"\3\2\2\2\u00fd\u00f5\3\2\2\2\u00fd\u00f6\3\2\2\2\u00fd\u00fa\3\2\2\2\u00fd"+
-		"\u00fb\3\2\2\2\u00fe\u010d\3\2\2\2\u00ff\u0100\f\6\2\2\u0100\u0101\7\22"+
-		"\2\2\u0101\u010c\5.\30\6\u0102\u0103\f\5\2\2\u0103\u0104\t\4\2\2\u0104"+
-		"\u010c\5.\30\6\u0105\u0106\f\4\2\2\u0106\u0107\t\5\2\2\u0107\u010c\5."+
-		"\30\5\u0108\u0109\f\3\2\2\u0109\u010a\7\24\2\2\u010a\u010c\5.\30\4\u010b"+
-		"\u00ff\3\2\2\2\u010b\u0102\3\2\2\2\u010b\u0105\3\2\2\2\u010b\u0108\3\2"+
-		"\2\2\u010c\u010f\3\2\2\2\u010d\u010b\3\2\2\2\u010d\u010e\3\2\2\2\u010e"+
-		"/\3\2\2\2\u010f\u010d\3\2\2\2\u0110\u0111\t\6\2\2\u0111\u0112\7\5\2\2"+
-		"\u0112\u0113\7\5\2\2\u0113\u0114\t\6\2\2\u0114\61\3\2\2\2\u0115\u0117"+
-		"\7\17\2\2\u0116\u0115\3\2\2\2\u0116\u0117\3\2\2\2\u0117\u0118\3\2\2\2"+
-		"\u0118\u0119\7\27\2\2\u0119\u011e\7)\2\2\u011a\u011b\7\33\2\2\u011b\u011c"+
-		"\5,\27\2\u011c\u011d\7\34\2\2\u011d\u011f\3\2\2\2\u011e\u011a\3\2\2\2"+
-		"\u011e\u011f\3\2\2\2\u011f\u0124\3\2\2\2\u0120\u0121\7\31\2\2\u0121\u0122"+
-		"\5,\27\2\u0122\u0123\7\32\2\2\u0123\u0125\3\2\2\2\u0124\u0120\3\2\2\2"+
-		"\u0124\u0125\3\2\2\2\u0125\63\3\2\2\2\u0126\u0127\5\66\34\2\u0127\65\3"+
-		"\2\2\2\u0128\u0129\7\26\2\2\u0129\u012a\7\3\2\2\u012a\u012b\7)\2\2\u012b"+
-		"\u012c\7\5\2\2\u012c\67\3\2\2\2\u012d\u0130\5:\36\2\u012e\u012f\7\6\2"+
-		"\2\u012f\u0131\58\35\2\u0130\u012e\3\2\2\2\u0130\u0131\3\2\2\2\u01319"+
-		"\3\2\2\2\u0132\u0135\5<\37\2\u0133\u0135\5> \2\u0134\u0132\3\2\2\2\u0134"+
-		"\u0133\3\2\2\2\u0135;\3\2\2\2\u0136\u013d\7)\2\2\u0137\u013d\7,\2\2\u0138"+
-		"\u013a\7\17\2\2\u0139\u0138\3\2\2\2\u0139\u013a\3\2\2\2\u013a\u013b\3"+
-		"\2\2\2\u013b\u013d\7+\2\2\u013c\u0136\3\2\2\2\u013c\u0137\3\2\2\2\u013c"+
-		"\u0139\3\2\2\2\u013d=\3\2\2\2\u013e\u013f\t\7\2\2\u013f?\3\2\2\2\u0140"+
-		"\u0142\7\35\2\2\u0141\u0143\5&\24\2\u0142\u0141\3\2\2\2\u0142\u0143\3"+
-		"\2\2\2\u0143\u0148\3\2\2\2\u0144\u0145\7\6\2\2\u0145\u0147\5&\24\2\u0146"+
-		"\u0144\3\2\2\2\u0147\u014a\3\2\2\2\u0148\u0146\3\2\2\2\u0148\u0149\3\2"+
-		"\2\2\u0149\u014b\3\2\2\2\u014a\u0148\3\2\2\2\u014b\u014c\7\36\2\2\u014c"+
-		"A\3\2\2\2\u014d\u014f\5@!\2\u014e\u014d\3\2\2\2\u014f\u0152\3\2\2\2\u0150"+
-		"\u014e\3\2\2\2\u0150\u0151\3\2\2\2\u0151\u0153\3\2\2\2\u0152\u0150\3\2"+
-		"\2\2\u0153\u0154\7\2\2\3\u0154C\3\2\2\2/EHObjnrv{\177\u0083\u0089\u008e"+
-		"\u0092\u0096\u0098\u009b\u00a0\u00a9\u00ae\u00b1\u00b5\u00b7\u00be\u00c2"+
-		"\u00cb\u00ce\u00d3\u00d6\u00dd\u00e8\u00ef\u00fd\u010b\u010d\u0116\u011e"+
-		"\u0124\u0130\u0134\u0139\u013c\u0142\u0148\u0150";
+		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\3\2\5\2L\n\2\3\2\5\2O\n\2\3\2\3\2\3\3\6"+
+		"\3T\n\3\r\3\16\3U\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
+		"\3\5\3\5\3\5\3\5\5\5i\n\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5q\n\5\3\6\3\6\5\6"+
+		"u\n\6\3\7\3\7\5\7y\n\7\3\7\3\7\5\7}\n\7\3\b\3\b\3\b\5\b\u0082\n\b\3\t"+
+		"\3\t\5\t\u0086\n\t\3\t\3\t\5\t\u008a\n\t\3\t\3\t\3\t\3\t\5\t\u0090\n\t"+
+		"\3\n\3\n\3\n\5\n\u0095\n\n\3\13\3\13\5\13\u0099\n\13\3\13\3\13\5\13\u009d"+
+		"\n\13\5\13\u009f\n\13\3\f\5\f\u00a2\n\f\3\f\3\f\3\f\5\f\u00a7\n\f\3\f"+
+		"\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00b0\n\f\3\r\3\r\3\r\5\r\u00b5\n\r\3\16"+
+		"\5\16\u00b8\n\16\3\16\3\16\5\16\u00bc\n\16\5\16\u00be\n\16\3\17\3\17\3"+
+		"\20\3\20\3\20\5\20\u00c5\n\20\3\20\3\20\5\20\u00c9\n\20\3\21\3\21\3\21"+
+		"\5\21\u00ce\n\21\3\22\5\22\u00d1\n\22\3\22\3\22\3\22\5\22\u00d6\n\22\3"+
+		"\23\3\23\3\23\3\23\3\24\3\24\3\25\3\25\3\25\5\25\u00e1\n\25\3\26\3\26"+
+		"\3\27\5\27\u00e6\n\27\3\27\3\27\3\27\3\27\3\27\5\27\u00ed\n\27\3\30\3"+
+		"\30\3\30\3\30\3\31\3\31\3\32\3\32\3\32\5\32\u00f8\n\32\3\33\3\33\3\33"+
+		"\3\33\3\33\5\33\u00ff\n\33\3\33\3\33\3\33\3\33\3\33\3\33\3\33\3\33\3\33"+
+		"\3\33\3\33\3\33\5\33\u010d\n\33\3\33\3\33\3\33\3\33\3\33\3\33\3\33\3\33"+
+		"\3\33\3\33\3\33\3\33\7\33\u011b\n\33\f\33\16\33\u011e\13\33\3\34\3\34"+
+		"\3\34\3\34\3\34\3\35\5\35\u0126\n\35\3\35\3\35\3\35\3\35\3\35\3\35\5\35"+
+		"\u012e\n\35\3\35\3\35\3\35\3\35\5\35\u0134\n\35\3\36\3\36\3\37\3\37\3"+
+		"\37\3\37\3\37\3 \3 \3 \5 \u0140\n \3!\3!\5!\u0144\n!\3\"\3\"\3\"\5\"\u0149"+
+		"\n\"\3\"\5\"\u014c\n\"\3#\3#\3$\3$\5$\u0152\n$\3$\3$\7$\u0156\n$\f$\16"+
+		"$\u0159\13$\3$\3$\3%\7%\u015e\n%\f%\16%\u0161\13%\3%\3%\3%\2\3\64&\2\4"+
+		"\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFH\2\b"+
+		"\3\2%(\3\2\37$\4\2\20\21\23\23\3\2\16\17\3\2*+\4\2\4\4**\2\u017c\2K\3"+
+		"\2\2\2\4S\3\2\2\2\6W\3\2\2\2\bp\3\2\2\2\nt\3\2\2\2\fx\3\2\2\2\16~\3\2"+
+		"\2\2\20\u0085\3\2\2\2\22\u0091\3\2\2\2\24\u0098\3\2\2\2\26\u00a1\3\2\2"+
+		"\2\30\u00b1\3\2\2\2\32\u00b7\3\2\2\2\34\u00bf\3\2\2\2\36\u00c1\3\2\2\2"+
+		" \u00ca\3\2\2\2\"\u00d0\3\2\2\2$\u00d7\3\2\2\2&\u00db\3\2\2\2(\u00dd\3"+
+		"\2\2\2*\u00e2\3\2\2\2,\u00e5\3\2\2\2.\u00ee\3\2\2\2\60\u00f2\3\2\2\2\62"+
+		"\u00f4\3\2\2\2\64\u010c\3\2\2\2\66\u011f\3\2\2\28\u0125\3\2\2\2:\u0135"+
+		"\3\2\2\2<\u0137\3\2\2\2>\u013c\3\2\2\2@\u0143\3\2\2\2B\u014b\3\2\2\2D"+
+		"\u014d\3\2\2\2F\u014f\3\2\2\2H\u015f\3\2\2\2JL\5\4\3\2KJ\3\2\2\2KL\3\2"+
+		"\2\2LN\3\2\2\2MO\5\6\4\2NM\3\2\2\2NO\3\2\2\2OP\3\2\2\2PQ\7\2\2\3Q\3\3"+
+		"\2\2\2RT\5\b\5\2SR\3\2\2\2TU\3\2\2\2US\3\2\2\2UV\3\2\2\2V\5\3\2\2\2WX"+
+		"\5,\27\2XY\7\7\2\2Y\7\3\2\2\2Z[\5\n\6\2[\\\7\5\2\2\\q\3\2\2\2]^\7\f\2"+
+		"\2^_\5\f\7\2_`\7\5\2\2`q\3\2\2\2ab\5\n\6\2bc\7\f\2\2cd\5\f\7\2de\7\5\2"+
+		"\2eq\3\2\2\2fh\7\r\2\2gi\5\f\7\2hg\3\2\2\2hi\3\2\2\2ij\3\2\2\2jk\7\5\2"+
+		"\2kl\7\33\2\2lm\5\36\20\2mn\7\34\2\2nq\3\2\2\2oq\5:\36\2pZ\3\2\2\2p]\3"+
+		"\2\2\2pa\3\2\2\2pf\3\2\2\2po\3\2\2\2q\t\3\2\2\2ru\5\16\b\2su\5\20\t\2"+
+		"tr\3\2\2\2ts\3\2\2\2u\13\3\2\2\2vy\5\"\22\2wy\5\26\f\2xv\3\2\2\2xw\3\2"+
+		"\2\2y|\3\2\2\2z{\7\6\2\2{}\5\f\7\2|z\3\2\2\2|}\3\2\2\2}\r\3\2\2\2~\u0081"+
+		"\5,\27\2\177\u0080\7\n\2\2\u0080\u0082\5\16\b\2\u0081\177\3\2\2\2\u0081"+
+		"\u0082\3\2\2\2\u0082\17\3\2\2\2\u0083\u0084\7+\2\2\u0084\u0086\5\60\31"+
+		"\2\u0085\u0083\3\2\2\2\u0085\u0086\3\2\2\2\u0086\u0087\3\2\2\2\u0087\u0089"+
+		"\7\35\2\2\u0088\u008a\5\22\n\2\u0089\u0088\3\2\2\2\u0089\u008a\3\2\2\2"+
+		"\u008a\u008b\3\2\2\2\u008b\u008f\7\36\2\2\u008c\u008d\5\60\31\2\u008d"+
+		"\u008e\7+\2\2\u008e\u0090\3\2\2\2\u008f\u008c\3\2\2\2\u008f\u0090\3\2"+
+		"\2\2\u0090\21\3\2\2\2\u0091\u0094\5\24\13\2\u0092\u0093\7\t\2\2\u0093"+
+		"\u0095\5\22\n\2\u0094\u0092\3\2\2\2\u0094\u0095\3\2\2\2\u0095\23\3\2\2"+
+		"\2\u0096\u0099\5$\23\2\u0097\u0099\5,\27\2\u0098\u0096\3\2\2\2\u0098\u0097"+
+		"\3\2\2\2\u0099\u009e\3\2\2\2\u009a\u009c\7\b\2\2\u009b\u009d\5 \21\2\u009c"+
+		"\u009b\3\2\2\2\u009c\u009d\3\2\2\2\u009d\u009f\3\2\2\2\u009e\u009a\3\2"+
+		"\2\2\u009e\u009f\3\2\2\2\u009f\25\3\2\2\2\u00a0\u00a2\7\13\2\2\u00a1\u00a0"+
+		"\3\2\2\2\u00a1\u00a2\3\2\2\2\u00a2\u00a6\3\2\2\2\u00a3\u00a4\5\64\33\2"+
+		"\u00a4\u00a5\5\60\31\2\u00a5\u00a7\3\2\2\2\u00a6\u00a3\3\2\2\2\u00a6\u00a7"+
+		"\3\2\2\2\u00a7\u00a8\3\2\2\2\u00a8\u00a9\5\34\17\2\u00a9\u00aa\7\35\2"+
+		"\2\u00aa\u00ab\5\30\r\2\u00ab\u00af\7\36\2\2\u00ac\u00ad\5\60\31\2\u00ad"+
+		"\u00ae\5\64\33\2\u00ae\u00b0\3\2\2\2\u00af\u00ac\3\2\2\2\u00af\u00b0\3"+
+		"\2\2\2\u00b0\27\3\2\2\2\u00b1\u00b4\5\32\16\2\u00b2\u00b3\7\t\2\2\u00b3"+
+		"\u00b5\5\30\r\2\u00b4\u00b2\3\2\2\2\u00b4\u00b5\3\2\2\2\u00b5\31\3\2\2"+
+		"\2\u00b6\u00b8\5> \2\u00b7\u00b6\3\2\2\2\u00b7\u00b8\3\2\2\2\u00b8\u00bd"+
+		"\3\2\2\2\u00b9\u00bb\7\b\2\2\u00ba\u00bc\5 \21\2\u00bb\u00ba\3\2\2\2\u00bb"+
+		"\u00bc\3\2\2\2\u00bc\u00be\3\2\2\2\u00bd\u00b9\3\2\2\2\u00bd\u00be\3\2"+
+		"\2\2\u00be\33\3\2\2\2\u00bf\u00c0\t\2\2\2\u00c0\35\3\2\2\2\u00c1\u00c4"+
+		"\5\64\33\2\u00c2\u00c3\7\25\2\2\u00c3\u00c5\5\64\33\2\u00c4\u00c2\3\2"+
+		"\2\2\u00c4\u00c5\3\2\2\2\u00c5\u00c8\3\2\2\2\u00c6\u00c7\7\6\2\2\u00c7"+
+		"\u00c9\5\62\32\2\u00c8\u00c6\3\2\2\2\u00c8\u00c9\3\2\2\2\u00c9\37\3\2"+
+		"\2\2\u00ca\u00cd\5\"\22\2\u00cb\u00cc\7\6\2\2\u00cc\u00ce\5 \21\2\u00cd"+
+		"\u00cb\3\2\2\2\u00cd\u00ce\3\2\2\2\u00ce!\3\2\2\2\u00cf\u00d1\7\13\2\2"+
+		"\u00d0\u00cf\3\2\2\2\u00d0\u00d1\3\2\2\2\u00d1\u00d5\3\2\2\2\u00d2\u00d6"+
+		"\58\35\2\u00d3\u00d6\5,\27\2\u00d4\u00d6\5.\30\2\u00d5\u00d2\3\2\2\2\u00d5"+
+		"\u00d3\3\2\2\2\u00d5\u00d4\3\2\2\2\u00d6#\3\2\2\2\u00d7\u00d8\5&\24\2"+
+		"\u00d8\u00d9\7\b\2\2\u00d9\u00da\5(\25\2\u00da%\3\2\2\2\u00db\u00dc\5"+
+		",\27\2\u00dc\'\3\2\2\2\u00dd\u00e0\5*\26\2\u00de\u00df\7\6\2\2\u00df\u00e1"+
+		"\5*\26\2\u00e0\u00de\3\2\2\2\u00e0\u00e1\3\2\2\2\u00e1)\3\2\2\2\u00e2"+
+		"\u00e3\5,\27\2\u00e3+\3\2\2\2\u00e4\u00e6\7\17\2\2\u00e5\u00e4\3\2\2\2"+
+		"\u00e5\u00e6\3\2\2\2\u00e6\u00e7\3\2\2\2\u00e7\u00ec\7)\2\2\u00e8\u00e9"+
+		"\7\31\2\2\u00e9\u00ea\5\62\32\2\u00ea\u00eb\7\32\2\2\u00eb\u00ed\3\2\2"+
+		"\2\u00ec\u00e8\3\2\2\2\u00ec\u00ed\3\2\2\2\u00ed-\3\2\2\2\u00ee\u00ef"+
+		"\5\64\33\2\u00ef\u00f0\5\60\31\2\u00f0\u00f1\5\64\33\2\u00f1/\3\2\2\2"+
+		"\u00f2\u00f3\t\3\2\2\u00f3\61\3\2\2\2\u00f4\u00f7\5\64\33\2\u00f5\u00f6"+
+		"\7\6\2\2\u00f6\u00f8\5\62\32\2\u00f7\u00f5\3\2\2\2\u00f7\u00f8\3\2\2\2"+
+		"\u00f8\63\3\2\2\2\u00f9\u00fa\b\33\1\2\u00fa\u010d\7)\2\2\u00fb\u00fc"+
+		"\7)\2\2\u00fc\u00fe\7\31\2\2\u00fd\u00ff\5\62\32\2\u00fe\u00fd\3\2\2\2"+
+		"\u00fe\u00ff\3\2\2\2\u00ff\u0100\3\2\2\2\u0100\u010d\7\32\2\2\u0101\u010d"+
+		"\7+\2\2\u0102\u010d\7,\2\2\u0103\u010d\7*\2\2\u0104\u010d\7\4\2\2\u0105"+
+		"\u0106\7\31\2\2\u0106\u0107\5\64\33\2\u0107\u0108\7\32\2\2\u0108\u010d"+
+		"\3\2\2\2\u0109\u010d\5\66\34\2\u010a\u010b\7\17\2\2\u010b\u010d\5\64\33"+
+		"\7\u010c\u00f9\3\2\2\2\u010c\u00fb\3\2\2\2\u010c\u0101\3\2\2\2\u010c\u0102"+
+		"\3\2\2\2\u010c\u0103\3\2\2\2\u010c\u0104\3\2\2\2\u010c\u0105\3\2\2\2\u010c"+
+		"\u0109\3\2\2\2\u010c\u010a\3\2\2\2\u010d\u011c\3\2\2\2\u010e\u010f\f\6"+
+		"\2\2\u010f\u0110\7\22\2\2\u0110\u011b\5\64\33\6\u0111\u0112\f\5\2\2\u0112"+
+		"\u0113\t\4\2\2\u0113\u011b\5\64\33\6\u0114\u0115\f\4\2\2\u0115\u0116\t"+
+		"\5\2\2\u0116\u011b\5\64\33\5\u0117\u0118\f\3\2\2\u0118\u0119\7\24\2\2"+
+		"\u0119\u011b\5\64\33\4\u011a\u010e\3\2\2\2\u011a\u0111\3\2\2\2\u011a\u0114"+
+		"\3\2\2\2\u011a\u0117\3\2\2\2\u011b\u011e\3\2\2\2\u011c\u011a\3\2\2\2\u011c"+
+		"\u011d\3\2\2\2\u011d\65\3\2\2\2\u011e\u011c\3\2\2\2\u011f\u0120\t\6\2"+
+		"\2\u0120\u0121\7\5\2\2\u0121\u0122\7\5\2\2\u0122\u0123\t\6\2\2\u0123\67"+
+		"\3\2\2\2\u0124\u0126\7\17\2\2\u0125\u0124\3\2\2\2\u0125\u0126\3\2\2\2"+
+		"\u0126\u0127\3\2\2\2\u0127\u0128\7\27\2\2\u0128\u012d\7)\2\2\u0129\u012a"+
+		"\7\33\2\2\u012a\u012b\5\62\32\2\u012b\u012c\7\34\2\2\u012c\u012e\3\2\2"+
+		"\2\u012d\u0129\3\2\2\2\u012d\u012e\3\2\2\2\u012e\u0133\3\2\2\2\u012f\u0130"+
+		"\7\31\2\2\u0130\u0131\5\62\32\2\u0131\u0132\7\32\2\2\u0132\u0134\3\2\2"+
+		"\2\u0133\u012f\3\2\2\2\u0133\u0134\3\2\2\2\u01349\3\2\2\2\u0135\u0136"+
+		"\5<\37\2\u0136;\3\2\2\2\u0137\u0138\7\26\2\2\u0138\u0139\7\3\2\2\u0139"+
+		"\u013a\7)\2\2\u013a\u013b\7\5\2\2\u013b=\3\2\2\2\u013c\u013f\5@!\2\u013d"+
+		"\u013e\7\6\2\2\u013e\u0140\5> \2\u013f\u013d\3\2\2\2\u013f\u0140\3\2\2"+
+		"\2\u0140?\3\2\2\2\u0141\u0144\5B\"\2\u0142\u0144\5D#\2\u0143\u0141\3\2"+
+		"\2\2\u0143\u0142\3\2\2\2\u0144A\3\2\2\2\u0145\u014c\7)\2\2\u0146\u014c"+
+		"\7,\2\2\u0147\u0149\7\17\2\2\u0148\u0147\3\2\2\2\u0148\u0149\3\2\2\2\u0149"+
+		"\u014a\3\2\2\2\u014a\u014c\7+\2\2\u014b\u0145\3\2\2\2\u014b\u0146\3\2"+
+		"\2\2\u014b\u0148\3\2\2\2\u014cC\3\2\2\2\u014d\u014e\t\7\2\2\u014eE\3\2"+
+		"\2\2\u014f\u0151\7\35\2\2\u0150\u0152\5,\27\2\u0151\u0150\3\2\2\2\u0151"+
+		"\u0152\3\2\2\2\u0152\u0157\3\2\2\2\u0153\u0154\7\6\2\2\u0154\u0156\5,"+
+		"\27\2\u0155\u0153\3\2\2\2\u0156\u0159\3\2\2\2\u0157\u0155\3\2\2\2\u0157"+
+		"\u0158\3\2\2\2\u0158\u015a\3\2\2\2\u0159\u0157\3\2\2\2\u015a\u015b\7\36"+
+		"\2\2\u015bG\3\2\2\2\u015c\u015e\5F$\2\u015d\u015c\3\2\2\2\u015e\u0161"+
+		"\3\2\2\2\u015f\u015d\3\2\2\2\u015f\u0160\3\2\2\2\u0160\u0162\3\2\2\2\u0161"+
+		"\u015f\3\2\2\2\u0162\u0163\7\2\2\3\u0163I\3\2\2\2\60KNUhptx|\u0081\u0085"+
+		"\u0089\u008f\u0094\u0098\u009c\u009e\u00a1\u00a6\u00af\u00b4\u00b7\u00bb"+
+		"\u00bd\u00c4\u00c8\u00cd\u00d0\u00d5\u00e0\u00e5\u00ec\u00f7\u00fe\u010c"+
+		"\u011a\u011c\u0125\u012d\u0133\u013f\u0143\u0148\u014b\u0151\u0157\u015f";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

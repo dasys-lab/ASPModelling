@@ -208,16 +208,6 @@ public interface ASPCore2Listener extends ParseTreeListener {
 	 */
 	void exitWeight_at_level(ASPCore2Parser.Weight_at_levelContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
-	 * @param ctx the parse tree
-	 */
-	void enterConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
-	 * @param ctx the parse tree
-	 */
-	void exitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ASPCore2Parser#naf_literals}.
 	 * @param ctx the parse tree
 	 */
@@ -237,6 +227,46 @@ public interface ASPCore2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNaf_literal(ASPCore2Parser.Naf_literalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ASPCore2Parser#conditional}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditional(ASPCore2Parser.ConditionalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ASPCore2Parser#conditional}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditional(ASPCore2Parser.ConditionalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ASPCore2Parser#conditions}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditions(ASPCore2Parser.ConditionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ASPCore2Parser#conditions}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditions(ASPCore2Parser.ConditionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ASPCore2Parser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondition(ASPCore2Parser.ConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ASPCore2Parser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondition(ASPCore2Parser.ConditionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ASPCore2Parser#classical_literal}.
 	 * @param ctx the parse tree

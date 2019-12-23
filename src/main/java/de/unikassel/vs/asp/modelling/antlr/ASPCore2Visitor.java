@@ -130,12 +130,6 @@ public interface ASPCore2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWeight_at_level(ASPCore2Parser.Weight_at_levelContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link ASPCore2Parser#naf_literals}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -147,6 +141,30 @@ public interface ASPCore2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNaf_literal(ASPCore2Parser.Naf_literalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ASPCore2Parser#conditional_literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ASPCore2Parser#conditional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditional(ASPCore2Parser.ConditionalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ASPCore2Parser#conditions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditions(ASPCore2Parser.ConditionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ASPCore2Parser#condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition(ASPCore2Parser.ConditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ASPCore2Parser#classical_literal}.
 	 * @param ctx the parse tree

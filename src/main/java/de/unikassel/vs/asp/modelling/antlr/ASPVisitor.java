@@ -5,6 +5,8 @@ import de.unikassel.vs.asp.modelling.syntax.*;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.List;
+
 public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     boolean notToSet;
@@ -92,6 +94,65 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         if (naf != null) {
             notToSet = true;
         }
+        visitChildren(ctx);
+        return gen;
+    }
+
+    @Override
+    public AspGenerator visitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx) {
+        String text = ctx.getText();
+        currentConditionalLiteral = new ConditionalLiteral();
+        if (nextPredicateInChoice && currentChoice != null){
+            currentChoice.withPredicates(currentConditionalLiteral);
+        } else {
+            currentHeadOrBody.withPredicates(currentConditionalLiteral);
+        }
+        visitChildren(ctx);
+        return gen;
+    }
+
+    @Override
+    public AspGenerator visitConditional(ASPCore2Parser.ConditionalContext ctx) {
+        String text = ctx.getText();
+        Predicate conditional = new Predicate();
+        TerminalNode minus = ctx.classical_literal().MINUS();
+        TerminalNode id = ctx.classical_literal().ID();
+        String conditionalName = id.toString();
+        conditional.withName(conditionalName);
+        if (notToSet) {
+            conditional.withNot();
+            notToSet = false;
+        }
+        if (minus != null) {
+            conditional.withFalse();
+        }
+        currentConditionalLiteral.withConditional(conditional);
+        visitChildren(ctx);
+        return gen;
+    }
+
+    @Override
+    public AspGenerator visitConditions(ASPCore2Parser.ConditionsContext ctx) {
+        String text = ctx.getText();
+        List<ASPCore2Parser.ConditionContext> conditions = ctx.condition();
+        for (ASPCore2Parser.ConditionContext conditionContext: conditions){
+            Predicate condition = new Predicate();
+            TerminalNode minus = conditionContext.classical_literal().MINUS();
+            TerminalNode id = conditionContext.classical_literal().ID();
+            String conditionName = id.toString();
+            condition.withName(conditionName);
+            if (notToSet) {
+                condition.withNot();
+                notToSet = false;
+            }
+            if (minus != null) {
+                condition.withFalse();
+            }
+            currentConditionalLiteral.withConditions(condition);
+            visitChildren(ctx);
+        }
+
+
         visitChildren(ctx);
         return gen;
     }
