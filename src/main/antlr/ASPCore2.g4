@@ -43,19 +43,17 @@ aggregate_element : basic_terms? (COLON naf_literals?)?;
 aggregate_function : AGGREGATE_COUNT | AGGREGATE_MAX | AGGREGATE_MIN | AGGREGATE_SUM;
 
 weight_at_level : term (AT term)? (COMMA terms)?;
-
-
 naf_literals : naf_literal (COMMA naf_literals)?;
 
 naf_literal : NAF? (external_atom | classical_literal | builtin_atom);
 
 conditional_literal: conditional COLON conditions;
 
-conditional: NAF? classical_literal;
+conditional: NAF? MINUS? ID (PAREN_OPEN terms PAREN_CLOSE)?;
 
-conditions: NAF? condition (COMMA condition)?;
+conditions: condition (COMMA condition)?;
 
-condition: classical_literal;
+condition: NAF? MINUS? ID (PAREN_OPEN terms PAREN_CLOSE)?;
 
 classical_literal : MINUS? ID (PAREN_OPEN terms PAREN_CLOSE)?;
 

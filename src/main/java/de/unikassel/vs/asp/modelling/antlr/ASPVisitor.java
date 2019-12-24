@@ -114,19 +114,20 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     @Override
     public AspGenerator visitConditional(ASPCore2Parser.ConditionalContext ctx) {
         String text = ctx.getText();
-        Predicate conditional = new Predicate();
-        TerminalNode minus = ctx.classical_literal().MINUS();
-        TerminalNode id = ctx.classical_literal().ID();
+        currentPredicate = new Predicate();
+        TerminalNode minus = ctx.MINUS();
+        TerminalNode id = ctx.ID();
+        TerminalNode not = ctx.NAF();
         String conditionalName = id.toString();
-        conditional.withName(conditionalName);
-        if (notToSet) {
-            conditional.withNot();
+        currentPredicate.withName(conditionalName);
+        if (not != null) {
+            currentPredicate.withNot();
             notToSet = false;
         }
         if (minus != null) {
-            conditional.withFalse();
+            currentPredicate.withFalse();
         }
-        currentConditionalLiteral.withConditional(conditional);
+        currentConditionalLiteral.withConditional(currentPredicate);
         visitChildren(ctx);
         return gen;
     }
@@ -136,23 +137,21 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         String text = ctx.getText();
         List<ASPCore2Parser.ConditionContext> conditions = ctx.condition();
         for (ASPCore2Parser.ConditionContext conditionContext: conditions){
-            Predicate condition = new Predicate();
-            TerminalNode minus = conditionContext.classical_literal().MINUS();
-            TerminalNode id = conditionContext.classical_literal().ID();
+            currentPredicate = new Predicate();
+            TerminalNode minus = conditionContext.MINUS();
+            TerminalNode id = conditionContext.ID();
+            TerminalNode not = conditionContext.NAF();
             String conditionName = id.toString();
-            condition.withName(conditionName);
-            if (notToSet) {
-                condition.withNot();
+            currentPredicate.withName(conditionName);
+            if (not != null) {
+                currentPredicate.withNot();
                 notToSet = false;
             }
             if (minus != null) {
-                condition.withFalse();
+                currentPredicate.withFalse();
             }
-            currentConditionalLiteral.withConditions(condition);
-            visitChildren(ctx);
+            currentConditionalLiteral.withConditions(currentPredicate);
         }
-
-
         visitChildren(ctx);
         return gen;
     }

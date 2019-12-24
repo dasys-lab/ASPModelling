@@ -75,7 +75,7 @@ public class AspToJavaCodeTest {
     }
 
     @Test
-    public void testChoiceGeneration(){
+    public void testChoiceGeneration() {
 
         String testString = "{color(X)} = 1 :- node(X).";
 
@@ -105,7 +105,7 @@ public class AspToJavaCodeTest {
     }
 
     @Test
-    public void travelingSalesman(){
+    public void travelingSalesman() {
 
         String testString = "{cycle(X,Y): edge(X,Y)} = 1 :- node(X).\n" +
                             "{cycle(X,Y): edge(X,Y)} = 1 :- node(Y).\n" +
@@ -113,17 +113,18 @@ public class AspToJavaCodeTest {
                             "reached(Y) :- cycle(X,Y), reached(X).\n" +
                             ":- node(Y), not reached(Y).\n" +
                             "node(1..6).\n" +
-                            "edge(1,(2;3;4))\n" +
+                            "edge(1,(2;3;4)).\n" +
                             "cost(1,2,2).";
 
         String testString2 =    "reached(Y) :- cycle(1,Y).\n" +
                                 "reached(Y) :- cycle(X,Y), reached(X).\n" +
                                 ":- node(Y), not reached(Y).\n" +
                                 "node(1..6).\n" +
-                                "edge(1,(2;3;4))\n" +
+                                "edge(1,(2;3;4)).\n" +
                                 "cost(1,2,2).";
 
-        String testString3 = "{cycle(X,Y): edge(X,Y)} = 1 :- node(X).";
+        String testString3 = "node(1..6).\n" +
+                             "edge(1,(2;3;4)).";
 
 
         AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
