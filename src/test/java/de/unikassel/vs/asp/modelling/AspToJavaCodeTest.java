@@ -27,18 +27,8 @@ public class AspToJavaCodeTest {
 
         final String testString = "fromEddy(X) :- edge(eddy, X).";
 
-        CharStream stringStream = CharStreams.fromString(testString);
-
-        ASPCore2Lexer lexer = new ASPCore2Lexer(stringStream);
-
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-        ASPCore2Parser parser = new ASPCore2Parser(tokens);
-
-        ParseTree tree = parser.statements();
-
-        ASPVisitor aspVisitor = new ASPVisitor();
-        AspGenerator gen = aspVisitor.visit(tree);
+        AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
+        AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString);
         Assertions.assertEquals(testGen, gen);
         Assertions.assertEquals(testString, gen.toString());
     }
@@ -58,18 +48,8 @@ public class AspToJavaCodeTest {
 
         String testString = "fly(X) :- bird(X), not -fly(X).";
 
-        CharStream stringStream = CharStreams.fromString(testString);
-
-        ASPCore2Lexer lexer = new ASPCore2Lexer(stringStream);
-
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-        ASPCore2Parser parser = new ASPCore2Parser(tokens);
-
-        ParseTree tree = parser.statements();
-
-        ASPVisitor aspVisitor = new ASPVisitor();
-        AspGenerator gen = aspVisitor.visit(tree);
+        AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
+        AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString);
         Assertions.assertEquals(testGen, gen);
         Assertions.assertEquals(testString, gen.toString());
     }
@@ -88,18 +68,8 @@ public class AspToJavaCodeTest {
             .withBody(new Body()
                     .withPredicates(new Predicate().withName("node").withElements(new Variable().withName("X")))));
 
-        CharStream stringStream = CharStreams.fromString(testString);
-
-        ASPCore2Lexer lexer = new ASPCore2Lexer(stringStream);
-
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-        ASPCore2Parser parser = new ASPCore2Parser(tokens);
-
-        ParseTree tree = parser.statements();
-
-        ASPVisitor aspVisitor = new ASPVisitor();
-        AspGenerator gen = aspVisitor.visit(tree);
+        AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
+        AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString);
         Assertions.assertEquals(testGen, gen);
         Assertions.assertEquals(testString, gen.toString());
     }
