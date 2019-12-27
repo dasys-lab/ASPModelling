@@ -27,7 +27,6 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitHead(ASPCore2Parser.HeadContext ctx) {
-        String text = ctx.getText();
         if (currentRule.getHead() == null){
             currentHeadOrBody = new Head();
         }
@@ -38,7 +37,6 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitBody(ASPCore2Parser.BodyContext ctx) {
-        String text = ctx.getText();
         if (currentRule.getBody() == null){
             currentHeadOrBody = new Body();
         }
@@ -49,7 +47,6 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitChoice(ASPCore2Parser.ChoiceContext ctx) {
-        String text = ctx.getText();
         currentChoice = new Choice();
         currentHeadOrBody.withPredicates(currentChoice);
         nextPredicateInChoice = true;

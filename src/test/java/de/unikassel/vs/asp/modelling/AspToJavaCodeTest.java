@@ -107,31 +107,64 @@ public class AspToJavaCodeTest {
     @Test
     public void travelingSalesman() {
 
-        String testString = "{cycle(X,Y): edge(X,Y)} = 1 :- node(X).\n" +
-                            "{cycle(X,Y): edge(X,Y)} = 1 :- node(Y).\n" +
-                            "reached(Y) :- cycle(1,Y).\n" +
-                            "reached(Y) :- cycle(X,Y), reached(X).\n" +
+        String testString = "{cycle(X, Y) : edge(X, Y)} = 1 :- node(X).\n" +
+                            "{cycle(X, Y) : edge(X, Y)} = 1 :- node(Y).\n" +
+                            "reached(Y) :- cycle(1, Y).\n" +
+                            "reached(Y) :- cycle(X, Y), reached(X).\n" +
                             ":- node(Y), not reached(Y).\n" +
                             "node(1..6).\n" +
-                            "edge(1,(2;3;4)).\n" +
-                            "cost(1,2,2).";
+                            "cost(1, 2, 2).";
 
-        String testString2 =    "reached(Y) :- cycle(1,Y).\n" +
-                                "reached(Y) :- cycle(X,Y), reached(X).\n" +
-                                ":- node(Y), not reached(Y).\n" +
-                                "node(1..6).\n" +
-                                "edge(1,(2;3;4)).\n" +
-                                "cost(1,2,2).";
+        Variable x = new Variable();
+        x.withName("X");
+        Variable y = new Variable();
+        y.withName("Y");
 
-        String testString3 = "node(1..6).\n" +
-                             "edge(1,(2;3;4)).";
+        Constant one = new Constant();
+        one.withName("1");
 
+        Constant two = new Constant();
+        two.withName("2");
+
+        Rule rule1 = new Rule()
+                .withHead(new Head()
+                        .withPredicates(new Choice().withPredicates(new ConditionalLiteral()
+                                .withConditional(new Predicate().withName("cycle").withElements(x, y))
+                                .withConditions(new Predicate().withName("edge").withElements(x, y))).withLowerBound(1).withUpperBound(1)))
+                .withBody(new Body().withPredicates(new Predicate().withName("node").withElements(x)));
+
+        Rule rule2 = new Rule()
+                .withHead(new Head()
+                        .withPredicates(new Choice().withPredicates(new ConditionalLiteral()
+                                .withConditional(new Predicate().withName("cycle").withElements(x, y))
+                                .withConditions(new Predicate().withName("edge").withElements(x, y))).withLowerBound(1).withUpperBound(1)))
+                .withBody(new Body().withPredicates(new Predicate().withName("node").withElements(y)));
+
+        Rule rule3 = new Rule()
+                .withHead(new Head().withPredicates(new Predicate().withName("reached").withElements(y)))
+                .withBody(new Body().withPredicates(new Predicate().withName("cycle").withElements(one, y)));
+
+        Rule rule4 = new Rule()
+                .withHead(new Head().withPredicates(new Predicate().withName("reached").withElements(y)))
+                .withBody(new Body().withPredicates(new Predicate().withName("cycle").withElements(x, y), new Predicate().withName("reached").withElements(x)));
+
+        Rule rule5 = new Rule()
+                .withBody(new Body().withPredicates(new Predicate().withName("node").withElements(y), new Predicate().withName("reached").withNot().withElements(y)));
+
+        Rule rule6 = new Rule()
+                .withHead(new Head().withPredicates(new Predicate().withName("node").withElements(new Range().withMin(1).withMax(6))));
+
+        Rule rule7 = new Rule()
+                .withHead(new Head().withPredicates(new Predicate().withName("cost").withElements(one, two, two)));
+
+        AspGenerator testGen = new AspGenerator();
+        testGen.withRules(rule1, rule2, rule3, rule4, rule5, rule6, rule7);
 
         AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
 
-        AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString3);
-
-        System.out.println(gen.toString());
+        AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString);
+        Assertions.assertEquals(testGen, gen);
+        Assertions.assertEquals(testString, gen.toString());
 
     }
 }
