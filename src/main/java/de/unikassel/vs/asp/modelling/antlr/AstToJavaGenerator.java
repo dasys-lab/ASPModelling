@@ -23,9 +23,7 @@ public class AstToJavaGenerator {
 
         ASPVisitor aspVisitor = new ASPVisitor();
 
-        // System.out.println(tree.toStringTree(parser));
-
         AspGenerator aspGenerator = aspVisitor.visit(tree);
-         return aspGenerator;
+        return aspGenerator;
     }
 }
