@@ -21,6 +21,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitProgram(ASPCore2Parser.ProgramContext ctx) {
+        String s = ctx.toString();
         visitChildren(ctx);
         return gen;
     }
@@ -61,6 +62,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitBody(ASPCore2Parser.BodyContext ctx) {
+        String s = ctx.toString();
         if (currentRule.getBody() == null){
             currentHeadOrBody = new Body();
         }
@@ -93,6 +95,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitNaf_literal(ASPCore2Parser.Naf_literalContext ctx) {
+        String s = ctx.toString();
         // NAF corresponds to "not"
         if (ctx.NAF() != null) {
             notToSet = true;
@@ -140,6 +143,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitClassical_literal(ASPCore2Parser.Classical_literalContext ctx) {
+        String s = ctx.toString();
         TerminalNode minus = ctx.MINUS();
         TerminalNode id = ctx.ID();
         configureCurrentPredicate(minus, id, null);

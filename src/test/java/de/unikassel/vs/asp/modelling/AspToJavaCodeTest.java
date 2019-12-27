@@ -129,8 +129,8 @@ public class AspToJavaCodeTest {
         AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
 
         AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString);
-
-        System.out.println(gen.toString());
+        Assertions.assertEquals(testGen, gen);
+        Assertions.assertEquals(testString, gen.toString());
     }
 
     @Test

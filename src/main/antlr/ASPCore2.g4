@@ -24,7 +24,7 @@ head : disjunction
      | choice
      ;
 
-body : ( naf_literal | aggregate ) (COMMA body)?;
+body : ( naf_literal | aggregate | conditional_literal) ((COMMA | SEMICOLON) body)?;
 
 disjunction : classical_literal (OR disjunction)?;
 
