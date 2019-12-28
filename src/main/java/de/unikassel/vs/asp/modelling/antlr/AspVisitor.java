@@ -2,12 +2,11 @@ package de.unikassel.vs.asp.modelling.antlr;
 
 import de.unikassel.vs.asp.modelling.AspGenerator;
 import de.unikassel.vs.asp.modelling.syntax.*;
+import java.util.List;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.util.List;
-
-public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
+public class AspVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     boolean notToSet;
     boolean nextPredicateInChoice;
@@ -21,7 +20,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitProgram(ASPCore2Parser.ProgramContext ctx) {
-        String s = ctx.toString();
+        // String s = ctx.toString();
         visitChildren(ctx);
         return gen;
     }
@@ -52,7 +51,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitHead(ASPCore2Parser.HeadContext ctx) {
-        if (currentRule.getHead() == null){
+        if (currentRule.getHead() == null) {
             currentHeadOrBody = new Head();
         }
         currentRule.withHead(currentHeadOrBody);
@@ -62,8 +61,8 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitBody(ASPCore2Parser.BodyContext ctx) {
-        String s = ctx.toString();
-        if (currentRule.getBody() == null){
+        // String s = ctx.toString();
+        if (currentRule.getBody() == null) {
             currentHeadOrBody = new Body();
         }
         currentRule.withBody(currentHeadOrBody);
@@ -95,7 +94,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitNaf_literal(ASPCore2Parser.Naf_literalContext ctx) {
-        String s = ctx.toString();
+        // String s = ctx.toString();
         // NAF corresponds to "not"
         if (ctx.NAF() != null) {
             notToSet = true;
@@ -107,7 +106,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     @Override
     public AspGenerator visitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx) {
         currentConditionalLiteral = new ConditionalLiteral();
-        if (nextPredicateInChoice && currentChoice != null){
+        if (nextPredicateInChoice && currentChoice != null) {
             currentChoice.withPredicates(currentConditionalLiteral);
         } else {
             currentHeadOrBody.withPredicates(currentConditionalLiteral);
@@ -130,7 +129,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     @Override
     public AspGenerator visitConditions(ASPCore2Parser.ConditionsContext ctx) {
         List<ASPCore2Parser.ConditionContext> conditions = ctx.condition();
-        for (ASPCore2Parser.ConditionContext conditionContext: conditions){
+        for (ASPCore2Parser.ConditionContext conditionContext : conditions) {
             TerminalNode minus = conditionContext.MINUS();
             TerminalNode id = conditionContext.ID();
             TerminalNode not = conditionContext.NAF();
@@ -143,11 +142,11 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitClassical_literal(ASPCore2Parser.Classical_literalContext ctx) {
-        String s = ctx.toString();
+        // String s = ctx.toString();
         TerminalNode minus = ctx.MINUS();
         TerminalNode id = ctx.ID();
         configureCurrentPredicate(minus, id, null);
-        if (nextPredicateInChoice && currentChoice != null){
+        if (nextPredicateInChoice && currentChoice != null) {
             currentChoice.withPredicates(currentPredicate);
         } else {
             currentHeadOrBody.withPredicates(currentPredicate);
@@ -207,7 +206,7 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         }
     }
 
-    public Range configureRange(ASPCore2Parser.IntervalContext ctx) {
+    private Range configureRange(ASPCore2Parser.IntervalContext ctx) {
         Range range = new Range();
         Token lower = ctx.lower;
         Token upper = ctx.upper;
@@ -218,18 +217,18 @@ public class ASPVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     private void setChoiceBounds(ASPCore2Parser.ChoiceContext ctx) {
         // check for lower bound
-        if (ctx.lt != null){
-            int lowerBound =  Integer.parseInt(ctx.lt.getText());
+        if (ctx.lt != null) {
+            int lowerBound = Integer.parseInt(ctx.lt.getText());
             currentChoice.withUpperBound(lowerBound);
         }
         // check for upper bound
-        if (ctx.ut != null){
-            int upperBound =  Integer.parseInt(ctx.ut.getText());
+        if (ctx.ut != null) {
+            int upperBound = Integer.parseInt(ctx.ut.getText());
             currentChoice.withUpperBound(upperBound);
         }
         // check for upper and lower bound expression
         if (ctx.ut != null && ctx.uop.EQUAL() != null) {
-            int upperAndLowerBound =  Integer.parseInt(ctx.ut.getText());
+            int upperAndLowerBound = Integer.parseInt(ctx.ut.getText());
             currentChoice.withUpperBound(upperAndLowerBound);
             currentChoice.withLowerBound(upperAndLowerBound);
         }

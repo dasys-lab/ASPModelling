@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * Defines the left part of the binary {@code :-} ("if") operator.
  */
-public class Head extends RuleComponent{
+public class Head extends RuleComponent {
 
     private ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
 

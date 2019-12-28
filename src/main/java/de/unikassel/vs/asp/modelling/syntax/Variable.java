@@ -9,10 +9,10 @@ import java.util.Objects;
 
 public class Variable extends Element {
 
-    private final static String LEGAL_VARIABLE_NAMES
+    private static final String LEGAL_VARIABLE_NAMES
             = "([A-Z]\\w*)"; // start with uppercase letter than any letter, number or _
 
-    public static String getLEGAL_VARIABLE_NAMES() {
+    public static String getLegalVariableNames() {
         return LEGAL_VARIABLE_NAMES;
     }
 
