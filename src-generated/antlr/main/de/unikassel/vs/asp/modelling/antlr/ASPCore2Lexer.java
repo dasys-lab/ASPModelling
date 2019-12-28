@@ -1,5 +1,5 @@
 // Generated from ASPCore2.g4 by ANTLR 4.7.2
-package de.unikassel.vs.asp_modelling;
+package de.unikassel.vs.asp.modelling.antlr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
