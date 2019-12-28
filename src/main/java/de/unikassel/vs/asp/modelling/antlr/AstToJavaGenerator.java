@@ -23,7 +23,6 @@ public class AstToJavaGenerator {
 
         ASPVisitor aspVisitor = new ASPVisitor();
 
-        AspGenerator aspGenerator = aspVisitor.visit(tree);
-        return aspGenerator;
+        return aspVisitor.visit(tree);
     }
 }
