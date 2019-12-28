@@ -1,7 +1,5 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
-import org.antlr.v4.runtime.RuleContext;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;

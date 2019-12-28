@@ -1,7 +1,6 @@
 package de.unikassel.vs.asp.modelling.syntax;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public abstract class RuleComponent {
 
