@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * Defines the right part of the binary {@code :-} ("if") operator.
  */
-public class Body {
+public class Body extends RuleComponent {
 
     private ArrayList<PredicateTerm> predicateTerms = new ArrayList<>();
 
@@ -17,6 +17,7 @@ public class Body {
      *
      * @return The body's terms.
      */
+    @Override
     public ArrayList<PredicateTerm> getPredicateTerms() {
         return this.predicateTerms;
     }
@@ -28,6 +29,7 @@ public class Body {
      * @param predicates The predicates that are to be added.
      * @return The body the method was called on.
      */
+    @Override
     public Body withPredicates(PredicateTerm... predicates) {
         return this.withPredicates(Arrays.asList(predicates));
     }

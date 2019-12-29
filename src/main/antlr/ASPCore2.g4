@@ -20,17 +20,19 @@ statement : head DOT                     # statement_fact
           | WCONS body? DOT SQUARE_OPEN weight_at_level SQUARE_CLOSE # statement_weightConstraint
           | directive                    # statement_directive;   // NOT Core2 syntax.
 
-head : disjunction | choice;
+head : disjunction
+     | choice
+     ;
 
-body : ( naf_literal | aggregate ) (COMMA body)?;
+body : ( naf_literal | aggregate | conditional_literal) ((COMMA | SEMICOLON) body)?;
 
 disjunction : classical_literal (OR disjunction)?;
 
-choice : (lt=term lop=binop)? CURLY_OPEN choice_elements? CURLY_CLOSE (uop=binop ut=term)?;
+choice : (lt=NUMBER lop=binop)? CURLY_OPEN choice_elements? CURLY_CLOSE (uop=binop ut=NUMBER)?;
 
 choice_elements : choice_element (SEMICOLON choice_elements)?;
 
-choice_element : classical_literal (COLON naf_literals?)?;
+choice_element : (conditional_literal | classical_literal) (COLON naf_literals?)?;
 
 aggregate : NAF? (lt=term lop=binop)? aggregate_function CURLY_OPEN aggregate_elements CURLY_CLOSE (uop=binop ut=term)?;
 
@@ -41,10 +43,17 @@ aggregate_element : basic_terms? (COLON naf_literals?)?;
 aggregate_function : AGGREGATE_COUNT | AGGREGATE_MAX | AGGREGATE_MIN | AGGREGATE_SUM;
 
 weight_at_level : term (AT term)? (COMMA terms)?;
-
 naf_literals : naf_literal (COMMA naf_literals)?;
 
 naf_literal : NAF? (external_atom | classical_literal | builtin_atom);
+
+conditional_literal: conditional COLON conditions;
+
+conditional: NAF? MINUS? ID (PAREN_OPEN terms PAREN_CLOSE)?;
+
+conditions: condition (COMMA condition)?;
+
+condition: NAF? MINUS? ID (PAREN_OPEN terms PAREN_CLOSE)?;
 
 classical_literal : MINUS? ID (PAREN_OPEN terms PAREN_CLOSE)?;
 

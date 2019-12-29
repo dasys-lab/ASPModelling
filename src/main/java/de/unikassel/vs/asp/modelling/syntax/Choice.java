@@ -13,7 +13,7 @@ public class Choice extends PredicateTerm {
     private List<PredicateTerm> predicates;
 
     /**
-     * Initializes the internal predicate list.
+     * Initializes the internal predicateTerms list.
      */
     public Choice() {
         predicates = new ArrayList<>();
@@ -116,16 +116,16 @@ public class Choice extends PredicateTerm {
     /**
      * Standard getter.
      *
-     * @return The choice's predicates.
+     * @return The choice's predicateTerms.
      */
     public List<PredicateTerm> getPredicates() {
         return predicates;
     }
 
     /**
-     * Add the given predicates to this choice's predicates.
+     * Add the given predicateTerms to this choice's predicates.
      *
-     * @param predicates The predicate that are to be added.
+     * @param predicates The predicateTerms that are to be added.
      * @return The choice this method was called on.
      */
     public Choice withPredicates(PredicateTerm... predicates) {
@@ -133,9 +133,9 @@ public class Choice extends PredicateTerm {
     }
 
     /**
-     * Add the given predicates to this choice's predicates.
+     * Add the given predicateTerms to this choice's predicateTerms.
      *
-     * @param predicates The predicate that are to be added.
+     * @param predicates The predicateTerms that are to be added.
      * @return The choice this method was called on.
      */
     public Choice withPredicates(Collection<PredicateTerm> predicates) {

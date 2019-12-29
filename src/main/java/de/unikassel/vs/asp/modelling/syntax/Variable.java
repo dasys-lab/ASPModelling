@@ -12,6 +12,10 @@ public class Variable extends Element {
     private static final String LEGAL_VARIABLE_NAMES
             = "([A-Z]\\w*)"; // start with uppercase letter than any letter, number or _
 
+    public static String getLegalVariableNames() {
+        return LEGAL_VARIABLE_NAMES;
+    }
+
     private String name;
     private ArrayList<Constant> constantsOutOfValueRange = new ArrayList<>();
 

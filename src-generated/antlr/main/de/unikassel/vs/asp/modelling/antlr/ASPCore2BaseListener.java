@@ -1,5 +1,5 @@
 // Generated from ASPCore2.g4 by ANTLR 4.7.2
-package de.unikassel.vs.asp_modelling;
+package de.unikassel.vs.asp.modelling.antlr;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -263,6 +263,54 @@ public class ASPCore2BaseListener implements ASPCore2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNaf_literal(ASPCore2Parser.Naf_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditional_literal(ASPCore2Parser.Conditional_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditional_literal(ASPCore2Parser.Conditional_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditional(ASPCore2Parser.ConditionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditional(ASPCore2Parser.ConditionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditions(ASPCore2Parser.ConditionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditions(ASPCore2Parser.ConditionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCondition(ASPCore2Parser.ConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCondition(ASPCore2Parser.ConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
