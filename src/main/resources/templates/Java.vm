@@ -100,7 +100,7 @@ Predicate $AspGenerator.createJavaCodeName($p) = new Predicate().withName("$p.ge
 Choice $AspGenerator.createJavaCodeName($c) = new Choice()##
 #if($c.getLowerBound().isPresent() && $c.getLowerBound().equals($c.getUpperBound()))
 
-    .exact($c.getLowerBound().getAsInt())##
+    .withExact($c.getLowerBound().getAsInt())##
 #else
 #if($c.getLowerBound().isPresent())
 

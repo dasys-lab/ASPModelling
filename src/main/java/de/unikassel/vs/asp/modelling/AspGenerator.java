@@ -138,6 +138,7 @@ public class AspGenerator {
                 sortPredicateTerm(innerPredicateTerm,
                         constants, ranges, variables, predicates, choices, conditionalLiterals);
             }
+            choices.add((Choice) predicateTerm);
         } else if (predicateTerm instanceof ConditionalLiteral) {
             sortPredicateTerm(((ConditionalLiteral) predicateTerm).getConditional(),
                     constants, ranges, variables, predicates, choices, conditionalLiterals);
@@ -145,6 +146,7 @@ public class AspGenerator {
                 sortPredicateTerm(innerPredicateTerm,
                         constants, ranges, variables, predicates, choices, conditionalLiterals);
             }
+            conditionalLiterals.add((ConditionalLiteral) predicateTerm);
         } else {
             throw new IllegalStateException("Unknown predicate term of type: "
                     + predicateTerm.getClass().getSimpleName());
