@@ -26,17 +26,31 @@
 
 #end
 
-## Iterate over all choices
+## Iterate over all choices to create them
 // Choices used in the Asp-program
 #foreach($c in $choices)
 #declareChoice($c)
 
 #end
 
-## Iterate over all conditional literals
+## Iterate over all conditional literals to create them
 // ConditionalLiterals in the Asp-program
 #foreach($cl in $conditionalLiterals)
 #declareConditionalLiteral($cl)
+
+#end
+
+## Iterate over all choices to fill them
+// Set the PredicateTerms of the Choices
+#foreach($c in $choices)
+#fillChoice($c)
+
+#end
+
+## Iterate over all conditional literals to fill them
+// Set the PredicateTerms of the ConditionalLiterals
+#foreach($cl in $conditionalLiterals)
+#fillConditionalLiteral($cl)
 
 #end
 
@@ -111,8 +125,13 @@ Choice $AspGenerator.createJavaCodeName($c) = new Choice()##
     .withUpperBound($c.getUpperBound().getAsInt())##
 #end
 #end
-#if(!$c.getPredicates().isEmpty())
+;##
+#end
 
+## Macro for filling one choice
+#macro(fillChoice $c)
+$AspGenerator.createJavaCodeName($c)
+#if(!$c.getPredicates().isEmpty())
     .withPredicates(#list($c.getPredicates()))##
 #end
 ;##
@@ -120,9 +139,14 @@ Choice $AspGenerator.createJavaCodeName($c) = new Choice()##
 
 ## Macro for declaring one conditional literal
 #macro(declareConditionalLiteral $cl)
-ConditionalLiteral $AspGenerator.createJavaCodeName($cl) = new ConditionalLiteral()
+ConditionalLiteral $AspGenerator.createJavaCodeName($cl) = new ConditionalLiteral();##
+#end
+
+## Macro for filling one conditional literal
+#macro(fillConditionalLiteral $cl)
+$AspGenerator.createJavaCodeName($cl)
     .withConditional($AspGenerator.createJavaCodeName($cl.getConditional()))
-    .withConditions(#list($cl.getConditions()));
+    .withConditions(#list($cl.getConditions()));##
 #end
 
 ## Macro for declaring one rule
