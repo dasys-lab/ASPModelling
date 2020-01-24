@@ -18,9 +18,13 @@ public class AspVisitor extends ASPCore2BaseVisitor<AspGenerator> {
     Choice currentChoice;
     ConditionalLiteral currentConditionalLiteral;
 
+    /**
+     * Visits the top level token (ProgramContext).
+     *
+     * @return The complete AspGenerator.
+     */
     @Override
     public AspGenerator visitProgram(ASPCore2Parser.ProgramContext ctx) {
-        // String s = ctx.toString();
         visitChildren(ctx);
         return gen;
     }
@@ -33,6 +37,9 @@ public class AspVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         return gen;
     }
 
+    /**
+     * Statement_Facts are rules within our Java-Asp-Structure.
+     */
     @Override
     public AspGenerator visitStatement_fact(ASPCore2Parser.Statement_factContext ctx) {
         currentRule = new Rule();
@@ -41,6 +48,9 @@ public class AspVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         return gen;
     }
 
+    /**
+     * Statement_Constraints are rules within our Java-Asp-Structure.
+     */
     @Override
     public AspGenerator visitStatement_constraint(ASPCore2Parser.Statement_constraintContext ctx) {
         currentRule = new Rule();
@@ -61,7 +71,6 @@ public class AspVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitBody(ASPCore2Parser.BodyContext ctx) {
-        // String s = ctx.toString();
         if (currentRule.getBody() == null) {
             currentHeadOrBody = new Body();
         }
@@ -81,6 +90,9 @@ public class AspVisitor extends ASPCore2BaseVisitor<AspGenerator> {
         return gen;
     }
 
+    /**
+     * No colon indicates that last predicate within the choice.
+     */
     @Override
     public AspGenerator visitChoice_element(ASPCore2Parser.Choice_elementContext ctx) {
         TerminalNode colon = ctx.COLON();
@@ -94,7 +106,6 @@ public class AspVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitNaf_literal(ASPCore2Parser.Naf_literalContext ctx) {
-        // String s = ctx.toString();
         // NAF corresponds to "not"
         if (ctx.NAF() != null) {
             notToSet = true;
@@ -142,7 +153,6 @@ public class AspVisitor extends ASPCore2BaseVisitor<AspGenerator> {
 
     @Override
     public AspGenerator visitClassical_literal(ASPCore2Parser.Classical_literalContext ctx) {
-        // String s = ctx.toString();
         TerminalNode minus = ctx.MINUS();
         TerminalNode id = ctx.ID();
         configureCurrentPredicate(minus, id, null);
