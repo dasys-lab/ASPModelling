@@ -88,7 +88,12 @@ Range $AspGenerator.createJavaCodeName($r) = new Range()
 
 ## Macro for declaring one variable
 #macro(declareVariable $v)
-Variable $AspGenerator.createJavaCodeName($v) = new Variable().withName("$v.getName()");##
+Variable $AspGenerator.createJavaCodeName($v) = new Variable().withName("$v.getName()")##
+#if(!$v.getConstantsOutOfValueRange().isEmpty()) ## Declare out of value range constants
+
+    .withConstantsOutOfValueRange(#list($v.getConstantsOutOfValueRange()))##
+#end
+;##
 #end
 
 ## Macro for declaring one predicate

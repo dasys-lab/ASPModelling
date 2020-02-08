@@ -151,13 +151,13 @@ public class AspToJavaCodeTest {
 
         AstToJavaGenerator astToJavaGenerator = new AstToJavaGenerator();
 
-        String testString = "{cycle(X, Y) : edge(X, Y)} = 1 :- node(X).\n"
-                + "{cycle(X, Y) : edge(X, Y)} = 1 :- node(Y).\n"
-                + "reached(Y) :- cycle(1, Y).\n"
-                + "reached(Y) :- cycle(X, Y), reached(X).\n"
-                + ":- node(Y), not reached(Y).\n"
-                + "node(1..6).\n"
-                + "cost(1, 2, 2).";
+        String testString = String.format("{cycle(X, Y) : edge(X, Y)} = 1 :- node(X).%n"
+                + "{cycle(X, Y) : edge(X, Y)} = 1 :- node(Y).%n"
+                + "reached(Y) :- cycle(1, Y).%n"
+                + "reached(Y) :- cycle(X, Y), reached(X).%n"
+                + ":- node(Y), not reached(Y).%n"
+                + "node(1..6).%n"
+                + "cost(1, 2, 2).");
 
         AspGenerator gen = astToJavaGenerator.generateJavaObjectsFromAspString(testString);
         Assertions.assertEquals(testGen, gen);

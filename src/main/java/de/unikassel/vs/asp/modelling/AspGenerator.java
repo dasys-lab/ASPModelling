@@ -55,6 +55,8 @@ public class AspGenerator {
         c.put("Fact", Type.FACT);
         c.put("Constraint", Type.CONSTRAINT);
 
+        c.put("AspGenerator", AspGenerator.class);
+
         // Load the template
         Template t = ve.getTemplate("./src/main/resources/templates/ASP.vm");
 
@@ -175,6 +177,44 @@ public class AspGenerator {
     public static String createJavaCodeName(Object aspObject) {
         return aspObject.getClass().getSimpleName().toLowerCase()
                 + ("" + aspObject.hashCode()).replace("-", "Negative");
+    }
+
+    /**
+     * Get all {@link Variable}s contained in a body.
+     *
+     * @param body The body to extract variables from.
+     * @return A set of variables.
+     */
+    public static LinkedHashSet<Variable> extractVariables(Body body) {
+        LinkedHashSet<Variable> variables = new LinkedHashSet<>();
+        for (PredicateTerm predicateTerm : body.getPredicateTerms()) {
+            variables.addAll(extractVariables(predicateTerm));
+        }
+        return variables;
+    }
+
+    private static LinkedHashSet<Variable> extractVariables(PredicateTerm predicateTerm) {
+        LinkedHashSet<Variable> variables = new LinkedHashSet<>();
+        if (predicateTerm instanceof Predicate) {
+            for (Element element : ((Predicate) predicateTerm).getElements()) {
+                if (element instanceof Variable) {
+                    variables.add((Variable) element);
+                }
+            }
+        } else if (predicateTerm instanceof Choice) {
+            for (PredicateTerm predicate : ((Choice) predicateTerm).getPredicates()) {
+                variables.addAll(extractVariables(predicate));
+            }
+        } else if (predicateTerm instanceof ConditionalLiteral) {
+            extractVariables(((ConditionalLiteral) predicateTerm).getConditional());
+            for (PredicateTerm predicate : ((ConditionalLiteral) predicateTerm).getConditions()) {
+                variables.addAll(extractVariables(predicate));
+            }
+        } else {
+            throw new IllegalStateException("Unknown predicate term of type: "
+                    + predicateTerm.getClass().getSimpleName());
+        }
+        return variables;
     }
 
     @Override

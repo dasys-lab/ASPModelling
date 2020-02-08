@@ -9,9 +9,9 @@
 #if($rule.getType() == $Fact)
 #terms($rule.getHead().getPredicateTerms()).
 #elseif($rule.getType() == $Constraint)
-:- #terms($rule.getBody().getPredicateTerms()).
+:- #terms($rule.getBody().getPredicateTerms())#outOfRange($rule.getBody()).
 #else
-#terms($rule.getHead().getPredicateTerms()) :- #terms($rule.getBody().getPredicateTerms()).
+#terms($rule.getHead().getPredicateTerms()) :- #terms($rule.getBody().getPredicateTerms())#outOfRange($rule.getBody()).
 #end
 #end
 
@@ -96,5 +96,14 @@ $separator##
 $separator##
 #predicate($c)##
 #set($separator = ", ")## Comma before all following elements
+#end
+#end
+
+## Macro for values variables should not take
+#macro(outOfRange $b)
+#foreach($v in $AspGenerator.extractVariables($b))
+#foreach($c in $v.getConstantsOutOfValueRange())
+, $v.getName() != $c.getName()##
+#end
 #end
 #end
